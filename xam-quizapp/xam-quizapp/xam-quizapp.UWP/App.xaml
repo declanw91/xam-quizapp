@@ -1,8 +1,8 @@
 ﻿<Application
-    x:Class="xam_quizapp.UWP.App"
+    x:Class="quizapp.UWP.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:xam_quizapp.UWP"
+    xmlns:local="using:quizapp.UWP"
     RequestedTheme="Light">
 
 </Application>

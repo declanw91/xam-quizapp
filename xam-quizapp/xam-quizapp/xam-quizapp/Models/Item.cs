@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace xam_quizapp.Models
+namespace quizapp.Models
 {
     public class Item
     {

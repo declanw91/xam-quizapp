@@ -1,10 +1,10 @@
 ﻿using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using xam_quizapp.Services;
-using xam_quizapp.Views;
+using quizapp.Services;
+using quizapp.Views;
 
-namespace xam_quizapp
+namespace quizapp
 {
     public partial class App : Application
     {

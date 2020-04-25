@@ -4,8 +4,8 @@
             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
             mc:Ignorable="d"
-            xmlns:views="clr-namespace:xam_quizapp.Views"
-            x:Class="xam_quizapp.Views.MainPage">
+            xmlns:views="clr-namespace:quizapp.Views"
+            x:Class="quizapp.Views.MainPage">
 
     <MasterDetailPage.Master>
         <views:MenuPage />
@@ -13,13 +13,8 @@
 
     <MasterDetailPage.Detail>
         <NavigationPage>
-            <NavigationPage.Icon>
-                <OnPlatform x:TypeArguments="FileImageSource">
-                    <On Platform="iOS" Value="tab_feed.png"/>
-                </OnPlatform>
-            </NavigationPage.Icon>
             <x:Arguments>
-                <views:ItemsPage />
+                <views:Dashboard />
             </x:Arguments>
         </NavigationPage>
     </MasterDetailPage.Detail>

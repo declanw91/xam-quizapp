@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using xam_quizapp.Models;
+using quizapp.Models;
 
-namespace xam_quizapp.Services
+namespace quizapp.Services
 {
     public class MockDataStore : IDataStore<Item>
     {

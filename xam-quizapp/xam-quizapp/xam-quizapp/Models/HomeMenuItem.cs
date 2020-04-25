@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace xam_quizapp.Models
+namespace quizapp.Models
 {
     public enum MenuItemType
     {
         Browse,
-        About
+        About,
+        Settings
     }
     public class HomeMenuItem
     {

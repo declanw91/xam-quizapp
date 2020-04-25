@@ -5,10 +5,10 @@ using System.Runtime.CompilerServices;
 
 using Xamarin.Forms;
 
-using xam_quizapp.Models;
-using xam_quizapp.Services;
+using quizapp.Models;
+using quizapp.Services;
 
-namespace xam_quizapp.ViewModels
+namespace quizapp.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {

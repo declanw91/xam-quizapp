@@ -5,7 +5,7 @@ using System.Linq;
 using Foundation;
 using UIKit;
 
-namespace xam_quizapp.iOS
+namespace quizapp.iOS
 {
     public class Application
     {

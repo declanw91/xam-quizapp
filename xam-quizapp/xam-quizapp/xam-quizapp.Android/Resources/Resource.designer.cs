@@ -9,9 +9,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: global::Android.Runtime.ResourceDesignerAttribute("xam_quizapp.Droid.Resource", IsApplication=true)]
+[assembly: global::Android.Runtime.ResourceDesignerAttribute("quizapp.Droid.Resource", IsApplication=true)]
 
-namespace xam_quizapp.Droid
+namespace quizapp.Droid
 {
 	
 	
@@ -26,7 +26,7 @@ namespace xam_quizapp.Droid
 		
 		public static void UpdateIdValues()
 		{
-			global::Xamarin.Forms.Platform.Android.Resource.Attribute.actionBarSize = global::xam_quizapp.Droid.Resource.Attribute.actionBarSize;
+			global::Xamarin.Forms.Platform.Android.Resource.Attribute.actionBarSize = global::quizapp.Droid.Resource.Attribute.actionBarSize;
 		}
 		
 		public partial class Animation

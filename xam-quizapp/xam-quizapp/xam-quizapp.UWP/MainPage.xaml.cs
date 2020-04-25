@@ -13,7 +13,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-namespace xam_quizapp.UWP
+namespace quizapp.UWP
 {
     public sealed partial class MainPage
     {
@@ -21,7 +21,7 @@ namespace xam_quizapp.UWP
         {
             this.InitializeComponent();
 
-            LoadApplication(new xam_quizapp.App());
+            LoadApplication(new quizapp.App());
         }
     }
 }

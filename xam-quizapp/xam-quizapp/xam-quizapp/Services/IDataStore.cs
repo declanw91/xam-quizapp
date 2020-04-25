@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace xam_quizapp.Services
+namespace quizapp.Services
 {
     public interface IDataStore<T>
     {

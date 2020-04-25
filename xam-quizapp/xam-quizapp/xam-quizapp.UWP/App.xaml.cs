@@ -15,7 +15,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-namespace xam_quizapp.UWP
+namespace quizapp.UWP
 {
     /// <summary>
     /// Provides application-specific behavior to supplement the default Application class.

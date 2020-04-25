@@ -3,7 +3,7 @@ using System.Windows.Input;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
-namespace xam_quizapp.ViewModels
+namespace quizapp.ViewModels
 {
     public class AboutViewModel : BaseViewModel
     {
