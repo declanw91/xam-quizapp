@@ -1,6 +1,8 @@
 ﻿using quizapp.Controllers;
+using quizapp.Models;
 using System.Collections.Generic;
 using System.Linq;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace quizapp.ViewModels
@@ -8,6 +10,7 @@ namespace quizapp.ViewModels
     public class SettingsViewModel : BaseViewModel
     {
         private List<string> _quizCategories;
+        private List<QuizCategory> _quizCategoryList;
         private List<string> _quizDifficulties;
         private string _selectedCategory;
         private string _selectedDifficulty;
@@ -62,7 +65,7 @@ namespace quizapp.ViewModels
             }
         }
 
-        public Command SaveCommand => _saveCommand ?? (_saveCommand = new Command(SaveSettings));
+        public Command SaveSettings => _saveCommand ?? (_saveCommand = new Command(SaveUserSettings));
 
         private async void PopulateQuizCategories()
         {
@@ -70,6 +73,7 @@ namespace quizapp.ViewModels
             if(quizCategories != null)
             {
                 QuizCategories.Clear();
+                _quizCategoryList = quizCategories;
                 foreach (var item in quizCategories)
                 {
                     QuizCategories = quizCategories.Select(c => c.Name).ToList();
@@ -85,9 +89,14 @@ namespace quizapp.ViewModels
             QuizDifficulties.Add("Hard");
         }
 
-        private void SaveSettings()
+        private void SaveUserSettings()
         {
-            
+            var selectedCategory = _quizCategoryList.FirstOrDefault(c => c.Name == SelectedCategory);
+            if(selectedCategory != null)
+            {
+                Preferences.Set("QuizCategory", selectedCategory.Id);
+            }
+            Preferences.Set("QuizDifficulty", SelectedDifficulty);
         }
     }
 }

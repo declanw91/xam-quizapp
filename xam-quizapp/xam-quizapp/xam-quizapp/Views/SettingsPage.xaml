@@ -25,7 +25,7 @@
                 <Picker x:Name="pckDifficulty" ItemsSource="{Binding QuizDifficulties}" SelectedItem="{Binding SelectedDifficulty}"/>
             </StackLayout>
             <StackLayout Grid.Row="3">
-                <Button x:Name="btnSaveSettings" Text="Save" />
+                <Button x:Name="btnSaveSettings" Text="Save" Command="{Binding SaveSettings}"/>
             </StackLayout>
         </Grid>
     </ContentPage.Content>
