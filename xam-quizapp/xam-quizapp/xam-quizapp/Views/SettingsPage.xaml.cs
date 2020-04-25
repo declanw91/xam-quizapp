@@ -7,12 +7,11 @@ namespace quizapp.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SettingsPage : ContentPage
     {
-        private SettingsViewModel _viewModel;
+        private SettingsViewModel _viewModel => BindingContext as SettingsViewModel;
         public SettingsPage()
         {
             InitializeComponent();
-            _viewModel = new SettingsViewModel();
-            BindingContext = _viewModel;
+            BindingContext = new SettingsViewModel();
         }
     }
 }

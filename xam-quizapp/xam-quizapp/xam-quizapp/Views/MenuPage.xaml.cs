@@ -20,8 +20,7 @@ namespace quizapp.Views
 
             menuItems = new List<HomeMenuItem>
             {
-                new HomeMenuItem {Id = MenuItemType.Settings, Title="Settings" },
-                new HomeMenuItem {Id = MenuItemType.About, Title="About" }
+                new HomeMenuItem {Id = MenuItemType.Settings, Title="Settings" }
             };
 
             ListViewMenu.ItemsSource = menuItems;

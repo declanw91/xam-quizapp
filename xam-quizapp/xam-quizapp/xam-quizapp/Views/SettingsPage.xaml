@@ -10,13 +10,18 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
             <StackLayout Grid.Row="0">
                 <Label Text="Settings" HorizontalOptions="Center"/>
             </StackLayout>
             <StackLayout Grid.Row="1">
                 <Label Text="Please select a category:" />
-                <Picker x:Name="pckquizCategory" ItemsSource="{Binding QuizCategories}"/>
+                <Picker x:Name="pckQuizCategory" ItemsSource="{Binding QuizCategories}" SelectedItem="{Binding SelectedCategory}"/>
+            </StackLayout>
+            <StackLayout Grid.Row="2">
+                <Label Text="Please select a difficulty:" />
+                <Picker x:Name="pckDifficulty" ItemsSource="{Binding QuizDifficulties}" SelectedItem="{Binding SelectedDifficulty}"/>
             </StackLayout>
         </Grid>
     </ContentPage.Content>

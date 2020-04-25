@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace quizapp.Models
+﻿namespace quizapp.Models
 {
     public enum MenuItemType
     {
         Browse,
-        About,
         Settings
     }
     public class HomeMenuItem

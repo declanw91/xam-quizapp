@@ -1,20 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using quizapp.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace quizapp.Views
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-public partial class Dashboard : ContentPage
-{
-    public Dashboard()
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class Dashboard : ContentPage
     {
-        InitializeComponent();
+        private DashboardViewModel _viewModel => BindingContext as DashboardViewModel;
+        public Dashboard()
+        {
+            InitializeComponent();
+            BindingContext = new DashboardViewModel(Navigation);
+        }
     }
-}
 }
