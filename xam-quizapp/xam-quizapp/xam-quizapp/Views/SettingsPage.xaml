@@ -11,6 +11,7 @@
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <StackLayout Grid.Row="0">
                 <Label Text="Settings" HorizontalOptions="Center"/>
@@ -22,6 +23,9 @@
             <StackLayout Grid.Row="2">
                 <Label Text="Please select a difficulty:" />
                 <Picker x:Name="pckDifficulty" ItemsSource="{Binding QuizDifficulties}" SelectedItem="{Binding SelectedDifficulty}"/>
+            </StackLayout>
+            <StackLayout Grid.Row="3">
+                <Button x:Name="btnSaveSettings" Text="Save" />
             </StackLayout>
         </Grid>
     </ContentPage.Content>

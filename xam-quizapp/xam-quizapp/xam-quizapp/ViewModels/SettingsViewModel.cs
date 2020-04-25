@@ -1,6 +1,7 @@
 ﻿using quizapp.Controllers;
 using System.Collections.Generic;
 using System.Linq;
+using Xamarin.Forms;
 
 namespace quizapp.ViewModels
 {
@@ -11,6 +12,7 @@ namespace quizapp.ViewModels
         private string _selectedCategory;
         private string _selectedDifficulty;
         private CategoryController _categoryController;
+        private Command _saveCommand;
         public SettingsViewModel()
         {
             _categoryController = new CategoryController();
@@ -60,6 +62,8 @@ namespace quizapp.ViewModels
             }
         }
 
+        public Command SaveCommand => _saveCommand ?? (_saveCommand = new Command(SaveSettings));
+
         private async void PopulateQuizCategories()
         {
             var quizCategories = await _categoryController.GetQuizCategories();
@@ -79,6 +83,11 @@ namespace quizapp.ViewModels
             QuizDifficulties.Add("Easy");
             QuizDifficulties.Add("Medium");
             QuizDifficulties.Add("Hard");
+        }
+
+        private void SaveSettings()
+        {
+            
         }
     }
 }
