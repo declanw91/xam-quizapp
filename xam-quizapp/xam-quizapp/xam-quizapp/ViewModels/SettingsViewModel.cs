@@ -1,7 +1,9 @@
 ﻿using quizapp.Controllers;
 using quizapp.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
@@ -15,14 +17,15 @@ namespace quizapp.ViewModels
         private string _selectedCategory;
         private string _selectedDifficulty;
         private CategoryController _categoryController;
+        private DifficultyController _difficultyController;
         private Command _saveCommand;
         public SettingsViewModel()
         {
             _categoryController = new CategoryController();
+            _difficultyController = new DifficultyController();
             QuizDifficulties = new List<string>();
             QuizCategories = new List<string>();
-            PopulateQuizCategories();
-            PopulateQuizDifficulties();
+            SetupPageOptions();
         }
 
         public List<string> QuizCategories
@@ -52,6 +55,7 @@ namespace quizapp.ViewModels
             {
                 _selectedCategory = value;
                 OnPropertyChanged("SelectedCategory");
+                SaveSettings.ChangeCanExecute();
             }
         }
 
@@ -62,12 +66,24 @@ namespace quizapp.ViewModels
             {
                 _selectedDifficulty = value;
                 OnPropertyChanged("SelectedDifficulty");
+                SaveSettings.ChangeCanExecute();
             }
         }
 
-        public Command SaveSettings => _saveCommand ?? (_saveCommand = new Command(SaveUserSettings));
+        public Command SaveSettings => _saveCommand ?? (_saveCommand = new Command(SaveUserSettings, CanSave));
 
-        private async void PopulateQuizCategories()
+        public bool CanSave()
+        {
+            return SelectedDifficulty != null && SelectedCategory != null;
+        }
+
+        private async void SetupPageOptions()
+        {
+            await PopulateQuizCategories();
+            await PopulateQuizDifficulties();
+            LoadPreferences();
+        }
+        private async Task PopulateQuizCategories()
         {
             var quizCategories = await _categoryController.GetQuizCategories();
             if(quizCategories != null)
@@ -81,12 +97,14 @@ namespace quizapp.ViewModels
             }
         }
 
-        private void PopulateQuizDifficulties()
+        private async Task PopulateQuizDifficulties()
         {
-            QuizDifficulties.Clear();
-            QuizDifficulties.Add("Easy");
-            QuizDifficulties.Add("Medium");
-            QuizDifficulties.Add("Hard");
+            var quizDifficulties = await _difficultyController.GetQuizDifficulties();
+            if(quizDifficulties != null)
+            {
+                QuizDifficulties.Clear();
+                QuizDifficulties = quizDifficulties;
+            }
         }
 
         private void SaveUserSettings()
@@ -97,6 +115,20 @@ namespace quizapp.ViewModels
                 Preferences.Set("QuizCategory", selectedCategory.Id);
             }
             Preferences.Set("QuizDifficulty", SelectedDifficulty);
+        }
+
+        private void LoadPreferences()
+        {
+            var cat = Preferences.Get("QuizCategory", "");
+            var diff = Preferences.Get("QuizDifficulty", "");
+            if (!String.IsNullOrWhiteSpace(cat))
+            {
+                SelectedCategory = _quizCategoryList.FirstOrDefault(c => c.Id == cat).Name;
+            }
+            if(!String.IsNullOrWhiteSpace(diff))
+            {
+                SelectedDifficulty = diff;
+            }
         }
     }
 }
