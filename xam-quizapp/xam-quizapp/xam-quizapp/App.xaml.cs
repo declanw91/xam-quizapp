@@ -1,7 +1,6 @@
 ﻿using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using quizapp.Services;
 using quizapp.Views;
 
 namespace quizapp
@@ -12,8 +11,6 @@ namespace quizapp
         public App()
         {
             InitializeComponent();
-
-            DependencyService.Register<MockDataStore>();
             MainPage = new MainPage();
         }
 

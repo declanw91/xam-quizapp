@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace quizapp.Models
 {
@@ -9,6 +10,6 @@ namespace quizapp.Models
         public string Difficulty { get; set; }
         public string Question { get; set; }
         public string Correct_Answer { get; set; }
-        public Array Incorrect_Answers { get; set; }
+        public List<string> Incorrect_Answers { get; set; }
     }
 }

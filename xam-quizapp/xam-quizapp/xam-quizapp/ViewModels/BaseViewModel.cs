@@ -6,13 +6,11 @@ using System.Runtime.CompilerServices;
 using Xamarin.Forms;
 
 using quizapp.Models;
-using quizapp.Services;
 
 namespace quizapp.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
-        public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
 
         bool isBusy = false;
         public bool IsBusy

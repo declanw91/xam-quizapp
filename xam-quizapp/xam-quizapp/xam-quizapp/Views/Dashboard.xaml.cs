@@ -16,7 +16,7 @@ namespace quizapp.Views
 
         private void TapGestureRecognizer_StartAQuiz(object sender, System.EventArgs e)
         {
-            
+            _viewModel.GoToStartAQuiz();
         }
 
         private void TapGestureRecognizer_RandomCategory(object sender, System.EventArgs e)

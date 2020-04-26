@@ -26,5 +26,11 @@ namespace quizapp.ViewModels
             var aboutPage = new About();
             _navigation.PushAsync(aboutPage);
         }
+
+        public void GoToStartAQuiz()
+        {
+            var questionPage = new QuestionPage();
+            _navigation.PushAsync(questionPage);
+        }
     }
 }
