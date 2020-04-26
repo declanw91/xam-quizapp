@@ -30,6 +30,18 @@ namespace quizapp.Views
                     case (int)MenuItemType.Settings:
                         MenuPages.Add(id, new NavigationPage(new SettingsPage()));
                         break;
+                    case (int)MenuItemType.StartAQuiz:
+                        //MenuPages.Add(id, new NavigationPage(new SettingsPage()));
+                        break;
+                    case (int)MenuItemType.RandomCategory:
+                        //MenuPages.Add(id, new NavigationPage(new SettingsPage()));
+                        break;
+                    case (int)MenuItemType.RandomQuestion:
+                        //MenuPages.Add(id, new NavigationPage(new SettingsPage()));
+                        break;
+                    case (int)MenuItemType.About:
+                        MenuPages.Add(id, new NavigationPage(new About()));
+                        break;
                 }
             }
 

@@ -11,18 +11,31 @@
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <StackLayout Grid.Row="0" Grid.Column="0" Orientation="Vertical" HorizontalOptions="Center">
+            <StackLayout Grid.Row="0" Orientation="Vertical" HorizontalOptions="Center">
                 <Label Text="Quiz App"/>
             </StackLayout>
-            <StackLayout Grid.Row="1" Grid.Column="0" Orientation="Vertical" HorizontalOptions="Center">
-                <Label Text="Start Quiz"/>
+            <StackLayout Grid.Row="1" Orientation="Vertical" HorizontalOptions="Center">
+                <Image Source="quiz.png" WidthRequest="50"/>
+                <Label Text="Start a Quiz"/>
             </StackLayout>
-            <StackLayout Grid.Row="2" Grid.Column="0" Orientation="Vertical" HorizontalOptions="Center">
+            <StackLayout Grid.Row="2" Orientation="Vertical" HorizontalOptions="Center">
+                <Image Source="category.png" WidthRequest="50" />
+                <Label Text="Play a Random Category"/>
+            </StackLayout>
+            <StackLayout Grid.Row="3" Orientation="Vertical" HorizontalOptions="Center">
+                <Image Source="question-mark.png" WidthRequest="50" />
+                <Label Text="Play with Random Questions"/>
+            </StackLayout>
+            <StackLayout Grid.Row="4" Orientation="Vertical" HorizontalOptions="Center">
+                <Image Source="settings.png" WidthRequest="50"/>
                 <Label Text="Settings" />
+            </StackLayout>
+            <StackLayout Grid.Row="5" Orientation="Vertical" HorizontalOptions="Center">
+                <Image Source="about.png" WidthRequest="50"/>
+                <Label Text="About" />
             </StackLayout>
         </Grid>
     </ContentPage.Content>

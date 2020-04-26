@@ -145,4 +145,19 @@
       <Name>xam-quizapp</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\settings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\quiz.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\question-mark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\category.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\about.png" />
+  </ItemGroup>
 </Project>
