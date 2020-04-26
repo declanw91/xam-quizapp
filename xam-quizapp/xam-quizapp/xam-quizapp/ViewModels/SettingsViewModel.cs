@@ -18,13 +18,15 @@ namespace quizapp.ViewModels
         private string _selectedDifficulty;
         private CategoryController _categoryController;
         private DifficultyController _difficultyController;
+        private INavigation _navigation;
         private Command _saveCommand;
-        public SettingsViewModel()
+        public SettingsViewModel(INavigation nav)
         {
             _categoryController = new CategoryController();
             _difficultyController = new DifficultyController();
             QuizDifficulties = new List<string>();
             QuizCategories = new List<string>();
+            _navigation = nav;
             SetupPageOptions();
         }
 
@@ -77,11 +79,10 @@ namespace quizapp.ViewModels
             return SelectedDifficulty != null && SelectedCategory != null;
         }
 
-        private async void SetupPageOptions()
+        public async void SetupPageOptions()
         {
             await PopulateQuizCategories();
             await PopulateQuizDifficulties();
-            LoadPreferences();
         }
         private async Task PopulateQuizCategories()
         {
@@ -115,20 +116,7 @@ namespace quizapp.ViewModels
                 Preferences.Set("QuizCategory", selectedCategory.Id);
             }
             Preferences.Set("QuizDifficulty", SelectedDifficulty);
-        }
-
-        private void LoadPreferences()
-        {
-            var cat = Preferences.Get("QuizCategory", "");
-            var diff = Preferences.Get("QuizDifficulty", "");
-            if (!String.IsNullOrWhiteSpace(cat))
-            {
-                SelectedCategory = _quizCategoryList.FirstOrDefault(c => c.Id == cat).Name;
-            }
-            if(!String.IsNullOrWhiteSpace(diff))
-            {
-                SelectedDifficulty = diff;
-            }
+            _navigation.PopAsync();
         }
     }
 }

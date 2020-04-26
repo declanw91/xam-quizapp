@@ -11,7 +11,7 @@ namespace quizapp.Views
         public SettingsPage()
         {
             InitializeComponent();
-            BindingContext = new SettingsViewModel();
+            BindingContext = new SettingsViewModel(Navigation);
         }
     }
 }

@@ -1,9 +1,11 @@
 ﻿using Newtonsoft.Json.Linq;
 using quizapp.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace quizapp.Controllers
 {
@@ -23,7 +25,10 @@ namespace quizapp.Controllers
                 var questions = questionJson.GetValue("results") as JArray;
                 foreach (var item in questions)
                 {
-                    questionList.Add(item.ToObject<QuizQuestion>());
+                    var questionItem = item.ToObject<QuizQuestion>();
+                    questionItem.Answers = BuildAnswerArray(questionItem.Correct_Answer, questionItem.Incorrect_Answers);
+                    questionItem.Question = HttpUtility.HtmlDecode(questionItem.Question);
+                    questionList.Add(questionItem);
                 }
             }
             return questionList;
@@ -45,6 +50,20 @@ namespace quizapp.Controllers
                 response = JObject.Parse(json);
             }
             return response;
+        }
+
+        private List<string> BuildAnswerArray(string correctAnswer, List<string> incorrectAnswers)
+        {
+            var answerList = new List<string>();
+            foreach(var item in incorrectAnswers)
+            {
+                var decodedAnswer = HttpUtility.HtmlDecode(item);
+                answerList.Add(decodedAnswer);
+            }
+            var decodedCorrectAnswer = HttpUtility.HtmlDecode(correctAnswer);
+            answerList.Add(decodedCorrectAnswer);
+            var shuffledAnswers = answerList.OrderBy(a => Guid.NewGuid()).ToList();
+            return shuffledAnswers;
         }
     }
 }

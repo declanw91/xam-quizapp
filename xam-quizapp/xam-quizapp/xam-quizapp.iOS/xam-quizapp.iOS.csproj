@@ -160,4 +160,7 @@
   <ItemGroup>
     <BundleResource Include="Resources\about.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\circled-q.png" />
+  </ItemGroup>
 </Project>

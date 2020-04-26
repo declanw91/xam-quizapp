@@ -3,7 +3,6 @@
     public enum MenuItemType
     {
         Browse,
-        Settings,
         StartAQuiz,
         RandomCategory,
         RandomQuestion,

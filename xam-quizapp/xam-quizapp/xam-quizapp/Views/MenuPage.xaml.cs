@@ -23,7 +23,6 @@ namespace quizapp.Views
                 new HomeMenuItem {Id = MenuItemType.StartAQuiz, Title="Start a Quiz" },
                 new HomeMenuItem {Id = MenuItemType.RandomCategory, Title="Random Category" },
                 new HomeMenuItem {Id = MenuItemType.RandomQuestion, Title="Random Questions" },
-                new HomeMenuItem {Id = MenuItemType.Settings, Title="Settings" },
                 new HomeMenuItem {Id = MenuItemType.About, Title="About" }
             };
 

@@ -11,7 +11,13 @@ namespace quizapp.Views
         public QuestionPage()
         {
             InitializeComponent();
-            BindingContext = new QuestionPageViewModel();
+            BindingContext = new QuestionPageViewModel(Navigation);
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            _viewModel.StartQuiz();
         }
     }
 }

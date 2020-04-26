@@ -28,9 +28,6 @@ namespace quizapp.Views
             {
                 switch (id)
                 {
-                    case (int)MenuItemType.Settings:
-                        MenuPages.Add(id, new NavigationPage(new SettingsPage()));
-                        break;
                     case (int)MenuItemType.StartAQuiz:
                         //MenuPages.Add(id, new NavigationPage(new SettingsPage()));
                         break;
