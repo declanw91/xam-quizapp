@@ -20,22 +20,87 @@
             <StackLayout Grid.Row="1" Orientation="Vertical" HorizontalOptions="Center">
                 <Image Source="quiz.png" WidthRequest="50"/>
                 <Label Text="Start a Quiz"/>
+                <StackLayout.GestureRecognizers>
+                    <OnPlatform x:TypeArguments="TapGestureRecognizer">
+                        <On Platform="iOS">
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_StartAQuiz" />
+                        </On>
+                        <On Platform="UWP">
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_StartAQuiz" />
+                        </On>
+                        <On Platform="Android">
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_StartAQuiz" />
+                        </On>
+                    </OnPlatform>
+                </StackLayout.GestureRecognizers>
             </StackLayout>
             <StackLayout Grid.Row="2" Orientation="Vertical" HorizontalOptions="Center">
                 <Image Source="category.png" WidthRequest="50" />
                 <Label Text="Play a Random Category"/>
+                <StackLayout.GestureRecognizers>
+                    <OnPlatform x:TypeArguments="TapGestureRecognizer">
+                        <On Platform="iOS">
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_RandomCategory" />
+                        </On>
+                        <On Platform="UWP">
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_RandomCategory" />
+                        </On>
+                        <On Platform="Android">
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_RandomCategory" />
+                        </On>
+                    </OnPlatform>
+                </StackLayout.GestureRecognizers>
             </StackLayout>
             <StackLayout Grid.Row="3" Orientation="Vertical" HorizontalOptions="Center">
                 <Image Source="question-mark.png" WidthRequest="50" />
                 <Label Text="Play with Random Questions"/>
+                <StackLayout.GestureRecognizers>
+                    <OnPlatform x:TypeArguments="TapGestureRecognizer">
+                        <On Platform="iOS">
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_RandomQuestion" />
+                        </On>
+                        <On Platform="UWP">
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_RandomQuestion" />
+                        </On>
+                        <On Platform="Android">
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_RandomQuestion" />
+                        </On>
+                    </OnPlatform>
+                </StackLayout.GestureRecognizers>
             </StackLayout>
             <StackLayout Grid.Row="4" Orientation="Vertical" HorizontalOptions="Center">
                 <Image Source="settings.png" WidthRequest="50"/>
                 <Label Text="Settings" />
+                <StackLayout.GestureRecognizers>
+                    <OnPlatform x:TypeArguments="TapGestureRecognizer">
+                        <On Platform="iOS">
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Settings" />
+                        </On>
+                        <On Platform="UWP">
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Settings" />
+                        </On>
+                        <On Platform="Android">
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Settings" />
+                        </On>
+                    </OnPlatform>
+                </StackLayout.GestureRecognizers>
             </StackLayout>
             <StackLayout Grid.Row="5" Orientation="Vertical" HorizontalOptions="Center">
                 <Image Source="about.png" WidthRequest="50"/>
                 <Label Text="About" />
+                <StackLayout.GestureRecognizers>
+                    <OnPlatform x:TypeArguments="TapGestureRecognizer">
+                        <On Platform="iOS">
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_About" />
+                        </On>
+                        <On Platform="UWP">
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_About" />
+                        </On>
+                        <On Platform="Android">
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_About" />
+                        </On>
+                    </OnPlatform>
+                </StackLayout.GestureRecognizers>
             </StackLayout>
         </Grid>
     </ContentPage.Content>

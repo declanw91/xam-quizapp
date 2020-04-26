@@ -1,4 +1,5 @@
 ﻿using quizapp.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Threading.Tasks;
@@ -56,6 +57,14 @@ namespace quizapp.Views
 
                 IsPresented = false;
             }
+        }
+
+        public void NavigateTo(MenuItem item)
+        {
+            if (item == null) { return; }
+            //Page displayPage = (Page)Activator.CreateInstance(item.TargetType);
+            //Detail = new NavigationPage(displayPage);
+            IsPresented = false;
         }
     }
 }

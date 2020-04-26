@@ -13,5 +13,30 @@ namespace quizapp.Views
             InitializeComponent();
             BindingContext = new DashboardViewModel(Navigation);
         }
+
+        private void TapGestureRecognizer_StartAQuiz(object sender, System.EventArgs e)
+        {
+            
+        }
+
+        private void TapGestureRecognizer_RandomCategory(object sender, System.EventArgs e)
+        {
+
+        }
+
+        private void TapGestureRecognizer_RandomQuestion(object sender, System.EventArgs e)
+        {
+
+        }
+
+        private void TapGestureRecognizer_Settings(object sender, System.EventArgs e)
+        {
+            _viewModel.GoToSettings();
+        }
+
+        private void TapGestureRecognizer_About(object sender, System.EventArgs e)
+        {
+            _viewModel.GoToAbout();
+        }
     }
 }

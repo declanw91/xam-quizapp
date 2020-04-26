@@ -15,10 +15,16 @@ namespace quizapp.ViewModels
         public Command SettingsCommand => _settingsCommand ?? (_settingsCommand = new Command(GoToSettings));
 
 
-        private void GoToSettings()
+        public void GoToSettings()
         {
             var settingsPage = new SettingsPage();
             _navigation.PushAsync(settingsPage);
+        }
+
+        public void GoToAbout()
+        {
+            var aboutPage = new About();
+            _navigation.PushAsync(aboutPage);
         }
     }
 }
