@@ -18,6 +18,7 @@ namespace quizapp.ViewModels
         private INavigation _navigation;
         private string _userAnswer;
         private int _currentQuestionNumber;
+        private int _userScore;
         private Command _submitAnswer;
         public QuestionPageViewModel(INavigation nav)
         {
@@ -25,7 +26,8 @@ namespace quizapp.ViewModels
             _questionController = new QuestionController();
             _quizOptionsConfirmed = false;
             _navigation = nav;
-            _currentQuestionNumber = 0;
+            _currentQuestionNumber = 1;
+            _userScore = 0;
         }
 
         public QuizQuestion CurrentQuestion
@@ -46,6 +48,16 @@ namespace quizapp.ViewModels
                 _userAnswer = value;
                 OnPropertyChanged("UserAnswer");
                 SubmitAnswer.ChangeCanExecute();
+            }
+        }
+
+        public int CurrentQuestionNumber
+        {
+            get => _currentQuestionNumber;
+            set
+            {
+                _currentQuestionNumber = value;
+                OnPropertyChanged("CurrentQuestionNumber");
             }
         }
 
@@ -82,35 +94,46 @@ namespace quizapp.ViewModels
             return questions;
         }
 
-        private void CheckAnswer()
+        private async void CheckAnswer()
         {
             if(UserAnswer == CurrentQuestion.Correct_Answer)
             {
-                
+                _userScore++;
+                await App.Current.MainPage.DisplayAlert("Answer Correct", "You got the question correct!", "Ok");
             }
             else
             {
-
+                await App.Current.MainPage.DisplayAlert("Answer Incorrect", "Sorry that is incorrect", "Ok");
             }
             LoadNextQuestion();
         }
 
         private void LoadNextQuestion()
         {
-            if(_currentQuestionNumber < _questionList.Count)
+            CurrentQuestionNumber++;
+            var questionNumber = CurrentQuestionNumber - 1;
+            if (questionNumber < _questionList.Count)
             {
-                _currentQuestionNumber++;
-                var nextQ = _questionList.ElementAt(_currentQuestionNumber);
+                var nextQ = _questionList.ElementAt(questionNumber);
                 if(nextQ != null)
                 {
                     CurrentQuestion = nextQ;
                 }
                 Reset();
             }
+            else
+            {
+                QuizOver();
+            }
         }
         private void Reset()
         {
             UserAnswer = null;
+        }
+
+        private void QuizOver()
+        {
+
         }
     }
 }

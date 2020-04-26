@@ -14,9 +14,17 @@
                 <Setter Property="BarBackgroundColor" Value="{StaticResource NavigationPrimary}" />
                 <Setter Property="BarTextColor" Value="White" />
             </Style>
-            <Style TargetType="Frame" x:Name="questionStyle">
+            <Style TargetType="Frame" x:Key="questionStyle">
                 <Setter Property="BorderColor" Value="#000000" />
                 <Setter Property="CornerRadius" Value="10" />
+            </Style>
+            <Style TargetType="Label" x:Key="correctAnswer">
+                <Setter Property="TextColor" Value="#000000" />
+                <Setter Property="BackgroundColor" Value="Green" />
+            </Style>
+            <Style TargetType="Label" x:Key="incorrectAnswer">
+                <Setter Property="TextColor" Value="#000000" />
+                <Setter Property="BackgroundColor" Value="Red" />
             </Style>
         </ResourceDictionary>
     </Application.Resources>
