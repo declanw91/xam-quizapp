@@ -106,7 +106,7 @@
   <ItemGroup>
     <Content Include="about.png" />
     <Content Include="category.png" />
-    <Content Include="circled-q.png" />
+    <Content Include="circledq.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LargeTile.scale-100.png" />
     <Content Include="Assets\LargeTile.scale-200.png" />
@@ -135,7 +135,7 @@
     <Content Include="Assets\Wide310x150Logo.scale-100.png" />
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
     <Content Include="Assets\Wide310x150Logo.scale-400.png" />
-    <Content Include="question-mark.png" />
+    <Content Include="questionmark.png" />
     <Content Include="quiz.png" />
     <Content Include="settings.png" />
     <Content Include="trophy.png" />
@@ -155,6 +155,9 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Acr.UserDialogs">
+      <Version>7.1.0.442</Version>
+    </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
       <Version>12.0.3</Version>
     </PackageReference>

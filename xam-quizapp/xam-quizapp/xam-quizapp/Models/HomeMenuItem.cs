@@ -2,11 +2,9 @@
 {
     public enum MenuItemType
     {
-        Browse,
         StartAQuiz,
         RandomCategory,
-        RandomQuestion,
-        About
+        RandomQuestion
     }
     public class HomeMenuItem
     {

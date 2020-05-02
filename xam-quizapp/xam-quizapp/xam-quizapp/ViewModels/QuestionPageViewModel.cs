@@ -1,4 +1,5 @@
-﻿using quizapp.Controllers;
+﻿using Acr.UserDialogs;
+using quizapp.Controllers;
 using quizapp.Models;
 using quizapp.Views;
 using System.Collections.Generic;
@@ -77,11 +78,15 @@ namespace quizapp.ViewModels
                 {
                     CurrentQuestion = _questionList.First();
                 }
+                else
+                {
+                    await UserDialogs.Instance.AlertAsync("Sorry but we are unable to load the questions for your quiz.\n Please ensure your device has a internet connection", "Warning", "Ok");
+                }
             }
             else
             {
                 _quizOptionsConfirmed = true;
-                var settings = new SettingsPage();
+                var settings = new QuizOptions();
                 await _navigation.PushAsync(settings);
             }
         }

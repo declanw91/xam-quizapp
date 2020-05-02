@@ -23,7 +23,7 @@
             <StackLayout Grid.Row="1">
                 <Frame Style="{DynamicResource QuestionStyle}">
                     <StackLayout Orientation="Horizontal" Style="{DynamicResource QuestionStyle}">
-                        <Image Source="circled-q.png"/>
+                        <Image Source="circledq.png"/>
                         <Label Text="{Binding CurrentQuestion.Question}" />
                     </StackLayout>
                 </Frame>

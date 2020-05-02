@@ -9,7 +9,7 @@ using Xamarin.Forms;
 
 namespace quizapp.ViewModels
 {
-    public class SettingsViewModel : BaseViewModel
+    public class QuizOptionsViewModel : BaseViewModel
     {
         private List<string> _quizCategories;
         private List<QuizCategory> _quizCategoryList;
@@ -20,7 +20,7 @@ namespace quizapp.ViewModels
         private DifficultyController _difficultyController;
         private INavigation _navigation;
         private Command _saveCommand;
-        public SettingsViewModel(INavigation nav)
+        public QuizOptionsViewModel(INavigation nav)
         {
             _categoryController = new CategoryController();
             _difficultyController = new DifficultyController();

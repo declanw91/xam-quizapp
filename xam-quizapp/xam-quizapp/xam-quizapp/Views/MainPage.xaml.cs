@@ -19,7 +19,7 @@ namespace quizapp.Views
 
             MasterBehavior = MasterBehavior.Popover;
 
-            MenuPages.Add((int)MenuItemType.Browse, (NavigationPage)Detail);
+            MenuPages.Add((int)MenuItemType.StartAQuiz, (NavigationPage)Detail);
         }
 
         public async Task NavigateFromMenu(int id)
@@ -36,9 +36,6 @@ namespace quizapp.Views
                         break;
                     case (int)MenuItemType.RandomQuestion:
                         //MenuPages.Add(id, new NavigationPage(new SettingsPage()));
-                        break;
-                    case (int)MenuItemType.About:
-                        MenuPages.Add(id, new NavigationPage(new About()));
                         break;
                 }
             }

@@ -13,12 +13,12 @@
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
-            <StackLayout Grid.Row="0" Orientation="Vertical" HorizontalOptions="Center">
+            <StackLayout Grid.Row="0" Orientation="Vertical">
                 <Label Text="Quiz App"/>
             </StackLayout>
-            <StackLayout Grid.Row="1" Orientation="Vertical" HorizontalOptions="Center">
+            <StackLayout Grid.Row="1" Orientation="Horizontal">
                 <Image Source="quiz.png" WidthRequest="50"/>
-                <Label Text="Start a Quiz"/>
+                <Label Text="Start a Quiz" Style="{DynamicResource dashboardLabelStyle}"/>
                 <StackLayout.GestureRecognizers>
                     <OnPlatform x:TypeArguments="TapGestureRecognizer">
                         <On Platform="iOS">
@@ -33,9 +33,9 @@
                     </OnPlatform>
                 </StackLayout.GestureRecognizers>
             </StackLayout>
-            <StackLayout Grid.Row="2" Orientation="Vertical" HorizontalOptions="Center">
+            <StackLayout Grid.Row="2" Orientation="Horizontal">
                 <Image Source="category.png" WidthRequest="50" />
-                <Label Text="Play a Random Category"/>
+                <Label Text="Play a Random Category" Style="{DynamicResource dashboardLabelStyle}"/>
                 <StackLayout.GestureRecognizers>
                     <OnPlatform x:TypeArguments="TapGestureRecognizer">
                         <On Platform="iOS">
@@ -50,9 +50,9 @@
                     </OnPlatform>
                 </StackLayout.GestureRecognizers>
             </StackLayout>
-            <StackLayout Grid.Row="3" Orientation="Vertical" HorizontalOptions="Center">
-                <Image Source="question-mark.png" WidthRequest="50" />
-                <Label Text="Play with Random Questions"/>
+            <StackLayout Grid.Row="3" Orientation="Horizontal">
+                <Image Source="questionmark.png" WidthRequest="50" />
+                <Label Text="Play with Random Questions" Style="{DynamicResource dashboardLabelStyle}"/>
                 <StackLayout.GestureRecognizers>
                     <OnPlatform x:TypeArguments="TapGestureRecognizer">
                         <On Platform="iOS">
@@ -63,23 +63,6 @@
                         </On>
                         <On Platform="Android">
                             <TapGestureRecognizer Tapped="TapGestureRecognizer_RandomQuestion" />
-                        </On>
-                    </OnPlatform>
-                </StackLayout.GestureRecognizers>
-            </StackLayout>
-            <StackLayout Grid.Row="4" Orientation="Vertical" HorizontalOptions="Center">
-                <Image Source="about.png" WidthRequest="50"/>
-                <Label Text="About" />
-                <StackLayout.GestureRecognizers>
-                    <OnPlatform x:TypeArguments="TapGestureRecognizer">
-                        <On Platform="iOS">
-                            <TapGestureRecognizer Tapped="TapGestureRecognizer_About" />
-                        </On>
-                        <On Platform="UWP">
-                            <TapGestureRecognizer Tapped="TapGestureRecognizer_About" />
-                        </On>
-                        <On Platform="Android">
-                            <TapGestureRecognizer Tapped="TapGestureRecognizer_About" />
                         </On>
                     </OnPlatform>
                 </StackLayout.GestureRecognizers>

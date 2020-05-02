@@ -28,15 +28,5 @@ namespace quizapp.Views
         {
 
         }
-
-        private void TapGestureRecognizer_Settings(object sender, System.EventArgs e)
-        {
-            _viewModel.GoToSettings();
-        }
-
-        private void TapGestureRecognizer_About(object sender, System.EventArgs e)
-        {
-            _viewModel.GoToAbout();
-        }
     }
 }

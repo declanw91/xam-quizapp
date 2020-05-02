@@ -18,13 +18,16 @@
                 <Setter Property="BorderColor" Value="#000000" />
                 <Setter Property="CornerRadius" Value="10" />
             </Style>
-            <Style TargetType="Label" x:Key="correctAnswer">
+            <Style TargetType="Label" x:Key="correctAnswerStyle">
                 <Setter Property="TextColor" Value="#000000" />
                 <Setter Property="BackgroundColor" Value="Green" />
             </Style>
-            <Style TargetType="Label" x:Key="incorrectAnswer">
+            <Style TargetType="Label" x:Key="incorrectAnswerStyle">
                 <Setter Property="TextColor" Value="#000000" />
                 <Setter Property="BackgroundColor" Value="Red" />
+            </Style>
+            <Style TargetType="Label" x:Key="dashboardLabelStyle">
+                <Setter Property="Margin" Value="0,10,0,0"/>
             </Style>
         </ResourceDictionary>
     </Application.Resources>
