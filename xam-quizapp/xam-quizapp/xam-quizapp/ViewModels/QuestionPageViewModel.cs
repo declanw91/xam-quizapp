@@ -133,7 +133,12 @@ namespace quizapp.ViewModels
 
         private void QuizOver()
         {
-
+            var quizOverScreen = new QuizOver();
+            var destVm = quizOverScreen.BindingContext as QuizOverViewModel;
+            destVm.TotalQuestions = _questionList.Count;
+            destVm.UserScore = _userScore;
+            destVm.ScorePercentage = destVm.CalculateScorePercentage(_userScore, destVm.TotalQuestions);
+            _navigation.PushAsync(quizOverScreen);
         }
     }
 }

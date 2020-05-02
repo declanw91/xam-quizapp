@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="quizapp.Views.QuizOver">
+    <ContentPage.Content>
+        <Grid Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+            <ContentView Grid.Row="0">
+                <Label Text="Quiz Complete!" />
+            </ContentView>
+            <StackLayout Grid.Row="1">
+                <Image Source="trophy.png" />
+                <StackLayout Orientation="Horizontal" Spacing="2">
+                    <Label Text="You scored" />
+                    <Label Text="{Binding UserScore}" />
+                    <Label Text="out of" />
+                    <Label Text="{Binding TotalQuestions}"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Score Percentage:" />
+                    <Label Text="{Binding ScorePercentage}" />
+                </StackLayout>
+            </StackLayout>
+            <StackLayout Grid.Row="2">
+                <Button Text="Close" Command="{Binding CloseQuizOver}"/>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
