@@ -2,7 +2,9 @@
 using quizapp.Controllers;
 using quizapp.Models;
 using quizapp.Views;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
@@ -20,6 +22,7 @@ namespace quizapp.ViewModels
         private string _userAnswer;
         private int _currentQuestionNumber;
         private int _userScore;
+        private int _totalQuestions;
         private Command _submitAnswer;
         public QuestionPageViewModel(INavigation nav)
         {
@@ -62,6 +65,16 @@ namespace quizapp.ViewModels
             }
         }
 
+        public int TotalQuestions
+        {
+            get => _totalQuestions;
+            set
+            {
+                _totalQuestions = value;
+                OnPropertyChanged("TotalQuestions");
+            }
+        }
+
         public Command SubmitAnswer => _submitAnswer ?? (_submitAnswer = new Command(CheckAnswer, CanSubmit));
         public bool CanSubmit()
         {
@@ -77,6 +90,7 @@ namespace quizapp.ViewModels
                 if(_questionList != null && _questionList.Count > 0)
                 {
                     CurrentQuestion = _questionList.First();
+                    TotalQuestions = _questionList.Count;
                 }
                 else
                 {
@@ -90,6 +104,8 @@ namespace quizapp.ViewModels
                 await _navigation.PushAsync(settings);
             }
         }
+
+        public EventHandler<PropertyChangedEventArgs> UserSubmittedAnswer;
 
         private async Task<List<QuizQuestion>> GetQuizQuestions()
         {
@@ -110,6 +126,8 @@ namespace quizapp.ViewModels
             {
                 await App.Current.MainPage.DisplayAlert("Answer Incorrect", "Sorry that is incorrect", "Ok");
             }
+            //var correctIndex = CurrentQuestion.Answers.IndexOf(CurrentQuestion.Correct_Answer);
+            //UserSubmittedAnswer?.Invoke(correctIndex, new PropertyChangedEventArgs("UserAnswer"));
             LoadNextQuestion();
         }
 
@@ -117,7 +135,7 @@ namespace quizapp.ViewModels
         {
             CurrentQuestionNumber++;
             var questionNumber = CurrentQuestionNumber - 1;
-            if (questionNumber < _questionList.Count)
+            if (questionNumber < TotalQuestions)
             {
                 var nextQ = _questionList.ElementAt(questionNumber);
                 if(nextQ != null)
@@ -140,9 +158,9 @@ namespace quizapp.ViewModels
         {
             var quizOverScreen = new QuizOver();
             var destVm = quizOverScreen.BindingContext as QuizOverViewModel;
-            destVm.TotalQuestions = _questionList.Count;
+            destVm.TotalQuestions = TotalQuestions;
             destVm.UserScore = _userScore;
-            destVm.ScorePercentage = destVm.CalculateScorePercentage(_userScore, destVm.TotalQuestions);
+            destVm.ScorePercentage = destVm.CalculateScorePercentage(_userScore, TotalQuestions);
             _navigation.PushAsync(quizOverScreen);
         }
     }

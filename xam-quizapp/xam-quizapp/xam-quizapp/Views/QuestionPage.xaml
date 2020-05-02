@@ -17,7 +17,8 @@
                 <StackLayout Orientation="Horizontal">
                     <Label Text="Question" />
                     <Label Text="{Binding CurrentQuestionNumber}" />
-                    <Label Text="out of 10" />
+                    <Label Text="out of" />
+                    <Label Text="{Binding TotalQuestions}"/>
                 </StackLayout>
             </StackLayout>
             <StackLayout Grid.Row="1">
@@ -33,7 +34,7 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <Label Text="{Binding .}"/>
+                                <Label Text="{Binding .}" />
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
