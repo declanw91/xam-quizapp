@@ -15,18 +15,12 @@ namespace quizapp.Views
         {
             InitializeComponent();
             BindingContext = new QuestionPageViewModel(Navigation);
-            _viewModel.UserSubmittedAnswer += UpdateUI;
         }
 
         protected override void OnAppearing()
         {
             base.OnAppearing();
             _viewModel.StartQuiz();
-        }
-
-        private void UpdateUI(object sender, PropertyChangedEventArgs e)
-        {
-
         }
     }
 }

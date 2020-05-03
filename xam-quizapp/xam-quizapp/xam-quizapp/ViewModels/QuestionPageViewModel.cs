@@ -129,8 +129,6 @@ namespace quizapp.ViewModels
             }
         }
 
-        public EventHandler<PropertyChangedEventArgs> UserSubmittedAnswer;
-
         private async Task<List<QuizQuestion>> GetQuizQuestions()
         {
             var category = Preferences.Get("QuizCategory", "");
