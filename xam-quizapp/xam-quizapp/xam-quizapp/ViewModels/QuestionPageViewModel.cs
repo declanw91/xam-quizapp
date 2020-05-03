@@ -19,19 +19,24 @@ namespace quizapp.ViewModels
         private QuestionController _questionController;
         private bool _quizOptionsConfirmed;
         private INavigation _navigation;
-        private string _userAnswer;
+        private QuizAnswer _userAnswer;
         private int _currentQuestionNumber;
         private int _userScore;
         private int _totalQuestions;
         private Command _submitAnswer;
+        private List<QuizAnswer> _currentAnswerList;
+        private bool _userCanSubmit;
+        private Command _nextQuestion;
         public QuestionPageViewModel(INavigation nav)
         {
             _questionList = new List<QuizQuestion>();
+            CurrentQuestionAnswers = new List<QuizAnswer>();
             _questionController = new QuestionController();
             _quizOptionsConfirmed = false;
             _navigation = nav;
             _currentQuestionNumber = 1;
             _userScore = 0;
+            _userCanSubmit = true;
         }
 
         public QuizQuestion CurrentQuestion
@@ -44,7 +49,7 @@ namespace quizapp.ViewModels
             }
         }
 
-        public string UserAnswer
+        public QuizAnswer UserAnswer
         {
             get => _userAnswer;
             set
@@ -75,24 +80,43 @@ namespace quizapp.ViewModels
             }
         }
 
-        public Command SubmitAnswer => _submitAnswer ?? (_submitAnswer = new Command(CheckAnswer, CanSubmit));
-        public bool CanSubmit()
+        public List<QuizAnswer> CurrentQuestionAnswers
         {
-            return !string.IsNullOrWhiteSpace(UserAnswer);
+            get => _currentAnswerList;
+            set
+            {
+                _currentAnswerList = value;
+                OnPropertyChanged("CurrentQuestionAnswers");
+            }
+        }
+
+        public Command SubmitAnswer => _submitAnswer ?? (_submitAnswer = new Command(CheckAnswer, CanSubmit));
+        private bool CanSubmit()
+        {
+            return UserAnswer != null && _userCanSubmit;
+        }
+
+        public Command NextQuestion => _nextQuestion ?? (_nextQuestion = new Command(LoadNextQuestion, CanLoadNextQuestion));
+
+        private bool CanLoadNextQuestion()
+        {
+            return UserAnswer != null && !_userCanSubmit;
         }
 
         public async void StartQuiz()
         {
             if(_quizOptionsConfirmed)
             {
-                //start the quiz!
+                UserDialogs.Instance.ShowLoading("Loading...");
                 _questionList = await GetQuizQuestions();
                 if(_questionList != null && _questionList.Count > 0)
                 {
                     CurrentQuestion = _questionList.First();
                     TotalQuestions = _questionList.Count;
+                    PopulateAnswerList();
                 }
-                else
+                UserDialogs.Instance.HideLoading();
+                if (_questionList == null || _questionList.Count == 0)
                 {
                     await UserDialogs.Instance.AlertAsync("Sorry but we are unable to load the questions for your quiz.\n Please ensure your device has a internet connection", "Warning", "Ok");
                 }
@@ -115,20 +139,16 @@ namespace quizapp.ViewModels
             return questions;
         }
 
-        private async void CheckAnswer()
+        private void CheckAnswer()
         {
-            if(UserAnswer == CurrentQuestion.Correct_Answer)
+            _userCanSubmit = false;
+            SubmitAnswer.ChangeCanExecute();
+            if (UserAnswer.Description == CurrentQuestion.Correct_Answer)
             {
                 _userScore++;
-                await App.Current.MainPage.DisplayAlert("Answer Correct", "You got the question correct!", "Ok");
             }
-            else
-            {
-                await App.Current.MainPage.DisplayAlert("Answer Incorrect", "Sorry that is incorrect", "Ok");
-            }
-            //var correctIndex = CurrentQuestion.Answers.IndexOf(CurrentQuestion.Correct_Answer);
-            //UserSubmittedAnswer?.Invoke(correctIndex, new PropertyChangedEventArgs("UserAnswer"));
-            LoadNextQuestion();
+            HighlightCorrectAnswer();
+            NextQuestion.ChangeCanExecute();
         }
 
         private void LoadNextQuestion()
@@ -142,6 +162,7 @@ namespace quizapp.ViewModels
                 {
                     CurrentQuestion = nextQ;
                 }
+                PopulateAnswerList();
                 Reset();
             }
             else
@@ -152,6 +173,8 @@ namespace quizapp.ViewModels
         private void Reset()
         {
             UserAnswer = null;
+            _userCanSubmit = true;
+            NextQuestion.ChangeCanExecute();
         }
 
         private void QuizOver()
@@ -162,6 +185,36 @@ namespace quizapp.ViewModels
             destVm.UserScore = _userScore;
             destVm.ScorePercentage = destVm.CalculateScorePercentage(_userScore, TotalQuestions);
             _navigation.PushAsync(quizOverScreen);
+        }
+
+        private void PopulateAnswerList()
+        {
+            var answerList = new List<QuizAnswer>();
+            foreach (var item in CurrentQuestion.Answers)
+            {
+                var answerItem = new QuizAnswer { Description=item };
+                answerList.Add(answerItem);
+            }
+            CurrentQuestionAnswers = answerList;
+        }
+
+        private void HighlightCorrectAnswer()
+        {
+            var answerList = new List<QuizAnswer>();
+            foreach (var item in CurrentQuestion.Answers)
+            {
+                var answerItem = new QuizAnswer { Description = item };
+                if(item == CurrentQuestion.Correct_Answer)
+                {
+                    answerItem.Status = "correct";
+                }
+                if(item == UserAnswer.Description && item != CurrentQuestion.Correct_Answer)
+                {
+                    answerItem.Status = "incorrect";
+                }
+                answerList.Add(answerItem);
+            }
+            CurrentQuestionAnswers = answerList;
         }
     }
 }

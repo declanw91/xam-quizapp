@@ -4,7 +4,12 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="quizapp.Views.QuestionPage">
+             x:Class="quizapp.Views.QuestionPage" xmlns:helpers="clr-namespace:quizapp.Helpers">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <helpers:AnswerStyleConverter x:Key="cnvAns"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
         <Grid Margin="10">
             <Grid.RowDefinitions>
@@ -30,18 +35,19 @@
                 </Frame>
             </StackLayout>
             <StackLayout Grid.Row="2">
-                <ListView x:Name="lvAnswers" ItemsSource="{Binding CurrentQuestion.Answers}" SelectedItem="{Binding UserAnswer}">
+                <ListView x:Name="lvAnswers" ItemsSource="{Binding CurrentQuestionAnswers}" SelectedItem="{Binding UserAnswer}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <Label Text="{Binding .}" />
+                                <Label Text="{Binding Description}" Style="{Binding Status, Converter={StaticResource cnvAns}}"/>
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
             </StackLayout>
-            <StackLayout Grid.Row="3">
-                <Button Text="Submit Answer" Command="{Binding SubmitAnswer}"/>
+            <StackLayout Grid.Row="3" Orientation="Horizontal">
+                <Button Text="Submit" Command="{Binding SubmitAnswer}"/>
+                <Button Text="Next" Command="{Binding NextQuestion}"/>
             </StackLayout>
         </Grid>
     </ContentPage.Content>
