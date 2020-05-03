@@ -45,10 +45,14 @@
                     </ListView.ItemTemplate>
                 </ListView>
             </StackLayout>
-            <StackLayout Grid.Row="3" Orientation="Horizontal">
-                <Button Text="Submit" Command="{Binding SubmitAnswer}"/>
-                <Button Text="Next" Command="{Binding NextQuestion}"/>
-            </StackLayout>
+            <Grid Grid.Row="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Text="Submit" Command="{Binding SubmitAnswer}" />
+                <Button Grid.Column="1" Text="Next" Command="{Binding NextQuestion}"/>
+            </Grid>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

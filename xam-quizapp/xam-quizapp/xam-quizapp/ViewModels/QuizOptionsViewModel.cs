@@ -1,4 +1,5 @@
-﻿using quizapp.Controllers;
+﻿using Acr.UserDialogs;
+using quizapp.Controllers;
 using quizapp.Models;
 using System;
 using System.Collections.Generic;
@@ -81,8 +82,10 @@ namespace quizapp.ViewModels
 
         public async void SetupPageOptions()
         {
+            UserDialogs.Instance.ShowLoading("Loading...");
             await PopulateQuizCategories();
             await PopulateQuizDifficulties();
+            UserDialogs.Instance.HideLoading();
         }
         private async Task PopulateQuizCategories()
         {
