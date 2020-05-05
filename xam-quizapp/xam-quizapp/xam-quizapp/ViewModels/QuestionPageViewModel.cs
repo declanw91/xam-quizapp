@@ -170,7 +170,6 @@ namespace quizapp.ViewModels
             var destVm = quizOverScreen.BindingContext as QuizOverViewModel;
             destVm.TotalQuestions = TotalQuestions;
             destVm.UserScore = _userScore;
-            destVm.ScorePercentage = destVm.CalculateScorePercentage(_userScore, TotalQuestions);
             _navigation.PushAsync(quizOverScreen);
         }
 

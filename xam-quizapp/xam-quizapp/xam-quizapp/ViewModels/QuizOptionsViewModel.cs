@@ -32,7 +32,6 @@ namespace quizapp.ViewModels
             QuizCategories = new List<string>();
             _navigation = nav;
             CategorySelectable = true;
-            SetupPageOptions();
         }
 
         public List<string> QuizCategories
@@ -104,12 +103,11 @@ namespace quizapp.ViewModels
             return SelectedDifficulty != null && CategorySelected();
         }
 
-        public async void SetupPageOptions()
+        public async Task SetupPageOptions()
         {
             UserDialogs.Instance.ShowLoading("Loading...");
-            await PopulateQuizCategories();
             PopulateQuizDifficulties();
-            CheckQuizMode();
+            await CheckQuizMode();
             UserDialogs.Instance.HideLoading();
         }
         private async Task PopulateQuizCategories()
@@ -138,20 +136,24 @@ namespace quizapp.ViewModels
 
         private void SaveUserSettings()
         {
-            var selectedCategory = _quizCategoryList.FirstOrDefault(c => c.Name == SelectedCategory);
-            if(selectedCategory != null)
+            if(QuizMode != "RQ")
             {
-                Preferences.Set("QuizCategory", selectedCategory.Id);
+                var selectedCategory = _quizCategoryList.FirstOrDefault(c => c.Name == SelectedCategory);
+                if (selectedCategory != null)
+                {
+                    Preferences.Set("QuizCategory", selectedCategory.Id);
+                }
             }
             Preferences.Set("QuizDifficulty", SelectedDifficulty);
             var questionPage = new QuestionPage();
             _navigation.PushAsync(questionPage);
         }
 
-        private void CheckQuizMode()
+        private async Task CheckQuizMode()
         {
             if(QuizMode == "RC")
             {
+                await PopulateQuizCategories();
                 SelectRandomCategory();
             }
             else if (QuizMode == "RQ")

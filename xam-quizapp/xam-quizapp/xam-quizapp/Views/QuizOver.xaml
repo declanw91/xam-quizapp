@@ -18,10 +18,7 @@
             <StackLayout Grid.Row="1">
                 <Image Source="trophy.png" Style="{DynamicResource titleImageStyle}"/>
                 <StackLayout Orientation="Horizontal" Spacing="2">
-                    <Label Text="You scored" />
-                    <Label Text="{Binding UserScore}" />
-                    <Label Text="out of" />
-                    <Label Text="{Binding TotalQuestions}"/>
+                    <Label Text="{Binding ScoreMessage}" />
                 </StackLayout>
                 <StackLayout Orientation="Horizontal">
                     <Label Text="Score Percentage:" />

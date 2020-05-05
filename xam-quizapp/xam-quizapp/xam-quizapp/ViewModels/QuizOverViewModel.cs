@@ -11,6 +11,7 @@ namespace quizapp.ViewModels
         private int _totalQuestions;
         private int _userScore;
         private string _scorePercentage;
+        private string _scoreMessage;
         private Command _closeCommand;
         public QuizOverViewModel(INavigation nav)
         {
@@ -47,15 +48,25 @@ namespace quizapp.ViewModels
             }
         }
 
+        public string ScoreMessage
+        {
+            get => _scoreMessage;
+            set
+            {
+                _scoreMessage = value;
+                OnPropertyChanged("ScoreMessage");
+            }
+        }
+
         public Command CloseQuizOver => _closeCommand ?? (_closeCommand = new Command(CloseQuizOverScreen));
 
-        public string CalculateScorePercentage(int score, int totalQuestions)
+        public string CalculateScorePercentage()
         {
-            if(score <= 0 || totalQuestions <= 0) 
+            if(UserScore <= 0 || TotalQuestions <= 0) 
             {
                 return String.Empty;
             }
-            var scoreDec = (double)score / totalQuestions;
+            var scoreDec = (double)UserScore / TotalQuestions;
             var percentage = scoreDec * 100;
             return $"{percentage}%";
         }
@@ -63,6 +74,11 @@ namespace quizapp.ViewModels
         private void CloseQuizOverScreen()
         {
             _navigation.PopToRootAsync();
+        }
+
+        public void BuildScoreMesssage()
+        {
+            ScoreMessage = $"You score {UserScore} out of {TotalQuestions}";
         }
     }
 }

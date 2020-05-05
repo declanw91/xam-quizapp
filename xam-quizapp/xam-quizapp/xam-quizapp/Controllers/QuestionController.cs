@@ -44,11 +44,19 @@ namespace quizapp.Controllers
         {
             JObject response = null;
             var questionUrl = BuildRequestUrl(category, difficulty);
-            using (_requestClient)
+            try
             {
-                var json = await _requestClient.GetStringAsync(questionUrl);
-                response = JObject.Parse(json);
+                using (_requestClient)
+                {
+                    var json = await _requestClient.GetStringAsync(questionUrl);
+                    response = JObject.Parse(json);
+                }
             }
+            catch(HttpRequestException ex)
+            {
+
+            }
+            
             return response;
         }
 

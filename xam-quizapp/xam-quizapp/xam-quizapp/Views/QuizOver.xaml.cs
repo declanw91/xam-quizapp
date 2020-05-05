@@ -19,5 +19,12 @@ namespace quizapp.Views
             InitializeComponent();
             BindingContext = new QuizOverViewModel(Navigation);
         }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            _viewModel.CalculateScorePercentage();
+            _viewModel.BuildScoreMesssage();
+        }
     }
 }

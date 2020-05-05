@@ -13,5 +13,11 @@ namespace quizapp.Views
             InitializeComponent();
             BindingContext = new QuizOptionsViewModel(Navigation);
         }
+
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+            await _viewModel.SetupPageOptions();
+        }
     }
 }
