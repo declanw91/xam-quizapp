@@ -17,7 +17,7 @@
             </ContentView>
             <StackLayout Grid.Row="1">
                 <Image Source="trophy.png" Style="{DynamicResource titleImageStyle}"/>
-                <StackLayout Orientation="Horizontal" Spacing="2">
+                <StackLayout Orientation="Horizontal">
                     <Label Text="{Binding ScoreMessage}" />
                 </StackLayout>
                 <StackLayout Orientation="Horizontal">
