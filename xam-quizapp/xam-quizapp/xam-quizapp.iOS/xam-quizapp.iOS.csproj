@@ -169,4 +169,7 @@
   <ItemGroup>
     <BundleResource Include="Resources\trophy.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\appicon.png" />
+  </ItemGroup>
 </Project>

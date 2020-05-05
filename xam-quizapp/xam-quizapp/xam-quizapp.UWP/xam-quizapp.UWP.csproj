@@ -105,6 +105,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="about.png" />
+    <Content Include="appicon.png" />
     <Content Include="category.png" />
     <Content Include="circledq.png" />
     <Content Include="Properties\Default.rd.xml" />

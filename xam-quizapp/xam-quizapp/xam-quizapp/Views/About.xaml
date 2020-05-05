@@ -15,7 +15,7 @@
             </Grid.RowDefinitions>
             <StackLayout Grid.Row="0" Grid.Column="0" Orientation="Horizontal">
                 <Image Source="about.png" Style="{DynamicResource titleImageStyle}"/>
-                <Label Text="Quiz App" Style="{DynamicResource titleLabelStyle}"/>
+                <Label Text="Quizkaban" Style="{DynamicResource titleLabelStyle}"/>
             </StackLayout>
             <StackLayout Grid.Row="1" Grid.Column="0" >
                 <Label Text="Questions and categories:"/>
