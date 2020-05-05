@@ -12,7 +12,7 @@
     </MasterDetailPage.Master>
 
     <MasterDetailPage.Detail>
-        <NavigationPage>
+        <NavigationPage Style="{DynamicResource navPageStyle}">
             <x:Arguments>
                 <views:Dashboard />
             </x:Arguments>

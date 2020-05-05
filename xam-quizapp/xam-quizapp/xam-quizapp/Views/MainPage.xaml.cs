@@ -62,13 +62,5 @@ namespace quizapp.Views
                 IsPresented = false;
             }
         }
-
-        public void NavigateTo(MenuItem item)
-        {
-            if (item == null) { return; }
-            //Page displayPage = (Page)Activator.CreateInstance(item.TargetType);
-            //Detail = new NavigationPage(displayPage);
-            IsPresented = false;
-        }
     }
 }
