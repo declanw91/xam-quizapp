@@ -43,7 +43,7 @@ namespace quizapp.Controllers
             }
             catch(HttpRequestException ex)
             {
-                // unable to process request
+                var errorMessage = ex.InnerException;
             }
             
             return response;

@@ -32,5 +32,11 @@ namespace quizapp.ViewModels
             vm.QuizMode = "RQ";
             await _navigation.PushAsync(settings);
         }
+
+        public async void GoToAbout()
+        {
+            var about = new About();
+            await _navigation.PushAsync(about);
+        }
     }
 }

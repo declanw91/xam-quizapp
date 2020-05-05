@@ -32,6 +32,12 @@
             <Style TargetType="Label" x:Key="boldLabelStyle">
                 <Setter Property="FontAttributes" Value="Bold"/>
             </Style>
+            <Style TargetType="Label" x:Key="titleLabelStyle">
+                <Setter Property="Margin" Value="0,10,0,0"/>
+            </Style>
+            <Style TargetType="Image" x:Key="titleImageStyle">
+                <Setter Property="HeightRequest" Value="50"/>
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
     

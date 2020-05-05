@@ -13,10 +13,10 @@
                 <RowDefinition Height="auto" />
             </Grid.RowDefinitions>
             <ContentView Grid.Row="0">
-                <Label Text="Quiz Complete!" />
+                <Label Text="Quiz Complete!" Style="{DynamicResource titleLabelStyle}"/>
             </ContentView>
             <StackLayout Grid.Row="1">
-                <Image Source="trophy.png" />
+                <Image Source="trophy.png" Style="{DynamicResource titleImageStyle}"/>
                 <StackLayout Orientation="Horizontal" Spacing="2">
                     <Label Text="You scored" />
                     <Label Text="{Binding UserScore}" />

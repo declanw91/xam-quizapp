@@ -10,7 +10,7 @@ namespace quizapp.Controllers
 
         }
 
-        public async Task<List<string>> GetQuizDifficulties()
+        public List<string> GetQuizDifficulties()
         {
             var catList = new List<string>();
             catList.Add("Easy");

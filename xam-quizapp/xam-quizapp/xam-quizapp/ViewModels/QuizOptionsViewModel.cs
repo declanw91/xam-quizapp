@@ -108,7 +108,7 @@ namespace quizapp.ViewModels
         {
             UserDialogs.Instance.ShowLoading("Loading...");
             await PopulateQuizCategories();
-            await PopulateQuizDifficulties();
+            PopulateQuizDifficulties();
             CheckQuizMode();
             UserDialogs.Instance.HideLoading();
         }
@@ -126,9 +126,9 @@ namespace quizapp.ViewModels
             }
         }
 
-        private async Task PopulateQuizDifficulties()
+        private void PopulateQuizDifficulties()
         {
-            var quizDifficulties = await _difficultyController.GetQuizDifficulties();
+            var quizDifficulties = _difficultyController.GetQuizDifficulties();
             if(quizDifficulties != null)
             {
                 QuizDifficulties.Clear();

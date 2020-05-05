@@ -28,5 +28,10 @@ namespace quizapp.Views
         {
             _viewModel.GoToRandomQuestionQuiz();
         }
+
+        private void TapGestureRecognizer_About(object sender, System.EventArgs e)
+        {
+            _viewModel.GoToAbout();
+        }
     }
 }
