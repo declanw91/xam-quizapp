@@ -18,10 +18,12 @@
                 <Label Text="Quiz App" Style="{DynamicResource titleLabelStyle}"/>
             </StackLayout>
             <StackLayout Grid.Row="1" Grid.Column="0" >
-                <Label Text="Questions and categories are provided by https://opentdb.com"/>
+                <Label Text="Questions and categories:"/>
+                <Label Text="Provided by https://opentdb.com" />
             </StackLayout>
             <StackLayout Grid.Row="2" Grid.Column="0">
-                <Label Text="Icons provided by https://icons8.com/"/>
+                <Label Text="Icons:"/>
+                <Label Text="Provided by https://icons8.com/"/>
             </StackLayout>
             <StackLayout Grid.Row="3" Grid.Column="0" Orientation="Horizontal">
                 <Label Text="App Version:"/>
