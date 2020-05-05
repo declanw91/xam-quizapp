@@ -11,10 +11,10 @@ namespace quizapp.ViewModels
             _navigation = nav;
         }
 
-        public void GoToStartAQuiz()
+        public async void GoToStartAQuiz()
         {
-            var questionPage = new QuestionPage();
-            _navigation.PushAsync(questionPage);
+            var settings = new QuizOptions();
+            await _navigation.PushAsync(settings);
         }
     }
 }

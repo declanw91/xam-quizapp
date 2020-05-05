@@ -33,11 +33,19 @@ namespace quizapp.Controllers
         private async Task<JObject> GetCategoryJson()
         {
             JObject response = null;
-            using (_requestClient)
+            try
             {
-                var json = await _requestClient.GetStringAsync(_categoryUrl);
-                response = JObject.Parse(json);
+                using (_requestClient)
+                {
+                    var json = await _requestClient.GetStringAsync(_categoryUrl);
+                    response = JObject.Parse(json);
+                }
             }
+            catch(HttpRequestException ex)
+            {
+                // unable to process request
+            }
+            
             return response;
         }
     }

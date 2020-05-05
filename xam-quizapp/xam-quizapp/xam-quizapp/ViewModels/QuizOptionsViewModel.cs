@@ -1,6 +1,7 @@
 ﻿using Acr.UserDialogs;
 using quizapp.Controllers;
 using quizapp.Models;
+using quizapp.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -119,7 +120,8 @@ namespace quizapp.ViewModels
                 Preferences.Set("QuizCategory", selectedCategory.Id);
             }
             Preferences.Set("QuizDifficulty", SelectedDifficulty);
-            _navigation.PopAsync();
+            var questionPage = new QuestionPage();
+            _navigation.PushAsync(questionPage);
         }
     }
 }

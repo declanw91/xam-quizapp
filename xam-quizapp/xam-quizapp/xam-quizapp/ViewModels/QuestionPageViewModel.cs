@@ -105,27 +105,18 @@ namespace quizapp.ViewModels
 
         public async void StartQuiz()
         {
-            if(_quizOptionsConfirmed)
+            UserDialogs.Instance.ShowLoading("Loading...");
+            _questionList = await GetQuizQuestions();
+            if (_questionList != null && _questionList.Count > 0)
             {
-                UserDialogs.Instance.ShowLoading("Loading...");
-                _questionList = await GetQuizQuestions();
-                if(_questionList != null && _questionList.Count > 0)
-                {
-                    CurrentQuestion = _questionList.First();
-                    TotalQuestions = _questionList.Count;
-                    PopulateAnswerList();
-                }
-                UserDialogs.Instance.HideLoading();
-                if (_questionList == null || _questionList.Count == 0)
-                {
-                    await UserDialogs.Instance.AlertAsync("Sorry but we are unable to load the questions for your quiz.\n Please ensure your device has a internet connection", "Warning", "Ok");
-                }
+                CurrentQuestion = _questionList.First();
+                TotalQuestions = _questionList.Count;
+                PopulateAnswerList();
             }
-            else
+            UserDialogs.Instance.HideLoading();
+            if (_questionList == null || _questionList.Count == 0)
             {
-                _quizOptionsConfirmed = true;
-                var settings = new QuizOptions();
-                await _navigation.PushAsync(settings);
+                await UserDialogs.Instance.AlertAsync("Sorry but we are unable to load the questions for your quiz.\n Please check your device internet connection and try again.", "Warning", "Ok");
             }
         }
 
