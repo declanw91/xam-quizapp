@@ -1,4 +1,5 @@
 ﻿using quizapp.Models;
+using quizapp.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,7 +20,7 @@ namespace quizapp.Views
 
             MasterBehavior = MasterBehavior.Popover;
 
-            MenuPages.Add((int)MenuItemType.StartAQuiz, (NavigationPage)Detail);
+            MenuPages.Add((int)MenuItemType.Dashboard, (NavigationPage)Detail);
         }
 
         public async Task NavigateFromMenu(int id)
@@ -29,13 +30,22 @@ namespace quizapp.Views
                 switch (id)
                 {
                     case (int)MenuItemType.StartAQuiz:
-                        MenuPages.Add(id, new NavigationPage(new QuestionPage()));
+                        MenuPages.Add(id, new NavigationPage(new QuizOptions()));
                         break;
                     case (int)MenuItemType.RandomCategory:
-                        //MenuPages.Add(id, new NavigationPage(new SettingsPage()));
+                        var settingsRC = new QuizOptions();
+                        var vmRC = settingsRC.BindingContext as QuizOptionsViewModel;
+                        vmRC.QuizMode = "RC";
+                        MenuPages.Add(id, new NavigationPage(settingsRC));
                         break;
                     case (int)MenuItemType.RandomQuestion:
-                        //MenuPages.Add(id, new NavigationPage(new SettingsPage()));
+                        var settingsRQ = new QuizOptions();
+                        var vmRQ = settingsRQ.BindingContext as QuizOptionsViewModel;
+                        vmRQ.QuizMode = "RQ";
+                        MenuPages.Add(id, new NavigationPage(settingsRQ));
+                        break;
+                    case (int)MenuItemType.About:
+                        MenuPages.Add(id, new NavigationPage(new About()));
                         break;
                 }
             }

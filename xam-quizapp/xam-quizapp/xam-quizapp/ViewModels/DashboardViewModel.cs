@@ -16,5 +16,21 @@ namespace quizapp.ViewModels
             var settings = new QuizOptions();
             await _navigation.PushAsync(settings);
         }
+
+        public async void GoToRandomCategoryQuiz()
+        {
+            var settings = new QuizOptions();
+            var vm = settings.BindingContext as QuizOptionsViewModel;
+            vm.QuizMode = "RC";
+            await _navigation.PushAsync(settings);
+        }
+
+        public async void GoToRandomQuestionQuiz()
+        {
+            var settings = new QuizOptions();
+            var vm = settings.BindingContext as QuizOptionsViewModel;
+            vm.QuizMode = "RQ";
+            await _navigation.PushAsync(settings);
+        }
     }
 }

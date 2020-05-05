@@ -18,7 +18,7 @@
             </StackLayout>
             <StackLayout Grid.Row="1">
                 <Label Text="Please select a category:" />
-                <Picker x:Name="pckQuizCategory" ItemsSource="{Binding QuizCategories}" SelectedItem="{Binding SelectedCategory}"/>
+                <Picker x:Name="pckQuizCategory" ItemsSource="{Binding QuizCategories}" SelectedItem="{Binding SelectedCategory}" IsEnabled="{Binding CategorySelectable}"/>
             </StackLayout>
             <StackLayout Grid.Row="2">
                 <Label Text="Please select a difficulty:" />

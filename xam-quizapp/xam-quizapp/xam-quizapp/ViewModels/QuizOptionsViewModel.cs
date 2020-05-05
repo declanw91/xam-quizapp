@@ -22,6 +22,8 @@ namespace quizapp.ViewModels
         private DifficultyController _difficultyController;
         private INavigation _navigation;
         private Command _saveCommand;
+        private string _quizMode;
+        private bool _categorySelectable;
         public QuizOptionsViewModel(INavigation nav)
         {
             _categoryController = new CategoryController();
@@ -29,6 +31,7 @@ namespace quizapp.ViewModels
             QuizDifficulties = new List<string>();
             QuizCategories = new List<string>();
             _navigation = nav;
+            CategorySelectable = true;
             SetupPageOptions();
         }
 
@@ -74,11 +77,31 @@ namespace quizapp.ViewModels
             }
         }
 
+        public string QuizMode
+        {
+            get => _quizMode;
+            set
+            {
+                _quizMode = value;
+                OnPropertyChanged("QuizMode");
+            }
+        }
+
+        public bool CategorySelectable
+        {
+            get => _categorySelectable;
+            set
+            {
+                _categorySelectable = value;
+                OnPropertyChanged("CategorySelectable");
+            }
+        }
+
         public Command SaveSettings => _saveCommand ?? (_saveCommand = new Command(SaveUserSettings, CanSave));
 
         public bool CanSave()
         {
-            return SelectedDifficulty != null && SelectedCategory != null;
+            return SelectedDifficulty != null && CategorySelected();
         }
 
         public async void SetupPageOptions()
@@ -86,6 +109,7 @@ namespace quizapp.ViewModels
             UserDialogs.Instance.ShowLoading("Loading...");
             await PopulateQuizCategories();
             await PopulateQuizDifficulties();
+            CheckQuizMode();
             UserDialogs.Instance.HideLoading();
         }
         private async Task PopulateQuizCategories()
@@ -122,6 +146,36 @@ namespace quizapp.ViewModels
             Preferences.Set("QuizDifficulty", SelectedDifficulty);
             var questionPage = new QuestionPage();
             _navigation.PushAsync(questionPage);
+        }
+
+        private void CheckQuizMode()
+        {
+            if(QuizMode == "RC")
+            {
+                SelectRandomCategory();
+            }
+            else if (QuizMode == "RQ")
+            {
+                SelectRandomQuestions();
+            }
+        }
+
+        private void SelectRandomCategory()
+        {
+            Random random = new Random();
+            var randomNumber = random.Next(0, QuizCategories.Count);
+            SelectedCategory = QuizCategories.ElementAt(randomNumber);
+            CategorySelectable = false;
+        }
+
+        private void SelectRandomQuestions()
+        {
+            CategorySelectable = false;
+        }
+
+        private bool CategorySelected()
+        {
+            return SelectedCategory != null || !CategorySelectable;
         }
     }
 }

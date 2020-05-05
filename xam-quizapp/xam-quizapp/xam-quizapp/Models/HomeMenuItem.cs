@@ -4,7 +4,9 @@
     {
         StartAQuiz,
         RandomCategory,
-        RandomQuestion
+        RandomQuestion,
+        About,
+        Dashboard
     }
     public class HomeMenuItem
     {

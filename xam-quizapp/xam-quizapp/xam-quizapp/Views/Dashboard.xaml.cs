@@ -21,12 +21,12 @@ namespace quizapp.Views
 
         private void TapGestureRecognizer_RandomCategory(object sender, System.EventArgs e)
         {
-
+            _viewModel.GoToRandomCategoryQuiz();
         }
 
         private void TapGestureRecognizer_RandomQuestion(object sender, System.EventArgs e)
         {
-
+            _viewModel.GoToRandomQuestionQuiz();
         }
     }
 }
