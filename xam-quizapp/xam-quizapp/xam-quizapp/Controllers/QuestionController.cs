@@ -28,6 +28,7 @@ namespace quizapp.Controllers
                     var questionItem = item.ToObject<QuizQuestion>();
                     questionItem.Answers = BuildAnswerArray(questionItem.Correct_Answer, questionItem.Incorrect_Answers);
                     questionItem.Question = HttpUtility.HtmlDecode(questionItem.Question);
+                    questionItem.Correct_Answer = HttpUtility.HtmlDecode(questionItem.Correct_Answer);
                     questionList.Add(questionItem);
                 }
             }

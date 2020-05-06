@@ -4,7 +4,8 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="quizapp.App">
+             x:Class="quizapp.App"
+             xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView">
 
     <Application.Resources>
         <ResourceDictionary>
@@ -37,6 +38,23 @@
             </Style>
             <Style TargetType="Image" x:Key="titleImageStyle">
                 <Setter Property="HeightRequest" Value="50"/>
+            </Style>
+            <Style TargetType="pancake:PancakeView" x:Key="questionPancakeStyle">
+                <Setter Property="CornerRadius" Value="20,20,20,20"/>
+                <Setter Property="BorderColor" Value="Black"/>
+                <Setter Property="HasShadow" Value="True"/>
+                <Setter Property="BackgroundGradientStartColor" Value="#6699ff"/>
+                <Setter Property="BackgroundGradientEndColor" Value="#e6eeff"/>
+                <Setter Property="BackgroundGradientAngle" Value="30"/>
+                <Setter Property="Margin" Value="10"/>
+                <Setter Property="BorderThickness" Value="2"/>
+            </Style>
+            <Style TargetType="pancake:PancakeView" x:Key="answerPancakeStyle">
+                <Setter Property="CornerRadius" Value="20,20,20,20"/>
+                <Setter Property="BorderColor" Value="Black"/>
+                <Setter Property="BackgroundColor" Value="White"/>
+                <Setter Property="Padding" Value="10"/>
+                <Setter Property="BorderThickness" Value="2"/>
             </Style>
         </ResourceDictionary>
     </Application.Resources>

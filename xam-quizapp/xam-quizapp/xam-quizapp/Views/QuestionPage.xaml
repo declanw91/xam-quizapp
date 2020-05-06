@@ -28,7 +28,7 @@
                 </StackLayout>
             </StackLayout>
             <StackLayout Grid.Row="1">
-                <pancake:PancakeView CornerRadius="20,20,20,20" BorderColor="Black" HasShadow="True" BackgroundGradientStartColor="#6699ff" BackgroundGradientEndColor="#e6eeff" BackgroundGradientAngle="30">
+                <pancake:PancakeView Style="{DynamicResource questionPancakeStyle}">
                     <StackLayout Orientation="Horizontal" Padding="10">
                         <Image Source="circledq.png" Style="{DynamicResource titleImageStyle}"/>
                         <Label Text="{Binding CurrentQuestion.Question}" Style="{DynamicResource titleLabelStyle}"/>
@@ -36,11 +36,13 @@
                 </pancake:PancakeView>
             </StackLayout>
             <StackLayout Grid.Row="2">
-                <ListView x:Name="lvAnswers" ItemsSource="{Binding CurrentQuestionAnswers}" SelectedItem="{Binding UserAnswer}">
+                <ListView x:Name="lvAnswers" ItemsSource="{Binding CurrentQuestionAnswers}" SelectedItem="{Binding UserAnswer}" Margin="10,0,10,0">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <Label Text="{Binding Description}" Style="{Binding Status, Converter={StaticResource cnvAns}}"/>
+                                <pancake:PancakeView Style="{DynamicResource answerPancakeStyle}">
+                                    <Label Text="{Binding Description}" Style="{Binding Status, Converter={StaticResource cnvAns}}"/>
+                                </pancake:PancakeView>
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
