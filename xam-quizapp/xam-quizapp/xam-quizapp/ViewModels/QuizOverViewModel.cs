@@ -60,15 +60,16 @@ namespace quizapp.ViewModels
 
         public Command CloseQuizOver => _closeCommand ?? (_closeCommand = new Command(CloseQuizOverScreen));
 
-        public string CalculateScorePercentage()
+        public void CalculateScorePercentage()
         {
             if(UserScore <= 0 || TotalQuestions <= 0) 
             {
-                return String.Empty;
+                ScorePercentage = String.Empty;
+                return;
             }
             var scoreDec = (double)UserScore / TotalQuestions;
             var percentage = scoreDec * 100;
-            return $"{percentage}%";
+            ScorePercentage = $"{percentage}%";
         }
 
         private void CloseQuizOverScreen()

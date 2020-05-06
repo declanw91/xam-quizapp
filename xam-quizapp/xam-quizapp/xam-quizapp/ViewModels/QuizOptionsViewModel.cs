@@ -160,6 +160,10 @@ namespace quizapp.ViewModels
             {
                 SelectRandomQuestions();
             }
+            else
+            {
+                await PopulateQuizCategories();
+            }
         }
 
         private void SelectRandomCategory()

@@ -4,7 +4,8 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="quizapp.Views.QuestionPage" xmlns:helpers="clr-namespace:quizapp.Helpers">
+             x:Class="quizapp.Views.QuestionPage" xmlns:helpers="clr-namespace:quizapp.Helpers"
+             xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView">
     <ContentPage.Resources>
         <ResourceDictionary>
             <helpers:AnswerStyleConverter x:Key="cnvAns"/>
@@ -27,12 +28,12 @@
                 </StackLayout>
             </StackLayout>
             <StackLayout Grid.Row="1">
-                <Frame Style="{DynamicResource QuestionStyle}">
-                    <StackLayout Orientation="Horizontal" Style="{DynamicResource QuestionStyle}">
+                <pancake:PancakeView CornerRadius="20,20,20,20" BorderColor="Black" HasShadow="True" BackgroundGradientStartColor="#6699ff" BackgroundGradientEndColor="#e6eeff" BackgroundGradientAngle="30">
+                    <StackLayout Orientation="Horizontal" Padding="10">
                         <Image Source="circledq.png" Style="{DynamicResource titleImageStyle}"/>
                         <Label Text="{Binding CurrentQuestion.Question}" Style="{DynamicResource titleLabelStyle}"/>
                     </StackLayout>
-                </Frame>
+                </pancake:PancakeView>
             </StackLayout>
             <StackLayout Grid.Row="2">
                 <ListView x:Name="lvAnswers" ItemsSource="{Binding CurrentQuestionAnswers}" SelectedItem="{Binding UserAnswer}">
