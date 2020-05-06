@@ -15,6 +15,8 @@ namespace quizapp.Droid
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
+            ToolbarResource = Resource.Layout.Toolbar;
+            TabLayoutResource = Resource.Layout.Tabbar;
             base.OnCreate(savedInstanceState);
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
