@@ -35,6 +35,10 @@
             </Style>
             <Style TargetType="Label" x:Key="titleLabelStyle">
                 <Setter Property="Margin" Value="0,10,0,0"/>
+                <Setter Property="FontSize" Value="Title"/>
+            </Style>
+            <Style TargetType="Label" x:Key="questionLabelStyle">
+                <Setter Property="Margin" Value="0,10,0,0"/>
             </Style>
             <Style TargetType="Image" x:Key="titleImageStyle">
                 <Setter Property="HeightRequest" Value="50"/>
@@ -45,7 +49,7 @@
                 <Setter Property="HasShadow" Value="True"/>
                 <Setter Property="BackgroundGradientStartColor" Value="#6699ff"/>
                 <Setter Property="BackgroundGradientEndColor" Value="#e6eeff"/>
-                <Setter Property="BackgroundGradientAngle" Value="30"/>
+                <Setter Property="BackgroundGradientAngle" Value="120"/>
                 <Setter Property="Margin" Value="10"/>
                 <Setter Property="BorderThickness" Value="2"/>
             </Style>

@@ -12,9 +12,9 @@
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="auto" />
             </Grid.RowDefinitions>
-            <ContentView Grid.Row="0">
+            <StackLayout Grid.Row="0" HorizontalOptions="CenterAndExpand">
                 <Label Text="Quiz Complete!" Style="{DynamicResource titleLabelStyle}"/>
-            </ContentView>
+            </StackLayout>
             <StackLayout Grid.Row="1">
                 <Image Source="trophy.png" Style="{DynamicResource titleImageStyle}"/>
                 <StackLayout Orientation="Horizontal">
