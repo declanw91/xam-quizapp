@@ -178,4 +178,7 @@
   <ItemGroup>
     <BundleResource Include="Resources\randomquestions.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\picture.png" />
+  </ItemGroup>
 </Project>

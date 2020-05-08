@@ -18,11 +18,17 @@
                 <Label Text="Quizkaban" Style="{DynamicResource titleLabelStyle}"/>
             </StackLayout>
             <StackLayout Grid.Row="1" Grid.Column="0" >
-                <Label Text="Questions and categories:"/>
+                <StackLayout Orientation="Horizontal">
+                    <Image Source="circledq.png" HeightRequest="24"/>
+                    <Label Text="Questions and categories:"/>
+                </StackLayout>
                 <Label Text="Provided by https://opentdb.com" />
             </StackLayout>
             <StackLayout Grid.Row="2" Grid.Column="0">
-                <Label Text="Icons:"/>
+                <StackLayout Orientation="Horizontal">
+                    <Image Source="picture.png" HeightRequest="24"/>
+                    <Label Text="Icons:"/>
+                </StackLayout>
                 <Label Text="Provided by https://icons8.com/"/>
             </StackLayout>
             <StackLayout Grid.Row="3" Grid.Column="0" Orientation="Horizontal">

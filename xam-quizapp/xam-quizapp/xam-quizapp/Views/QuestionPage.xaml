@@ -36,12 +36,12 @@
                 </pancake:PancakeView>
             </StackLayout>
             <StackLayout Grid.Row="2">
-                <ListView x:Name="lvAnswers" ItemsSource="{Binding CurrentQuestionAnswers}" SelectedItem="{Binding UserAnswer}" Margin="10,0,10,0" SeparatorVisibility="None">
+                <ListView x:Name="lvAnswers" ItemsSource="{Binding CurrentQuestionAnswers}" SelectedItem="{Binding UserAnswer}" Margin="10,0,10,0" SeparatorVisibility="None" HasUnevenRows="True">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
                                 <Frame Style="{Binding Status, Converter={StaticResource cnvAns}}">
-                                    <Label Text="{Binding Description}" />
+                                    <Label Text="{Binding Description}" Padding="10"/>
                                 </Frame>
                             </ViewCell>
                         </DataTemplate>
