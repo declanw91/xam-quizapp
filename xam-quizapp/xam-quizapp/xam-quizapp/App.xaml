@@ -12,6 +12,8 @@
             <!--Global Styles-->
             <Color x:Key="NavigationPrimary">#3366ff</Color>
             <Color x:Key="DarkBorder">#000000</Color>
+            <Color x:Key="MainTextColour">#000000</Color>
+            <!-- Navigation page Styles -->
             <Style TargetType="NavigationPage" x:Key="navPageStyle">
                 <Setter Property="BarBackgroundColor" Value="{StaticResource NavigationPrimary}" />
                 <Setter Property="BarTextColor" Value="White" />
@@ -50,16 +52,20 @@
             <!-- Label Styles -->
             <Style TargetType="Label" x:Key="dashboardLabelStyle">
                 <Setter Property="Margin" Value="0,10,0,0"/>
+                <Setter Property="TextColor" Value="{StaticResource MainTextColour}"/>
             </Style>
             <Style TargetType="Label" x:Key="boldLabelStyle">
                 <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="TextColor" Value="{StaticResource MainTextColour}"/>
             </Style>
             <Style TargetType="Label" x:Key="titleLabelStyle">
                 <Setter Property="Margin" Value="0,10,0,0"/>
                 <Setter Property="FontSize" Value="Title"/>
+                <Setter Property="TextColor" Value="{StaticResource MainTextColour}"/>
             </Style>
             <Style TargetType="Label" x:Key="questionLabelStyle">
                 <Setter Property="Margin" Value="0,10,0,0"/>
+                <Setter Property="TextColor" Value="{StaticResource MainTextColour}"/>
             </Style>
             <!-- Image Styles -->
             <Style TargetType="Image" x:Key="titleImageStyle">
@@ -75,6 +81,14 @@
                 <Setter Property="BackgroundGradientAngle" Value="120"/>
                 <Setter Property="Margin" Value="10"/>
                 <Setter Property="BorderThickness" Value="2"/>
+            </Style>
+            <!-- Stacklayout Styles-->
+            <Style TargetType="StackLayout" x:Key="dashboardOptionStyle">
+                <Setter Property="BackgroundColor" Value="#f7f7f2"/>
+            </Style>
+            <!-- ContentPage Styles-->
+            <Style TargetType="ContentPage" x:Key="mainPageBackgroundStyle">
+                <Setter Property="BackgroundImageSource" Value="quizbackgroundv2.png"/>
             </Style>
         </ResourceDictionary>
     </Application.Resources>
