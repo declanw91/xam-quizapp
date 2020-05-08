@@ -12,7 +12,7 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <Grid Margin="10">
+        <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="auto" />
@@ -40,7 +40,9 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <Label Text="{Binding Description}" Style="{Binding Status, Converter={StaticResource cnvAns}}"/>
+                                <Frame Style="{Binding Status, Converter={StaticResource cnvAns}}">
+                                    <Label Text="{Binding Description}" />
+                                </Frame>
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>

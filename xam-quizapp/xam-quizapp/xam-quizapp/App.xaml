@@ -11,22 +11,43 @@
         <ResourceDictionary>
             <!--Global Styles-->
             <Color x:Key="NavigationPrimary">#3366ff</Color>
+            <Color x:Key="DarkBorder">#000000</Color>
             <Style TargetType="NavigationPage" x:Key="navPageStyle">
                 <Setter Property="BarBackgroundColor" Value="{StaticResource NavigationPrimary}" />
                 <Setter Property="BarTextColor" Value="White" />
             </Style>
+            <!-- Frame Styles -->
             <Style TargetType="Frame" x:Key="questionStyle">
-                <Setter Property="BorderColor" Value="#000000" />
+                <Setter Property="BorderColor" Value="{StaticResource DarkBorder}" />
                 <Setter Property="CornerRadius" Value="10" />
             </Style>
-            <Style TargetType="Label" x:Key="correctAnswerStyle">
-                <Setter Property="TextColor" Value="#FFFFFF" />
+            <Style TargetType="Frame" x:Key="questionViewWrapperStyle">
+                <Setter Property="BorderColor" Value="{StaticResource DarkBorder}" />
+                <Setter Property="CornerRadius" Value="10" />
+                <Setter Property="Margin" Value="10"/>
+                <Setter Property="Padding" Value="5"/>
+            </Style>
+            <Style TargetType="Frame" x:Key="answerFrameStyle">
+                <Setter Property="BorderColor" Value="{StaticResource DarkBorder}" />
+                <Setter Property="CornerRadius" Value="10" />
+                <Setter Property="Padding" Value="10"/>
+                <Setter Property="Margin" Value="0,0,0,10"/>
+            </Style>
+            <Style TargetType="Frame" x:Key="correctAnswerFrameStyle">
+                <Setter Property="BorderColor" Value="{StaticResource DarkBorder}" />
+                <Setter Property="CornerRadius" Value="10" />
+                <Setter Property="Padding" Value="10"/>
                 <Setter Property="BackgroundColor" Value="Green" />
+                <Setter Property="Margin" Value="0,0,0,10"/>
             </Style>
-            <Style TargetType="Label" x:Key="incorrectAnswerStyle">
-                <Setter Property="TextColor" Value="#FFFFFF" />
+            <Style TargetType="Frame" x:Key="incorrectAnswerFrameStyle">
+                <Setter Property="BorderColor" Value="{StaticResource DarkBorder}" />
+                <Setter Property="CornerRadius" Value="10" />
+                <Setter Property="Padding" Value="10"/>
                 <Setter Property="BackgroundColor" Value="Red" />
+                <Setter Property="Margin" Value="0,0,0,10"/>
             </Style>
+            <!-- Label Styles -->
             <Style TargetType="Label" x:Key="dashboardLabelStyle">
                 <Setter Property="Margin" Value="0,10,0,0"/>
             </Style>
@@ -40,24 +61,19 @@
             <Style TargetType="Label" x:Key="questionLabelStyle">
                 <Setter Property="Margin" Value="0,10,0,0"/>
             </Style>
+            <!-- Image Styles -->
             <Style TargetType="Image" x:Key="titleImageStyle">
                 <Setter Property="HeightRequest" Value="50"/>
             </Style>
+            <!-- Pancake Styles -->
             <Style TargetType="pancake:PancakeView" x:Key="questionPancakeStyle">
                 <Setter Property="CornerRadius" Value="20,20,20,20"/>
-                <Setter Property="BorderColor" Value="Black"/>
+                <Setter Property="BorderColor" Value="{StaticResource DarkBorder}"/>
                 <Setter Property="HasShadow" Value="True"/>
                 <Setter Property="BackgroundGradientStartColor" Value="#6699ff"/>
                 <Setter Property="BackgroundGradientEndColor" Value="#e6eeff"/>
                 <Setter Property="BackgroundGradientAngle" Value="120"/>
                 <Setter Property="Margin" Value="10"/>
-                <Setter Property="BorderThickness" Value="2"/>
-            </Style>
-            <Style TargetType="pancake:PancakeView" x:Key="answerPancakeStyle">
-                <Setter Property="CornerRadius" Value="20,20,20,20"/>
-                <Setter Property="BorderColor" Value="Black"/>
-                <Setter Property="BackgroundColor" Value="White"/>
-                <Setter Property="Padding" Value="10"/>
                 <Setter Property="BorderThickness" Value="2"/>
             </Style>
         </ResourceDictionary>

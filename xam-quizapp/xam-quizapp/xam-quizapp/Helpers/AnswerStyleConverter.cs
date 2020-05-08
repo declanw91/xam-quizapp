@@ -14,14 +14,14 @@ namespace quizapp.Helpers
                 switch (a)
                 {
                     case "correct":
-                        return (Style)App.Current.Resources["correctAnswerStyle"];
+                        return (Style)App.Current.Resources["correctAnswerFrameStyle"];
                     case "incorrect":
-                        return (Style)App.Current.Resources["incorrectAnswerStyle"];
+                        return (Style)App.Current.Resources["incorrectAnswerFrameStyle"];
                     default:
-                        return (Style)App.Current.Resources["boldLabelStyle"];
+                        return (Style)App.Current.Resources["answerFrameStyle"];
                 }
             }
-            return (Style)App.Current.Resources["boldLabelStyle"];
+            return (Style)App.Current.Resources["answerFrameStyle"];
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
