@@ -184,4 +184,10 @@
   <ItemGroup>
     <BundleResource Include="Resources\vicon.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\quizbackground.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\quizbackgroundv2.png" />
+  </ItemGroup>
 </Project>

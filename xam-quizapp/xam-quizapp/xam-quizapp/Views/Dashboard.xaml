@@ -4,9 +4,9 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="quizapp.Views.Dashboard">
+             x:Class="quizapp.Views.Dashboard" BackgroundImageSource="quizbackgroundv2.png">
     <ContentPage.Content>
-        <Grid Margin="10">
+        <Grid Margin="10" RowSpacing="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
