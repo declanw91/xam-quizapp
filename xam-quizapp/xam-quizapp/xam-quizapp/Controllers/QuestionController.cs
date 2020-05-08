@@ -14,7 +14,7 @@ namespace quizapp.Controllers
         private HttpClient _requestClient;
         public QuestionController()
         {
-            _requestClient = new HttpClient();
+            
         }
         public async Task<List<QuizQuestion>> GetQuizQuestions(string category, string difficulty)
         {
@@ -45,17 +45,15 @@ namespace quizapp.Controllers
         {
             JObject response = null;
             var questionUrl = BuildRequestUrl(category, difficulty);
+            InitialiseRequestClient();
             try
             {
-                using (_requestClient)
-                {
-                    var json = await _requestClient.GetStringAsync(questionUrl);
-                    response = JObject.Parse(json);
-                }
+                var json = await _requestClient.GetStringAsync(questionUrl);
+                response = JObject.Parse(json);
             }
             catch(HttpRequestException ex)
             {
-
+                var error = ex.InnerException;
             }
             
             return response;
@@ -73,6 +71,11 @@ namespace quizapp.Controllers
             answerList.Add(decodedCorrectAnswer);
             var shuffledAnswers = answerList.OrderBy(a => Guid.NewGuid()).ToList();
             return shuffledAnswers;
+        }
+
+        private void InitialiseRequestClient()
+        {
+            _requestClient = new HttpClient();
         }
     }
 }
