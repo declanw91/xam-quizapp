@@ -175,4 +175,7 @@
   <ItemGroup>
     <BundleResource Include="Resources\appicon.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\randomquestions.png" />
+  </ItemGroup>
 </Project>

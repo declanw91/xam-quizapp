@@ -138,6 +138,7 @@
     <Content Include="Assets\Wide310x150Logo.scale-400.png" />
     <Content Include="questionmark.png" />
     <Content Include="quiz.png" />
+    <Content Include="randomquestions.png" />
     <Content Include="settings.png" />
     <Content Include="trophy.png" />
     <Content Include="xamarin_logo.png" />

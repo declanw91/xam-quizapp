@@ -53,7 +53,7 @@
                 </StackLayout.GestureRecognizers>
             </StackLayout>
             <StackLayout Grid.Row="3" Orientation="Horizontal">
-                <Image Source="questionmark.png" WidthRequest="50" />
+                <Image Source="randomquestions.png" WidthRequest="50" />
                 <Label Text="Play with Random Questions" Style="{DynamicResource dashboardLabelStyle}"/>
                 <StackLayout.GestureRecognizers>
                     <OnPlatform x:TypeArguments="TapGestureRecognizer">
