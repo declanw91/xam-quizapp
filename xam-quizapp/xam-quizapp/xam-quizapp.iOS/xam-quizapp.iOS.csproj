@@ -181,4 +181,7 @@
   <ItemGroup>
     <BundleResource Include="Resources\picture.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\vicon.png" />
+  </ItemGroup>
 </Project>
