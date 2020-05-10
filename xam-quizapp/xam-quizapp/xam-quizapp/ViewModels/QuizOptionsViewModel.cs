@@ -113,7 +113,7 @@ namespace quizapp.ViewModels
         private async Task PopulateQuizCategories()
         {
             var quizCategories = await _categoryController.GetQuizCategories();
-            if(quizCategories != null)
+            if(quizCategories != null && quizCategories.Count > 0)
             {
                 QuizCategories.Clear();
                 _quizCategoryList = quizCategories;
@@ -121,6 +121,10 @@ namespace quizapp.ViewModels
                 {
                     QuizCategories = quizCategories.Select(c => c.Name).ToList();
                 }
+            }
+            else
+            {
+                await UserDialogs.Instance.AlertAsync("Sorry but we are unable to load the categories.\nPlease check your device internet connection and try again.", "Warning", "Ok");
             }
         }
 
@@ -151,18 +155,17 @@ namespace quizapp.ViewModels
 
         private async Task CheckQuizMode()
         {
-            if(QuizMode == "RC")
+            if(QuizMode == "RC" || QuizMode == null)
             {
                 await PopulateQuizCategories();
-                SelectRandomCategory();
+                if(QuizCategories.Count > 0 && QuizMode == "RC")
+                {
+                    SelectRandomCategory();
+                }
             }
             else if (QuizMode == "RQ")
             {
                 SelectRandomQuestions();
-            }
-            else
-            {
-                await PopulateQuizCategories();
             }
         }
 

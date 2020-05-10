@@ -69,6 +69,7 @@
             </Style>
             <Style TargetType="Label" x:Key="defaultLabelStyle">
                 <Setter Property="TextColor" Value="{StaticResource MainTextColour}"/>
+                <Setter Property="FontSize" Value="Default"/>
             </Style>
             <!-- Image Styles -->
             <Style TargetType="Image" x:Key="titleImageStyle">

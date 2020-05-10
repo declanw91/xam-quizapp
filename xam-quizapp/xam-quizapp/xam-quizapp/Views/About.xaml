@@ -22,14 +22,14 @@
                     <Image Source="circledq.png" HeightRequest="24"/>
                     <Label Text="Questions and categories:" Style="{DynamicResource defaultLabelStyle}"/>
                 </StackLayout>
-                <Label Text="Provided by https://opentdb.com" />
+                <Label Text="Provided by https://opentdb.com" Style="{DynamicResource defaultLabelStyle}"/>
             </StackLayout>
             <StackLayout Grid.Row="2" Grid.Column="0" Style="{DynamicResource dashboardOptionStyle}">
                 <StackLayout Orientation="Horizontal">
                     <Image Source="picture.png" HeightRequest="24"/>
                     <Label Text="Icons:" Style="{DynamicResource defaultLabelStyle}"/>
                 </StackLayout>
-                <Label Text="Provided by https://icons8.com/"/>
+                <Label Text="Provided by https://icons8.com/" Style="{DynamicResource defaultLabelStyle}"/>
             </StackLayout>
             <StackLayout Grid.Row="3" Grid.Column="0" Orientation="Horizontal" Style="{DynamicResource dashboardOptionStyle}">
                 <Image Source="vicon.png" HeightRequest="24"/>
