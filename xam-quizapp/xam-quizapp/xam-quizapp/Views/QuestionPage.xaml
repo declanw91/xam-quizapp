@@ -41,7 +41,7 @@
                         <DataTemplate>
                             <ViewCell>
                                 <Frame Style="{Binding Status, Converter={StaticResource cnvAns}}">
-                                    <Label Text="{Binding Description}" Padding="10"/>
+                                    <Label Text="{Binding Description}" Padding="10" Style="{DynamicResource defaultLabelStyle}"/>
                                 </Frame>
                             </ViewCell>
                         </DataTemplate>

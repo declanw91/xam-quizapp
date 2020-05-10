@@ -14,7 +14,7 @@
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
-            <StackLayout Grid.Row="0" Orientation="Horizontal" Style="{DynamicResource dashboardOptionStyle}">
+            <StackLayout Grid.Row="0" Orientation="Horizontal" Style="{DynamicResource pageTitleStyle}">
                 <Image Source="appicon.png" Style="{DynamicResource titleImageStyle}"/>
                 <Label Text="Quizkaban" Style="{DynamicResource titleLabelStyle}"/>
             </StackLayout>

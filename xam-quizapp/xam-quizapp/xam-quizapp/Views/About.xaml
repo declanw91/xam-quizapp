@@ -20,21 +20,21 @@
             <StackLayout Grid.Row="1" Grid.Column="0" Style="{DynamicResource dashboardOptionStyle}">
                 <StackLayout Orientation="Horizontal">
                     <Image Source="circledq.png" HeightRequest="24"/>
-                    <Label Text="Questions and categories:"/>
+                    <Label Text="Questions and categories:" Style="{DynamicResource defaultLabelStyle}"/>
                 </StackLayout>
                 <Label Text="Provided by https://opentdb.com" />
             </StackLayout>
             <StackLayout Grid.Row="2" Grid.Column="0" Style="{DynamicResource dashboardOptionStyle}">
                 <StackLayout Orientation="Horizontal">
                     <Image Source="picture.png" HeightRequest="24"/>
-                    <Label Text="Icons:"/>
+                    <Label Text="Icons:" Style="{DynamicResource defaultLabelStyle}"/>
                 </StackLayout>
                 <Label Text="Provided by https://icons8.com/"/>
             </StackLayout>
             <StackLayout Grid.Row="3" Grid.Column="0" Orientation="Horizontal" Style="{DynamicResource dashboardOptionStyle}">
                 <Image Source="vicon.png" HeightRequest="24"/>
-                <Label Text="App Version:"/>
-                <Label Text="{Binding AppVersion}"/>
+                <Label Text="App Version:" Style="{DynamicResource defaultLabelStyle}"/>
+                <Label Text="{Binding AppVersion}" Style="{DynamicResource defaultLabelStyle}"/>
             </StackLayout>
         </Grid>
     </ContentPage.Content>

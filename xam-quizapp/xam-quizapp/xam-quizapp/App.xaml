@@ -12,7 +12,7 @@
             <!--Global Styles-->
             <Color x:Key="NavigationPrimary">#3366ff</Color>
             <Color x:Key="DarkBorder">#000000</Color>
-            <Color x:Key="MainTextColour">#000000</Color>
+            <Color x:Key="MainTextColour">#262626</Color>
             <!-- Navigation page Styles -->
             <Style TargetType="NavigationPage" x:Key="navPageStyle">
                 <Setter Property="BarBackgroundColor" Value="{StaticResource NavigationPrimary}" />
@@ -67,6 +67,9 @@
                 <Setter Property="Margin" Value="0,10,0,0"/>
                 <Setter Property="TextColor" Value="{StaticResource MainTextColour}"/>
             </Style>
+            <Style TargetType="Label" x:Key="defaultLabelStyle">
+                <Setter Property="TextColor" Value="{StaticResource MainTextColour}"/>
+            </Style>
             <!-- Image Styles -->
             <Style TargetType="Image" x:Key="titleImageStyle">
                 <Setter Property="HeightRequest" Value="50"/>
@@ -84,8 +87,12 @@
             </Style>
             <!-- Stacklayout Styles-->
             <Style TargetType="StackLayout" x:Key="dashboardOptionStyle">
-                <Setter Property="BackgroundColor" Value="#FFFFFF"/>
+                <Setter Property="Margin" Value="20,10,20,0"/>
+                <Setter Property="Padding" Value="10"/>
+            </Style>
+            <Style TargetType="StackLayout" x:Key="pageTitleStyle">
                 <Setter Property="Margin" Value="20,0,20,0"/>
+                <Setter Property="Padding" Value="20,0,20,0"/>
             </Style>
             <!-- ContentPage Styles-->
             <Style TargetType="ContentPage" x:Key="mainPageBackgroundStyle">
@@ -94,6 +101,12 @@
             <!-- Grid Styles-->
             <Style TargetType="Grid" x:Key="pageGridStyle">
                 <Setter Property="Margin" Value="10,25,10,20"/>
+            </Style>
+            <!-- Button Styles-->
+            <Style TargetType="Button" x:Key="quizOptionSaveStyle">
+                <Setter Property="Margin" Value="25,10,25,0"/>
+                <Setter Property="BackgroundColor" Value="#007bff"/>
+                <Setter Property="TextColor" Value="#FFFFFF"/>
             </Style>
         </ResourceDictionary>
     </Application.Resources>
