@@ -84,11 +84,16 @@
             </Style>
             <!-- Stacklayout Styles-->
             <Style TargetType="StackLayout" x:Key="dashboardOptionStyle">
-                <Setter Property="BackgroundColor" Value="#f7f7f2"/>
+                <Setter Property="BackgroundColor" Value="#FFFFFF"/>
+                <Setter Property="Margin" Value="20,0,20,0"/>
             </Style>
             <!-- ContentPage Styles-->
             <Style TargetType="ContentPage" x:Key="mainPageBackgroundStyle">
                 <Setter Property="BackgroundImageSource" Value="quizbackgroundv2.png"/>
+            </Style>
+            <!-- Grid Styles-->
+            <Style TargetType="Grid" x:Key="pageGridStyle">
+                <Setter Property="Margin" Value="10,25,10,20"/>
             </Style>
         </ResourceDictionary>
     </Application.Resources>

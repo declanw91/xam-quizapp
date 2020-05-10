@@ -6,7 +6,7 @@
              mc:Ignorable="d"
              x:Class="quizapp.Views.Dashboard" Style="{DynamicResource mainPageBackgroundStyle}">
     <ContentPage.Content>
-        <Grid Margin="10" RowSpacing="0">
+        <Grid Style="{DynamicResource pageGridStyle}" RowSpacing="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
