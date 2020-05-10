@@ -4,13 +4,13 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="quizapp.Views.QuizOver">
+             x:Class="quizapp.Views.QuizOver" Style="{DynamicResource mainPageBackgroundStyle}">
     <ContentPage.Content>
-        <Grid Margin="10">
+        <Grid Style="{DynamicResource pageGridStyle}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <StackLayout Grid.Row="0" HorizontalOptions="CenterAndExpand">
                 <Label Text="Quiz Complete!" Style="{DynamicResource titleLabelStyle}"/>
@@ -18,15 +18,15 @@
             <StackLayout Grid.Row="1">
                 <Image Source="trophy.png" Style="{DynamicResource titleImageStyle}"/>
                 <StackLayout Orientation="Horizontal">
-                    <Label Text="{Binding ScoreMessage}" />
+                    <Label Text="{Binding ScoreMessage}" Style="{DynamicResource defaultLabelStyle}"/>
                 </StackLayout>
                 <StackLayout Orientation="Horizontal">
-                    <Label Text="Score Percentage:" />
-                    <Label Text="{Binding ScorePercentage}" />
+                    <Label Text="Score Percentage:" Style="{DynamicResource defaultLabelStyle}"/>
+                    <Label Text="{Binding ScorePercentage}" Style="{DynamicResource defaultLabelStyle}"/>
                 </StackLayout>
             </StackLayout>
-            <StackLayout Grid.Row="2">
-                <Button Text="Close" Command="{Binding CloseQuizOver}"/>
+            <StackLayout Grid.Row="2" VerticalOptions="EndAndExpand">
+                <Button Text="Close" Command="{Binding CloseQuizOver}" Style="{DynamicResource primaryButtonStyle}"/>
             </StackLayout>
         </Grid>
     </ContentPage.Content>

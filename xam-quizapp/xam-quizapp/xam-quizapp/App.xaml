@@ -53,6 +53,7 @@
             <Style TargetType="Label" x:Key="dashboardLabelStyle">
                 <Setter Property="Margin" Value="0,10,0,0"/>
                 <Setter Property="TextColor" Value="{StaticResource MainTextColour}"/>
+                <Setter Property="FontSize" Value="Default"/>
             </Style>
             <Style TargetType="Label" x:Key="boldLabelStyle">
                 <Setter Property="FontAttributes" Value="Bold"/>
@@ -104,10 +105,11 @@
                 <Setter Property="Margin" Value="10,25,10,20"/>
             </Style>
             <!-- Button Styles-->
-            <Style TargetType="Button" x:Key="quizOptionSaveStyle">
+            <Style TargetType="Button" x:Key="primaryButtonStyle">
                 <Setter Property="Margin" Value="25,10,25,0"/>
                 <Setter Property="BackgroundColor" Value="#007bff"/>
                 <Setter Property="TextColor" Value="#FFFFFF"/>
+                <Setter Property="CornerRadius" Value="10"/>
             </Style>
         </ResourceDictionary>
     </Application.Resources>
