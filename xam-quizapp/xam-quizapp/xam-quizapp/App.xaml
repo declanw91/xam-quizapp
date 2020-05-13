@@ -34,6 +34,7 @@
                 <Setter Property="CornerRadius" Value="10" />
                 <Setter Property="Padding" Value="10"/>
                 <Setter Property="Margin" Value="0,0,0,10"/>
+                <Setter Property="BackgroundColor" Value="White" />
             </Style>
             <Style TargetType="Frame" x:Key="correctAnswerFrameStyle">
                 <Setter Property="BorderColor" Value="{StaticResource DarkBorder}" />
