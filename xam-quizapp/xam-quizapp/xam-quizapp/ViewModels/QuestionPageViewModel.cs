@@ -26,6 +26,7 @@ namespace quizapp.ViewModels
         private List<QuizAnswer> _currentAnswerList;
         private bool _userCanSubmit;
         private Command _nextQuestion;
+        private float _quizProgress;
         public QuestionPageViewModel(INavigation nav)
         {
             _questionList = new List<QuizQuestion>();
@@ -35,6 +36,7 @@ namespace quizapp.ViewModels
             _currentQuestionNumber = 1;
             _userScore = 0;
             _userCanSubmit = true;
+            _quizProgress = 0;
         }
 
         public QuizQuestion CurrentQuestion
@@ -88,6 +90,16 @@ namespace quizapp.ViewModels
             }
         }
 
+        public float QuizProgress
+        {
+            get => _quizProgress;
+            set
+            {
+                _quizProgress = value;
+                OnPropertyChanged("QuizProgress");
+            }
+        }
+
         public Command SubmitAnswer => _submitAnswer ?? (_submitAnswer = new Command(CheckAnswer, CanSubmit));
         private bool CanSubmit()
         {
@@ -110,6 +122,7 @@ namespace quizapp.ViewModels
                 CurrentQuestion = _questionList.First();
                 TotalQuestions = _questionList.Count;
                 PopulateAnswerList();
+                CalculateQuizProgress();
             }
             UserDialogs.Instance.HideLoading();
             if (_questionList == null || _questionList.Count == 0)
@@ -150,6 +163,7 @@ namespace quizapp.ViewModels
                     CurrentQuestion = nextQ;
                 }
                 PopulateAnswerList();
+                CalculateQuizProgress();
                 Reset();
             }
             else
@@ -216,6 +230,11 @@ namespace quizapp.ViewModels
                 answerList.Add(answerItem);
             }
             CurrentQuestionAnswers = answerList;
+        }
+
+        private void CalculateQuizProgress()
+        {
+            QuizProgress = (float)CurrentQuestionNumber / TotalQuestions;
         }
     }
 }

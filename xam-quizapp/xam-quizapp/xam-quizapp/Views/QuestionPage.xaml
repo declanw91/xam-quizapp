@@ -34,6 +34,7 @@
                         <Label Text="{Binding CurrentQuestion.Question}" Style="{DynamicResource questionLabelStyle}"/>
                     </StackLayout>
                 </pancake:PancakeView>
+                <ProgressBar Progress="{Binding QuizProgress}" Margin="10,5,10,5" ProgressColor="Green"/>
             </StackLayout>
             <StackLayout Grid.Row="2">
                 <ListView x:Name="lvAnswers" ItemsSource="{Binding CurrentQuestionAnswers}" SelectedItem="{Binding UserAnswer}" Margin="10,0,10,0" SeparatorVisibility="None" HasUnevenRows="True" ItemSelected="lvAnswers_ItemSelected" >
