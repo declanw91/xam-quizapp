@@ -49,11 +49,18 @@
                 <Setter Property="BackgroundColor" Value="Red" />
                 <Setter Property="Margin" Value="0,0,0,10"/>
             </Style>
+            <Style TargetType="Frame" x:Key="userAnswerFrameStyle">
+                <Setter Property="BorderColor" Value="{StaticResource DarkBorder}" />
+                <Setter Property="CornerRadius" Value="10" />
+                <Setter Property="Padding" Value="10"/>
+                <Setter Property="BackgroundColor" Value="Orange" />
+                <Setter Property="Margin" Value="0,0,0,10"/>
+            </Style>
             <!-- Label Styles -->
             <Style TargetType="Label" x:Key="dashboardLabelStyle">
                 <Setter Property="Margin" Value="0,10,0,0"/>
                 <Setter Property="TextColor" Value="{StaticResource MainTextColour}"/>
-                <Setter Property="FontSize" Value="Default"/>
+                <Setter Property="FontSize" Value="14"/>
             </Style>
             <Style TargetType="Label" x:Key="boldLabelStyle">
                 <Setter Property="FontAttributes" Value="Bold"/>
@@ -70,7 +77,7 @@
             </Style>
             <Style TargetType="Label" x:Key="defaultLabelStyle">
                 <Setter Property="TextColor" Value="{StaticResource MainTextColour}"/>
-                <Setter Property="FontSize" Value="Default"/>
+                <Setter Property="FontSize" Value="14"/>
             </Style>
             <!-- Image Styles -->
             <Style TargetType="Image" x:Key="titleImageStyle">

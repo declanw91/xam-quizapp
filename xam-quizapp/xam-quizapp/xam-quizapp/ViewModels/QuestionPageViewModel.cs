@@ -202,5 +202,20 @@ namespace quizapp.ViewModels
             }
             CurrentQuestionAnswers = answerList;
         }
+
+        public void HighlightUsersAnswer()
+        {
+            var answerList = new List<QuizAnswer>();
+            foreach (var item in CurrentQuestion.Answers)
+            {
+                var answerItem = new QuizAnswer { Description = item };
+                if (item == UserAnswer.Description)
+                {
+                    answerItem.Status = "useranswer";
+                }
+                answerList.Add(answerItem);
+            }
+            CurrentQuestionAnswers = answerList;
+        }
     }
 }

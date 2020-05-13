@@ -22,5 +22,10 @@ namespace quizapp.Views
             base.OnAppearing();
             _viewModel.StartQuiz();
         }
+
+        private void lvAnswers_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            _viewModel.HighlightUsersAnswer();
+        }
     }
 }

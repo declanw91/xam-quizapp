@@ -17,6 +17,8 @@ namespace quizapp.Helpers
                         return (Style)App.Current.Resources["correctAnswerFrameStyle"];
                     case "incorrect":
                         return (Style)App.Current.Resources["incorrectAnswerFrameStyle"];
+                    case "useranswer":
+                        return (Style)App.Current.Resources["userAnswerFrameStyle"];
                     default:
                         return (Style)App.Current.Resources["answerFrameStyle"];
                 }
