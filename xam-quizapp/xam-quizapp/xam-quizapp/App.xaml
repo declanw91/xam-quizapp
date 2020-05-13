@@ -118,6 +118,10 @@
                 <Setter Property="TextColor" Value="#FFFFFF"/>
                 <Setter Property="CornerRadius" Value="10"/>
             </Style>
+            <!-- Picker Styles -->
+            <Style TargetType="Picker" x:Key="defaultPickerStyle">
+                <Setter Property="FontSize" Value="14"/>
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
     

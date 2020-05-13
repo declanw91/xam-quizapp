@@ -32,7 +32,7 @@
       Executable="$targetnametoken$.exe"
       EntryPoint="xam_quizapp.UWP.App">
       <uap:VisualElements
-        DisplayName="xam_quizapp.UWP"
+        DisplayName="Quizkaban"
         Square150x150Logo="Assets\Square150x150Logo.png"
         Square44x44Logo="Assets\Square44x44Logo.png"
         Description="xam_quizapp.UWP"

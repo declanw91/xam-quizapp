@@ -19,11 +19,11 @@
             </StackLayout>
             <StackLayout Grid.Row="1" Style="{DynamicResource dashboardOptionStyle}">
                 <Label Text="Please select a category:" Style="{DynamicResource defaultLabelStyle}"/>
-                <Picker x:Name="pckQuizCategory" ItemsSource="{Binding QuizCategories}" SelectedItem="{Binding SelectedCategory}" IsEnabled="{Binding CategorySelectable}"/>
+                <Picker x:Name="pckQuizCategory" ItemsSource="{Binding QuizCategories}" SelectedItem="{Binding SelectedCategory}" IsEnabled="{Binding CategorySelectable}" Style="{DynamicResource defaultPickerStyle}"/>
             </StackLayout>
             <StackLayout Grid.Row="2" Style="{DynamicResource dashboardOptionStyle}">
                 <Label Text="Please select a difficulty:" Style="{DynamicResource defaultLabelStyle}"/>
-                <Picker x:Name="pckDifficulty" ItemsSource="{Binding QuizDifficulties}" SelectedItem="{Binding SelectedDifficulty}"/>
+                <Picker x:Name="pckDifficulty" ItemsSource="{Binding QuizDifficulties}" SelectedItem="{Binding SelectedDifficulty}" Style="{DynamicResource defaultPickerStyle}"/>
             </StackLayout>
             <StackLayout Grid.Row="3" VerticalOptions="EndAndExpand">
                 <Button x:Name="btnSaveSettings" Text="Save" Command="{Binding SaveSettings}" Style="{DynamicResource primaryButtonStyle}"/>
