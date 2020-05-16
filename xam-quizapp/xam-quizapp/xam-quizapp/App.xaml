@@ -72,6 +72,10 @@
                 <Setter Property="FontSize" Value="{DynamicResource TitleFontSize}"/>
                 <Setter Property="TextColor" Value="{StaticResource MainTextColour}"/>
             </Style>
+            <Style TargetType="Label" x:Key="smallLabelStyle">
+                <Setter Property="FontSize" Value="{DynamicResource SmallFontSize}"/>
+                <Setter Property="TextColor" Value="{StaticResource MainTextColour}"/>
+            </Style>
             <Style TargetType="Label" x:Key="questionLabelStyle">
                 <Setter Property="Margin" Value="0,10,0,0"/>
                 <Setter Property="TextColor" Value="{StaticResource MainTextColour}"/>
@@ -132,6 +136,11 @@
                 <On Platform="iOS" Value="16"/>
                 <On Platform="Android" Value="16"/>
                 <On Platform="Windows" Value="16"/>
+            </OnPlatform>
+            <OnPlatform x:TypeArguments="x:Double" x:Key="SmallFontSize">
+                <On Platform="iOS" Value="10"/>
+                <On Platform="Android" Value="10"/>
+                <On Platform="Windows" Value="10"/>
             </OnPlatform>
         </ResourceDictionary>
     </Application.Resources>

@@ -64,7 +64,7 @@ namespace quizapp.ViewModels
         {
             if(UserScore <= 0 || TotalQuestions <= 0) 
             {
-                ScorePercentage = String.Empty;
+                ScorePercentage = "0%";
                 return;
             }
             var scoreDec = (double)UserScore / TotalQuestions;

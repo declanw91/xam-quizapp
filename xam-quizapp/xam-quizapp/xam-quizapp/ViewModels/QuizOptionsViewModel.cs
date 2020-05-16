@@ -16,10 +16,13 @@ namespace quizapp.ViewModels
         private List<string> _quizCategories;
         private List<QuizCategory> _quizCategoryList;
         private List<string> _quizDifficulties;
+        private List<int> _totalQuestionsOptions;
         private string _selectedCategory;
         private string _selectedDifficulty;
+        private string _selectedQuizLength;
         private CategoryController _categoryController;
         private DifficultyController _difficultyController;
+        private QuizLengthController _quizLengthController;
         private INavigation _navigation;
         private Command _saveCommand;
         private string _quizMode;
@@ -28,8 +31,10 @@ namespace quizapp.ViewModels
         {
             _categoryController = new CategoryController();
             _difficultyController = new DifficultyController();
+            _quizLengthController = new QuizLengthController();
             QuizDifficulties = new List<string>();
             QuizCategories = new List<string>();
+            TotalQuestionsOptions = new List<int>();
             _navigation = nav;
             CategorySelectable = true;
         }
@@ -96,17 +101,39 @@ namespace quizapp.ViewModels
             }
         }
 
+        public List<int> TotalQuestionsOptions
+        {
+            get => _totalQuestionsOptions;
+            set
+            {
+                _totalQuestionsOptions = value;
+                OnPropertyChanged("TotalQuestionsOptions");
+            }
+        }
+
+        public string QuizLength
+        {
+            get => _selectedQuizLength;
+            set
+            {
+                _selectedQuizLength = value;
+                OnPropertyChanged("SelectedQuizLength");
+                SaveSettings.ChangeCanExecute();
+            }
+        }
+
         public Command SaveSettings => _saveCommand ?? (_saveCommand = new Command(SaveUserSettings, CanSave));
 
         public bool CanSave()
         {
-            return SelectedDifficulty != null && CategorySelected();
+            return SelectedDifficulty != null && CategorySelected() && QuizLength != null;
         }
 
         public async Task SetupPageOptions()
         {
             UserDialogs.Instance.ShowLoading("Loading...");
             PopulateQuizDifficulties();
+            PopulateQuizLengthOptions();
             await CheckQuizMode();
             UserDialogs.Instance.HideLoading();
         }
@@ -149,6 +176,7 @@ namespace quizapp.ViewModels
                 }
             }
             Preferences.Set("QuizDifficulty", SelectedDifficulty);
+            Preferences.Set("QuizLength", QuizLength);
             var questionPage = new QuestionPage();
             _navigation.PushAsync(questionPage);
         }
@@ -185,6 +213,16 @@ namespace quizapp.ViewModels
         private bool CategorySelected()
         {
             return SelectedCategory != null || !CategorySelectable;
+        }
+
+        private void PopulateQuizLengthOptions()
+        {
+            var quizLengthOptions = _quizLengthController.GetQuizLengthOptions();
+            if (quizLengthOptions != null)
+            {
+                TotalQuestionsOptions.Clear();
+                TotalQuestionsOptions = quizLengthOptions;
+            }
         }
     }
 }
