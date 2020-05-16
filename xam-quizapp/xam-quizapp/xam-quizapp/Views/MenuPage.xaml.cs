@@ -1,9 +1,7 @@
 ﻿using quizapp.Models;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace quizapp.Views
 {
@@ -20,9 +18,9 @@ namespace quizapp.Views
 
             menuItems = new List<HomeMenuItem>
             {
-                new HomeMenuItem {Id = MenuItemType.StartAQuiz, Title="Start a Quiz" },
-                new HomeMenuItem {Id = MenuItemType.RandomCategory, Title="Random Category" },
-                new HomeMenuItem {Id = MenuItemType.RandomQuestion, Title="Random Questions" }
+                new HomeMenuItem {Id = MenuItemType.StartAQuiz, Title="Start a Quiz", Icon="quiz.png" },
+                new HomeMenuItem {Id = MenuItemType.RandomCategory, Title="Random Category", Icon="category.png" },
+                new HomeMenuItem {Id = MenuItemType.RandomQuestion, Title="Random Questions", Icon="randomquestions.png" }
             };
 
             ListViewMenu.ItemsSource = menuItems;

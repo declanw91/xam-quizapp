@@ -61,7 +61,7 @@
             <Style TargetType="Label" x:Key="dashboardLabelStyle">
                 <Setter Property="Margin" Value="0,10,0,0"/>
                 <Setter Property="TextColor" Value="{StaticResource MainTextColour}"/>
-                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="FontSize" Value="{DynamicResource DefaultFontSize}"/>
             </Style>
             <Style TargetType="Label" x:Key="boldLabelStyle">
                 <Setter Property="FontAttributes" Value="Bold"/>
@@ -69,7 +69,7 @@
             </Style>
             <Style TargetType="Label" x:Key="titleLabelStyle">
                 <Setter Property="Margin" Value="0,10,0,0"/>
-                <Setter Property="FontSize" Value="Title"/>
+                <Setter Property="FontSize" Value="{DynamicResource TitleFontSize}"/>
                 <Setter Property="TextColor" Value="{StaticResource MainTextColour}"/>
             </Style>
             <Style TargetType="Label" x:Key="questionLabelStyle">
@@ -78,7 +78,7 @@
             </Style>
             <Style TargetType="Label" x:Key="defaultLabelStyle">
                 <Setter Property="TextColor" Value="{StaticResource MainTextColour}"/>
-                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="FontSize" Value="{DynamicResource DefaultFontSize}"/>
             </Style>
             <!-- Image Styles -->
             <Style TargetType="Image" x:Key="titleImageStyle">
@@ -121,8 +121,18 @@
             </Style>
             <!-- Picker Styles -->
             <Style TargetType="Picker" x:Key="defaultPickerStyle">
-                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="FontSize" Value="{DynamicResource DefaultFontSize}"/>
             </Style>
+            <OnPlatform x:TypeArguments="x:Double" x:Key="DefaultFontSize">
+                <On Platform="iOS" Value="14"/>
+                <On Platform="Android" Value="14"/>
+                <On Platform="Windows" Value="14"/>
+            </OnPlatform>
+            <OnPlatform x:TypeArguments="x:Double" x:Key="TitleFontSize">
+                <On Platform="iOS" Value="16"/>
+                <On Platform="Android" Value="16"/>
+                <On Platform="Windows" Value="16"/>
+            </OnPlatform>
         </ResourceDictionary>
     </Application.Resources>
     

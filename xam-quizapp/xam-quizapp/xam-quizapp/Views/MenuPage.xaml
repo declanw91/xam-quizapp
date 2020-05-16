@@ -20,7 +20,10 @@
                 <DataTemplate>
                     <ViewCell>
                         <Grid Padding="10">
-                            <Label Text="{Binding Title}" d:Text="{Binding .}" FontSize="20"/>
+                            <StackLayout Orientation="Horizontal">
+                                <Image Source="{Binding Icon}" HeightRequest="20"/>
+                                <Label Text="{Binding Title}" d:Text="{Binding .}" FontSize="20"/>
+                            </StackLayout>
                         </Grid>
                     </ViewCell>
                 </DataTemplate>

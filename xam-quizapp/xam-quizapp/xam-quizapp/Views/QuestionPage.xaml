@@ -19,23 +19,13 @@
                 <RowDefinition Height="*" />
                 <RowDefinition Height="auto" />
             </Grid.RowDefinitions>
-            <StackLayout Grid.Row="0">
-                <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
-                    <Label Text="Question" Style="{DynamicResource titleLabelStyle}"/>
-                    <Label Text="{Binding CurrentQuestionNumber}" Style="{DynamicResource titleLabelStyle}"/>
-                    <Label Text="out of" Style="{DynamicResource titleLabelStyle}"/>
-                    <Label Text="{Binding TotalQuestions}" Style="{DynamicResource titleLabelStyle}"/>
+            <ProgressBar Progress="{Binding QuizProgress}" Margin="10,5,10,5" ProgressColor="Green" Grid.Row="0"/>
+            <pancake:PancakeView Style="{DynamicResource questionPancakeStyle}" Grid.Row="1">
+                <StackLayout Orientation="Horizontal" Padding="10">
+                    <Image Source="circledq.png" Style="{DynamicResource titleImageStyle}"/>
+                    <Label Text="{Binding CurrentQuestion.Question}" Style="{DynamicResource questionLabelStyle}"/>
                 </StackLayout>
-            </StackLayout>
-            <StackLayout Grid.Row="1">
-                <pancake:PancakeView Style="{DynamicResource questionPancakeStyle}">
-                    <StackLayout Orientation="Horizontal" Padding="10">
-                        <Image Source="circledq.png" Style="{DynamicResource titleImageStyle}"/>
-                        <Label Text="{Binding CurrentQuestion.Question}" Style="{DynamicResource questionLabelStyle}"/>
-                    </StackLayout>
-                </pancake:PancakeView>
-                <ProgressBar Progress="{Binding QuizProgress}" Margin="10,5,10,5" ProgressColor="Green"/>
-            </StackLayout>
+            </pancake:PancakeView>
             <StackLayout Grid.Row="2">
                 <ListView x:Name="lvAnswers" ItemsSource="{Binding CurrentQuestionAnswers}" SelectedItem="{Binding UserAnswer}" Margin="10,0,10,0" SeparatorVisibility="None" HasUnevenRows="True" ItemSelected="lvAnswers_ItemSelected" >
                     <ListView.ItemTemplate>
