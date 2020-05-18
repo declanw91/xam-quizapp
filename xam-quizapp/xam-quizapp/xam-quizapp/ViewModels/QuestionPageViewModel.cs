@@ -133,8 +133,7 @@ namespace quizapp.ViewModels
         {
             var category = Preferences.Get("QuizCategory", "");
             var difficulty = Preferences.Get("QuizDifficulty", "");
-            var quizLength = Preferences.Get("QuizLength","");
-            var questions = await _questionController.GetQuizQuestions(category, difficulty, quizLength);
+            var questions = await _questionController.GetQuizQuestions(category, difficulty);
             return questions;
         }
 

@@ -11,7 +11,6 @@
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <StackLayout Grid.Row="0" Orientation="Horizontal" Style="{DynamicResource pageTitleStyle}">
@@ -26,11 +25,7 @@
                 <Label Text="Please select a difficulty:" Style="{DynamicResource defaultLabelStyle}"/>
                 <Picker x:Name="pckDifficulty" ItemsSource="{Binding QuizDifficulties}" SelectedItem="{Binding SelectedDifficulty}" Style="{DynamicResource defaultPickerStyle}"/>
             </StackLayout>
-            <StackLayout Grid.Row="3" Style="{DynamicResource dashboardOptionStyle}">
-                <Label Text="Please select how many questions you want in the quiz:" Style="{DynamicResource defaultLabelStyle}"/>
-                <Picker x:Name="pckTotalQuestions" ItemsSource="{Binding TotalQuestionsOptions}" SelectedItem="{Binding QuizLength}" Style="{DynamicResource defaultPickerStyle}"/>
-            </StackLayout>
-            <StackLayout Grid.Row="4" VerticalOptions="EndAndExpand">
+            <StackLayout Grid.Row="3" VerticalOptions="EndAndExpand">
                 <Button x:Name="btnSaveSettings" Text="Save" Command="{Binding SaveSettings}" Style="{DynamicResource primaryButtonStyle}"/>
             </StackLayout>
         </Grid>

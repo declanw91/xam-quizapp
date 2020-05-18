@@ -16,10 +16,10 @@ namespace quizapp.Controllers
         {
             
         }
-        public async Task<List<QuizQuestion>> GetQuizQuestions(string category, string difficulty, string quizLength)
+        public async Task<List<QuizQuestion>> GetQuizQuestions(string category, string difficulty)
         {
             var questionList = new List<QuizQuestion>();
-            var questionJson = await GetQuestionJson(category, difficulty, quizLength);
+            var questionJson = await GetQuestionJson(category, difficulty);
             if (questionJson != null)
             {
                 var questions = questionJson.GetValue("results") as JArray;
@@ -35,16 +35,16 @@ namespace quizapp.Controllers
             return questionList;
         }
 
-        private string BuildRequestUrl(string category, string difficulty, string quizLength)
+        private string BuildRequestUrl(string category, string difficulty)
         {
-            var questionUrl = $"https://opentdb.com/api.php?amount={quizLength}&type=multiple&category={category}&difficulty={difficulty.ToLowerInvariant()}";
+            var questionUrl = $"https://opentdb.com/api.php?amount=10&type=multiple&category={category}&difficulty={difficulty.ToLowerInvariant()}";
             return questionUrl;
         }
 
-        private async Task<JObject> GetQuestionJson(string category, string difficulty, string quizLength)
+        private async Task<JObject> GetQuestionJson(string category, string difficulty)
         {
             JObject response = null;
-            var questionUrl = BuildRequestUrl(category, difficulty, quizLength);
+            var questionUrl = BuildRequestUrl(category, difficulty);
             InitialiseRequestClient();
             try
             {
