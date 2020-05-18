@@ -16,10 +16,11 @@ namespace quizapp.Controllers
         {
             
         }
-        public async Task<List<QuizQuestion>> GetQuizQuestions(string category, string difficulty)
+        public async Task<List<QuizQuestion>> GetQuizQuestions(string category, string difficulty, string questionType)
         {
             var questionList = new List<QuizQuestion>();
-            var questionJson = await GetQuestionJson(category, difficulty);
+            var qType = LookupQuestionType(questionType);
+            var questionJson = await GetQuestionJson(category, difficulty, qType);
             if (questionJson != null)
             {
                 var questions = questionJson.GetValue("results") as JArray;
@@ -35,16 +36,16 @@ namespace quizapp.Controllers
             return questionList;
         }
 
-        private string BuildRequestUrl(string category, string difficulty)
+        private string BuildRequestUrl(string category, string difficulty, string questionType)
         {
-            var questionUrl = $"https://opentdb.com/api.php?amount=10&type=multiple&category={category}&difficulty={difficulty.ToLowerInvariant()}";
+            var questionUrl = $"https://opentdb.com/api.php?amount=10&type={questionType}&category={category}&difficulty={difficulty.ToLowerInvariant()}";
             return questionUrl;
         }
 
-        private async Task<JObject> GetQuestionJson(string category, string difficulty)
+        private async Task<JObject> GetQuestionJson(string category, string difficulty, string questionType)
         {
             JObject response = null;
-            var questionUrl = BuildRequestUrl(category, difficulty);
+            var questionUrl = BuildRequestUrl(category, difficulty, questionType);
             InitialiseRequestClient();
             try
             {
@@ -76,6 +77,20 @@ namespace quizapp.Controllers
         private void InitialiseRequestClient()
         {
             _requestClient = new HttpClient();
+        }
+
+        private string LookupQuestionType(string questionType)
+        {
+            switch(questionType.ToLowerInvariant())
+            {
+                case "multiple choice":
+                    return "multiple";
+                case "true or false":
+                    return "boolean";
+                default:
+                    return "multiple";
+
+            }
         }
     }
 }

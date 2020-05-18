@@ -133,9 +133,9 @@
                 <On Platform="Windows" Value="14"/>
             </OnPlatform>
             <OnPlatform x:TypeArguments="x:Double" x:Key="TitleFontSize">
-                <On Platform="iOS" Value="16"/>
-                <On Platform="Android" Value="16"/>
-                <On Platform="Windows" Value="16"/>
+                <On Platform="iOS" Value="18"/>
+                <On Platform="Android" Value="18"/>
+                <On Platform="Windows" Value="18"/>
             </OnPlatform>
             <OnPlatform x:TypeArguments="x:Double" x:Key="SmallFontSize">
                 <On Platform="iOS" Value="10"/>

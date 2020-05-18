@@ -123,9 +123,13 @@ namespace quizapp.ViewModels
                 CalculateQuizProgress();
             }
             UserDialogs.Instance.HideLoading();
-            if (_questionList == null || _questionList.Count == 0)
+            if (_questionList.Count == 0)
             {
-                await UserDialogs.Instance.AlertAsync("Sorry but we are unable to load the questions for your quiz.\n Please check your device internet connection and try again.", "Warning", "Ok");
+                await UserDialogs.Instance.AlertAsync("Sorry but we are unable to load questions for the selected options.\nPlease try again or try different options.", "Warning", "Ok");
+            } 
+            else if (_questionList == null)
+            {
+                await UserDialogs.Instance.AlertAsync("Sorry but we are unable to load questions for your quiz.\nPlease check your device's internet connection and try again.", "Warning", "Ok");
             }
         }
 
@@ -133,7 +137,8 @@ namespace quizapp.ViewModels
         {
             var category = Preferences.Get("QuizCategory", "");
             var difficulty = Preferences.Get("QuizDifficulty", "");
-            var questions = await _questionController.GetQuizQuestions(category, difficulty);
+            var questionType = Preferences.Get("QuestionType", "");
+            var questions = await _questionController.GetQuizQuestions(category, difficulty, questionType);
             return questions;
         }
 

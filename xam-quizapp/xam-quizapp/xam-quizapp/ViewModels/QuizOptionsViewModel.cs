@@ -20,16 +20,21 @@ namespace quizapp.ViewModels
         private string _selectedDifficulty;
         private CategoryController _categoryController;
         private DifficultyController _difficultyController;
+        private QuestionTypeController _questiontypeController;
         private INavigation _navigation;
         private Command _saveCommand;
         private string _quizMode;
         private bool _categorySelectable;
+        private List<string> _questionTypes;
+        private string _selectedQuestionType;
         public QuizOptionsViewModel(INavigation nav)
         {
             _categoryController = new CategoryController();
             _difficultyController = new DifficultyController();
+            _questiontypeController = new QuestionTypeController();
             QuizDifficulties = new List<string>();
             QuizCategories = new List<string>();
+            QuestionTypes = new List<string>();
             _navigation = nav;
             CategorySelectable = true;
         }
@@ -96,17 +101,39 @@ namespace quizapp.ViewModels
             }
         }
 
+        public List<string> QuestionTypes
+        {
+            get => _questionTypes;
+            set
+            {
+                _questionTypes = value;
+                OnPropertyChanged("QuestionTypes");
+            }
+        }
+
+        public string SelectedQuestionType
+        {
+            get => _selectedQuestionType;
+            set
+            {
+                _selectedQuestionType = value;
+                OnPropertyChanged("SelectedQuestionType");
+                SaveSettings.ChangeCanExecute();
+            }
+        }
+
         public Command SaveSettings => _saveCommand ?? (_saveCommand = new Command(SaveUserSettings, CanSave));
 
         public bool CanSave()
         {
-            return SelectedDifficulty != null && CategorySelected();
+            return SelectedDifficulty != null && CategorySelected() && SelectedQuestionType != null;
         }
 
         public async Task SetupPageOptions()
         {
             UserDialogs.Instance.ShowLoading("Loading...");
             PopulateQuizDifficulties();
+            PopulateQuestionTypes();
             await CheckQuizMode();
             UserDialogs.Instance.HideLoading();
         }
@@ -138,6 +165,16 @@ namespace quizapp.ViewModels
             }
         }
 
+        private void PopulateQuestionTypes()
+        {
+            var questionTypes = _questiontypeController.GetQuestionTypeOptions();
+            if (questionTypes != null)
+            {
+                QuestionTypes.Clear();
+                QuestionTypes = questionTypes;
+            }
+        }
+
         private void SaveUserSettings()
         {
             if(QuizMode != "RQ")
@@ -149,6 +186,7 @@ namespace quizapp.ViewModels
                 }
             }
             Preferences.Set("QuizDifficulty", SelectedDifficulty);
+            Preferences.Set("QuestionType", SelectedQuestionType);
             var questionPage = new QuestionPage();
             _navigation.PushAsync(questionPage);
         }
