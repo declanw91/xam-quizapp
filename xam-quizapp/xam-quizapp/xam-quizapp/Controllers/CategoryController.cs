@@ -9,14 +9,14 @@ namespace quizapp.Controllers
     public class CategoryController : ICategoryController
     {
         private static string _categoryUrl;
-        private HttpClient _requestClient;
-        public CategoryController()
+        private IHttpClientFactory _requestClient;
+        public CategoryController(IHttpClientFactory client)
         {
             _categoryUrl = "https://opentdb.com/api_category.php";
+            _requestClient = client;
         }
         public async Task<List<QuizCategory>> GetQuizCategories()
         {
-            InitialiseRequestClient();
             var catList = new List<QuizCategory>();
             var categoryJson = await GetCategoryJson();
             if(categoryJson != null)
@@ -32,13 +32,12 @@ namespace quizapp.Controllers
 
         private async Task<JObject> GetCategoryJson()
         {
-            InitialiseRequestClient();
             JObject response = null;
             try
             {
-                using (_requestClient)
+                using (var client = _requestClient.CreateClient())
                 {
-                    var json = await _requestClient.GetStringAsync(_categoryUrl);
+                    var json = await client.GetStringAsync(_categoryUrl);
                     response = JObject.Parse(json);
                 }
             }
@@ -48,11 +47,6 @@ namespace quizapp.Controllers
             }
             
             return response;
-        }
-
-        private void InitialiseRequestClient()
-        {
-            _requestClient = new HttpClient();
         }
     }
 }
