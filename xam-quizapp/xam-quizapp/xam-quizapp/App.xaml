@@ -130,17 +130,17 @@
             <OnPlatform x:TypeArguments="x:Double" x:Key="DefaultFontSize">
                 <On Platform="iOS" Value="14"/>
                 <On Platform="Android" Value="14"/>
-                <On Platform="Windows" Value="14"/>
+                <On Platform="UWP" Value="14"/>
             </OnPlatform>
             <OnPlatform x:TypeArguments="x:Double" x:Key="TitleFontSize">
                 <On Platform="iOS" Value="18"/>
                 <On Platform="Android" Value="18"/>
-                <On Platform="Windows" Value="18"/>
+                <On Platform="UWP" Value="18"/>
             </OnPlatform>
             <OnPlatform x:TypeArguments="x:Double" x:Key="SmallFontSize">
                 <On Platform="iOS" Value="10"/>
                 <On Platform="Android" Value="10"/>
-                <On Platform="Windows" Value="10"/>
+                <On Platform="UWP" Value="10"/>
             </OnPlatform>
         </ResourceDictionary>
     </Application.Resources>
