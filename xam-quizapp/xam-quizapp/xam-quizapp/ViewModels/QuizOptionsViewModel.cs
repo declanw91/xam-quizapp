@@ -1,4 +1,5 @@
 ﻿using Acr.UserDialogs;
+using Microsoft.Extensions.DependencyInjection;
 using quizapp.Controllers;
 using quizapp.Models;
 using quizapp.Views;
@@ -18,9 +19,9 @@ namespace quizapp.ViewModels
         private List<string> _quizDifficulties;
         private string _selectedCategory;
         private string _selectedDifficulty;
-        private CategoryController _categoryController;
-        private DifficultyController _difficultyController;
-        private QuestionTypeController _questiontypeController;
+        private ICategoryController _categoryController;
+        private IDifficultyController _difficultyController;
+        private IQuestionTypeController _questiontypeController;
         private INavigation _navigation;
         private Command _saveCommand;
         private string _quizMode;
@@ -29,9 +30,9 @@ namespace quizapp.ViewModels
         private string _selectedQuestionType;
         public QuizOptionsViewModel(INavigation nav)
         {
-            _categoryController = new CategoryController();
-            _difficultyController = new DifficultyController();
-            _questiontypeController = new QuestionTypeController();
+            _categoryController = StartUp.ServiceProvider.GetService<ICategoryController>();
+            _difficultyController = StartUp.ServiceProvider.GetService<IDifficultyController>();
+            _questiontypeController = StartUp.ServiceProvider.GetService<IQuestionTypeController>();
             QuizDifficulties = new List<string>();
             QuizCategories = new List<string>();
             QuestionTypes = new List<string>();

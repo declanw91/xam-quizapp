@@ -11,6 +11,7 @@ namespace quizapp
         public App()
         {
             InitializeComponent();
+            StartUp.Init();
             MainPage = new MainPage();
         }
 

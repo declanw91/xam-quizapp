@@ -1,4 +1,5 @@
 ﻿using Acr.UserDialogs;
+using Microsoft.Extensions.DependencyInjection;
 using quizapp.Controllers;
 using quizapp.Models;
 using quizapp.Views;
@@ -14,7 +15,7 @@ namespace quizapp.ViewModels
     {
         private List<QuizQuestion> _questionList;
         private QuizQuestion _currentQuestion;
-        private QuestionController _questionController;
+        private IQuestionController _questionController;
         private INavigation _navigation;
         private QuizAnswer _userAnswer;
         private int _currentQuestionNumber;
@@ -29,7 +30,7 @@ namespace quizapp.ViewModels
         {
             _questionList = new List<QuizQuestion>();
             CurrentQuestionAnswers = new List<QuizAnswer>();
-            _questionController = new QuestionController();
+            _questionController = StartUp.ServiceProvider.GetService<IQuestionController>();
             _navigation = nav;
             _currentQuestionNumber = 1;
             _userScore = 0;
