@@ -2,7 +2,7 @@
 
 namespace quizapp.Controllers
 {
-    public class QuestionTypeController
+    public class QuestionTypeController : IQuestionTypeController
     {
         public QuestionTypeController()
         {

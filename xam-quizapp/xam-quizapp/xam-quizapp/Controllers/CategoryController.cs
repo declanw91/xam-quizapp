@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace quizapp.Controllers
 {
-    public class CategoryController
+    public class CategoryController : ICategoryController
     {
         private static string _categoryUrl;
         private HttpClient _requestClient;

@@ -2,7 +2,7 @@
 
 namespace quizapp.Controllers
 {
-    public class DifficultyController
+    public class DifficultyController : IDifficultyController
     {
         public DifficultyController()
         {

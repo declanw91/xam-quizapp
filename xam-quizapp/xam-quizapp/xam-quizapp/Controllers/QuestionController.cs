@@ -9,7 +9,7 @@ using System.Web;
 
 namespace quizapp.Controllers
 {
-    public class QuestionController
+    public class QuestionController : IQuestionController
     {
         private HttpClient _requestClient;
         public QuestionController()
