@@ -17,8 +17,7 @@ namespace quizapp.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            _viewModel.CalculateScorePercentage();
-            _viewModel.BuildScoreMesssage();
+            _viewModel.SetupPageOptions();
         }
     }
 }

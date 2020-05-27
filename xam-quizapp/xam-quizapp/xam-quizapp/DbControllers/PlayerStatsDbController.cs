@@ -13,9 +13,10 @@ namespace quizapp.DbControllers
             _database = new SQLiteAsyncConnection(DbConstants.DatabasePath);
         }
 
-        public async Task<PlayerStat> GetPlayerStat(int id)
+        public async Task<PlayerStats> GetPlayerStat(string key)
         {
-            return await _database.Table<PlayerStat>().FirstOrDefaultAsync(i => i.Id == id);
+            var stat = await _database.Table<PlayerStats>().FirstOrDefaultAsync(i => i.Key == key);
+            return stat;
         }
     }
 }

@@ -1,6 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using quizapp.DbControllers;
+using Microsoft.Extensions.DependencyInjection;
 using Xamarin.Forms;
 
 namespace quizapp.ViewModels
@@ -13,9 +12,11 @@ namespace quizapp.ViewModels
         private string _scorePercentage;
         private string _scoreMessage;
         private Command _closeCommand;
+        private IPlayerStatsDbController _playerStatDbController;
         public QuizOverViewModel(INavigation nav)
         {
             _navigation = nav;
+            _playerStatDbController = StartUp.ServiceProvider.GetService<IPlayerStatsDbController>();
         }
 
         public int TotalQuestions
@@ -60,7 +61,7 @@ namespace quizapp.ViewModels
 
         public Command CloseQuizOver => _closeCommand ?? (_closeCommand = new Command(CloseQuizOverScreen));
 
-        public void CalculateScorePercentage()
+        private void CalculateScorePercentage()
         {
             if(UserScore <= 0 || TotalQuestions <= 0) 
             {
@@ -77,9 +78,25 @@ namespace quizapp.ViewModels
             _navigation.PopToRootAsync();
         }
 
-        public void BuildScoreMesssage()
+        private void BuildScoreMesssage()
         {
             ScoreMessage = $"You score {UserScore} out of {TotalQuestions}";
+        }
+
+        public void SetupPageOptions()
+        {
+            CalculateScorePercentage();
+            BuildScoreMesssage();
+            //UpdateQuizsPlayed();
+        }
+
+        private async void UpdateQuizsPlayed()
+        {
+            var stat = await _playerStatDbController.GetPlayerStat("quizsplayed");
+            if(stat != null)
+            {
+
+            }
         }
     }
 }

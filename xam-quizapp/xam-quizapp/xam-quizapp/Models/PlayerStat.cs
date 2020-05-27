@@ -2,7 +2,7 @@
 
 namespace quizapp.Models
 {
-    public class PlayerStat
+    public class PlayerStats
     {
         [PrimaryKey, AutoIncrement, NotNull]
         public int Id { get; set; }
