@@ -6,5 +6,7 @@ namespace quizapp.DbControllers
     public interface IPlayerStatsDbController
     {
         Task<PlayerStats> GetPlayerStat(string key);
+        Task UpdatePlayerStat(PlayerStats stat);
+        Task InsertPlayerStat(PlayerStats stat);
     }
 }

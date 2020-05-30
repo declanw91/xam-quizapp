@@ -18,5 +18,15 @@ namespace quizapp.DbControllers
             var stat = await _database.Table<PlayerStats>().FirstOrDefaultAsync(i => i.Key == key);
             return stat;
         }
+
+        public async Task UpdatePlayerStat(PlayerStats stat)
+        {
+            await _database.UpdateAsync(stat);
+        }
+
+        public async Task InsertPlayerStat(PlayerStats stat)
+        {
+            await _database.InsertAsync(stat);
+        }
     }
 }

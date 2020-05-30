@@ -10,6 +10,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <StackLayout Grid.Row="0" HorizontalOptions="CenterAndExpand">
@@ -25,7 +26,11 @@
                     <Label Text="{Binding ScorePercentage}" Style="{DynamicResource defaultLabelStyle}"/>
                 </StackLayout>
             </StackLayout>
-            <StackLayout Grid.Row="2" VerticalOptions="EndAndExpand">
+            <StackLayout Grid.Row="2" Orientation="Horizontal">
+                <Label Text="Quizs played:" Style="{DynamicResource defaultLabelStyle}"/>
+                <Label Text="{Binding QuizsPlayed}" Style="{DynamicResource defaultLabelStyle}"/>
+            </StackLayout>
+            <StackLayout Grid.Row="3" VerticalOptions="EndAndExpand">
                 <Button Text="Close" Command="{Binding CloseQuizOver}" Style="{DynamicResource primaryButtonStyle}"/>
             </StackLayout>
         </Grid>
