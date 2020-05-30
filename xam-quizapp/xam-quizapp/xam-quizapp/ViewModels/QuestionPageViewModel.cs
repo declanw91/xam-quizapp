@@ -188,6 +188,7 @@ namespace quizapp.ViewModels
             var destVm = quizOverScreen.BindingContext as QuizOverViewModel;
             destVm.TotalQuestions = TotalQuestions;
             destVm.UserScore = _userScore;
+            destVm.CategoryPlayed = Preferences.Get("QuizCategory", "");
             _navigation.PushAsync(quizOverScreen);
         }
 

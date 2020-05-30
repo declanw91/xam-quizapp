@@ -14,6 +14,7 @@ namespace quizapp.ViewModels
         private string _scorePercentage;
         private string _scoreMessage;
         private string _quizsPlayed;
+        private string _categoryPlayed;
         private Command _closeCommand;
         private IPlayerStatsDbController _playerStatDbController;
         public QuizOverViewModel(INavigation nav)
@@ -69,6 +70,16 @@ namespace quizapp.ViewModels
             {
                 _quizsPlayed = value;
                 OnPropertyChanged("QuizsPlayed");
+            }
+        }
+
+        public string CategoryPlayed
+        {
+            get => _categoryPlayed;
+            set
+            {
+                _categoryPlayed = value;
+                OnPropertyChanged("CategoryPlayed");
             }
         }
 
