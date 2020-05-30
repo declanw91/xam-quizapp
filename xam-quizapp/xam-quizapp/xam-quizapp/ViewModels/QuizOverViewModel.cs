@@ -101,6 +101,8 @@ namespace quizapp.ViewModels
             CalculateScorePercentage();
             BuildScoreMesssage();
             UpdateQuizsPlayed();
+            UpdateTotalCorrectAnswers();
+            UpdateTotalIncorrectAnswers();
         }
 
         private async void UpdateQuizsPlayed()
@@ -119,6 +121,40 @@ namespace quizapp.ViewModels
                 await _playerStatDbController.InsertPlayerStat(stat);
             }
             QuizsPlayed = stat.Value;
+        }
+
+        private async void UpdateTotalCorrectAnswers()
+        {
+            var stat = await _playerStatDbController.GetPlayerStat("totalcorrectanswers");
+            if (stat != null)
+            {
+                var totalCorrectAnswers = Int32.Parse(stat.Value);
+                totalCorrectAnswers += UserScore;
+                stat.Value = totalCorrectAnswers.ToString();
+                await _playerStatDbController.UpdatePlayerStat(stat);
+            }
+            else
+            {
+                stat = new PlayerStats { Key = "totalcorrectanswers", Value = UserScore.ToString() };
+                await _playerStatDbController.InsertPlayerStat(stat);
+            }
+        }
+
+        private async void UpdateTotalIncorrectAnswers()
+        {
+            var stat = await _playerStatDbController.GetPlayerStat("totalincorrectanswers");
+            if (stat != null)
+            {
+                var totalIncorrectAnswers = Int32.Parse(stat.Value);
+                totalIncorrectAnswers += (TotalQuestions - UserScore);
+                stat.Value = totalIncorrectAnswers.ToString();
+                await _playerStatDbController.UpdatePlayerStat(stat);
+            }
+            else
+            {
+                stat = new PlayerStats { Key = "totalincorrectanswers", Value = (TotalQuestions - UserScore).ToString() };
+                await _playerStatDbController.InsertPlayerStat(stat);
+            }
         }
     }
 }
