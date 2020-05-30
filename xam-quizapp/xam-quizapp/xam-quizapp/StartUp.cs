@@ -4,9 +4,11 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using quizapp.Controllers;
 using quizapp.DbControllers;
+using quizapp.DependancyService;
 using System;
 using System.Reflection;
 using Xamarin.Essentials;
+using Xamarin.Forms;
 
 namespace quizapp
 {
@@ -43,6 +45,7 @@ namespace quizapp
 
         public static void ConfigureServices(HostBuilderContext ctx, IServiceCollection services)
         {
+            Xamarin.Forms.DependencyService.Get<IDataStorage>().CopyFilesToInstalled();
             services.AddSingleton<ICategoryController, CategoryController>();
             services.AddSingleton<IDifficultyController, DifficultyController>();
             services.AddSingleton<IQuestionController, QuestionController>();

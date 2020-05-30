@@ -87,7 +87,7 @@ namespace quizapp.ViewModels
         {
             CalculateScorePercentage();
             BuildScoreMesssage();
-            //UpdateQuizsPlayed();
+            UpdateQuizsPlayed();
         }
 
         private async void UpdateQuizsPlayed()
