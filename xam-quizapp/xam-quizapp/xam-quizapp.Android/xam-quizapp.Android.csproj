@@ -97,6 +97,7 @@
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
     </AndroidResource>
     <AndroidResource Include="Resources\raw\playerstats.db">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
     </AndroidResource>
   </ItemGroup>

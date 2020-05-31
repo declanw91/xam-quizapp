@@ -5,13 +5,23 @@ namespace quizapp.Constants
 {
     public class DbConstants
     {
-        public const string DatabaseFileName = "playerstats.db";
-        public static string DatabasePath
+        private const string _playerStatDatabaseFileName = "playerstats.db";
+        private const string _categoryStatDatabaseFileName = "categorystats.db";
+        public static string PlayerStatDatabasePath
         {
             get
             {
                 var basePath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-                return Path.Combine(basePath, DatabaseFileName);
+                return Path.Combine(basePath, _playerStatDatabaseFileName);
+            }
+        }
+
+        public static string CategoryStatDatabasePath
+        {
+            get
+            {
+                var basePath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+                return Path.Combine(basePath, _categoryStatDatabaseFileName);
             }
         }
     }

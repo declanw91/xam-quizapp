@@ -10,7 +10,7 @@ namespace quizapp.DbControllers
         private readonly SQLiteAsyncConnection _database;
         public PlayerStatsDbController()
         {
-            _database = new SQLiteAsyncConnection(DbConstants.DatabasePath);
+            _database = new SQLiteAsyncConnection(DbConstants.PlayerStatDatabasePath);
         }
 
         public async Task<PlayerStats> GetPlayerStat(string key)

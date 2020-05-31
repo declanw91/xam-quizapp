@@ -17,10 +17,12 @@ namespace quizapp.ViewModels
         private string _categoryPlayed;
         private Command _closeCommand;
         private IPlayerStatsDbController _playerStatDbController;
+        private ICategoryStatsDbController _categoryStatDbController;
         public QuizOverViewModel(INavigation nav)
         {
             _navigation = nav;
             _playerStatDbController = StartUp.ServiceProvider.GetService<IPlayerStatsDbController>();
+            _categoryStatDbController = StartUp.ServiceProvider.GetService<ICategoryStatsDbController>();
         }
 
         public int TotalQuestions
@@ -114,58 +116,117 @@ namespace quizapp.ViewModels
             UpdateQuizsPlayed();
             UpdateTotalCorrectAnswers();
             UpdateTotalIncorrectAnswers();
+            UpdateCategoryStat();
         }
 
         private async void UpdateQuizsPlayed()
         {
-            var stat = await _playerStatDbController.GetPlayerStat("quizsplayed");
+            var stat = await _playerStatDbController.GetPlayerStat("QuizsPlayed");
             if(stat != null)
             {
-                var quizsPlayed = Int32.Parse(stat.Value);
+                var quizsPlayed = int.Parse(stat.Value);
                 quizsPlayed++;
                 stat.Value = quizsPlayed.ToString();
                 await _playerStatDbController.UpdatePlayerStat(stat);
+                QuizsPlayed = stat.Value;
             } 
             else
             {
-                stat = new PlayerStats { Key = "quizsplayed", Value = "1" };
-                await _playerStatDbController.InsertPlayerStat(stat);
+                InsertNewPlayerStat("QuizsPlayed", "1");
+                QuizsPlayed = "1";
             }
-            QuizsPlayed = stat.Value;
+            
         }
 
         private async void UpdateTotalCorrectAnswers()
         {
-            var stat = await _playerStatDbController.GetPlayerStat("totalcorrectanswers");
+            var stat = await _playerStatDbController.GetPlayerStat("TotalCorrectAnswers");
             if (stat != null)
             {
-                var totalCorrectAnswers = Int32.Parse(stat.Value);
+                var totalCorrectAnswers = int.Parse(stat.Value);
                 totalCorrectAnswers += UserScore;
                 stat.Value = totalCorrectAnswers.ToString();
                 await _playerStatDbController.UpdatePlayerStat(stat);
             }
             else
             {
-                stat = new PlayerStats { Key = "totalcorrectanswers", Value = UserScore.ToString() };
-                await _playerStatDbController.InsertPlayerStat(stat);
+                InsertNewPlayerStat("TotalCorrectAnswers", UserScore.ToString());
             }
         }
 
         private async void UpdateTotalIncorrectAnswers()
         {
-            var stat = await _playerStatDbController.GetPlayerStat("totalincorrectanswers");
+            var stat = await _playerStatDbController.GetPlayerStat("TotalIncorrectAnswers");
             if (stat != null)
             {
-                var totalIncorrectAnswers = Int32.Parse(stat.Value);
+                var totalIncorrectAnswers = int.Parse(stat.Value);
                 totalIncorrectAnswers += (TotalQuestions - UserScore);
                 stat.Value = totalIncorrectAnswers.ToString();
                 await _playerStatDbController.UpdatePlayerStat(stat);
             }
             else
             {
-                stat = new PlayerStats { Key = "totalincorrectanswers", Value = (TotalQuestions - UserScore).ToString() };
-                await _playerStatDbController.InsertPlayerStat(stat);
+                InsertNewPlayerStat("TotalIncorrectAnswers", (TotalQuestions - UserScore).ToString());
             }
+        }
+
+        private async void UpdateCategoryStat()
+        {
+            var stat = await _categoryStatDbController.GetCategoryStat(CategoryPlayed);
+            if (stat != null)
+            {
+                UpdateCategoryPlayed(stat);
+                UpdateTotalCorrectAnswersForCategory(stat);
+                UpdateTotalIncorrectAnswersForCategory(stat);
+                await _categoryStatDbController.UpdateCategoryStat(stat);
+            } 
+            else
+            {
+                InsertNewCategoryStat();
+            }
+            
+        }
+
+        private void UpdateCategoryPlayed(CategoryStats stat)
+        {
+            if (stat != null)
+            {
+                var categoryTimesPlayed = stat.TimesPlayed;
+                categoryTimesPlayed++;
+                stat.TimesPlayed = categoryTimesPlayed;
+            }
+        }
+
+        private void UpdateTotalCorrectAnswersForCategory(CategoryStats stat)
+        {
+            if (stat != null)
+            {
+                var totalCorrectAnswers = stat.CorrectAnswers;
+                totalCorrectAnswers += UserScore;
+                stat.CorrectAnswers = totalCorrectAnswers;
+            }
+        }
+
+        private void UpdateTotalIncorrectAnswersForCategory(CategoryStats stat)
+        {
+            if (stat != null)
+            {
+                var totalIncorrectAnswers = stat.IncorrectAnswers;
+                totalIncorrectAnswers += (TotalQuestions - UserScore);
+                stat.IncorrectAnswers = totalIncorrectAnswers;
+            }
+        }
+
+        private async void InsertNewCategoryStat()
+        {
+            var stat = new CategoryStats { CategoryName = CategoryPlayed, TimesPlayed = 1, CorrectAnswers = UserScore, IncorrectAnswers = (TotalQuestions - UserScore) };
+            await _categoryStatDbController.InsertCategoryStat(stat);
+        }
+
+        private async void InsertNewPlayerStat(string key, string value)
+        {
+            var stat = new PlayerStats { Key = key, Value = value };
+            await _playerStatDbController.InsertPlayerStat(stat);
         }
     }
 }

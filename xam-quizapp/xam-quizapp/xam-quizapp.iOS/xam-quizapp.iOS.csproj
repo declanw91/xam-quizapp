@@ -69,7 +69,9 @@
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <BundleResource Include="Resources\playerstats.db" />
+    <BundleResource Include="Resources\playerstats.db">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </BundleResource>
     <BundleResource Include="Resources\categorystats.db" />
   </ItemGroup>
   <ItemGroup>

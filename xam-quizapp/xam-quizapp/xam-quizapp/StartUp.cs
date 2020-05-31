@@ -51,6 +51,7 @@ namespace quizapp
             services.AddSingleton<IQuestionController, QuestionController>();
             services.AddSingleton<IQuestionTypeController, QuestionTypeController>();
             services.AddSingleton<IPlayerStatsDbController, PlayerStatsDbController>();
+            services.AddSingleton<ICategoryStatsDbController, CategoryStatsDbController>();
             services.AddHttpClient();
             services.BuildServiceProvider();
         }
