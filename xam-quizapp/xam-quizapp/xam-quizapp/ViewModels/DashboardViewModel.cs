@@ -38,5 +38,11 @@ namespace quizapp.ViewModels
             var about = new About();
             await _navigation.PushAsync(about);
         }
+
+        public async void GoToPlayerScores()
+        {
+            var playerScores = new PlayerScores();
+            await _navigation.PushAsync(playerScores);
+        }
     }
 }

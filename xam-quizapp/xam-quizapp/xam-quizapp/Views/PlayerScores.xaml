@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="quizapp.Views.PlayerScores">
+    <ContentPage Title="Player Stats">
+        <Grid Style="{DynamicResource pageGridStyle}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+            <StackLayout Grid.Row="0" HorizontalOptions="CenterAndExpand">
+                <Label Text="Player Stats" Style="{DynamicResource titleLabelStyle}"/>
+            </StackLayout>
+            <StackLayout Grid.Row="1">
+                <Image Source="trophy.png" Style="{DynamicResource titleImageStyle}"/>
+            </StackLayout>
+        </Grid>
+    </ContentPage>
+    <ContentPage Title="Category Stats">
+        <Grid Style="{DynamicResource pageGridStyle}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+            <StackLayout Grid.Row="0" HorizontalOptions="CenterAndExpand">
+                <Label Text="Category Stats" Style="{DynamicResource titleLabelStyle}"/>
+            </StackLayout>
+            <StackLayout Grid.Row="1">
+                <Image Source="trophy.png" Style="{DynamicResource titleImageStyle}"/>
+            </StackLayout>
+        </Grid>
+    </ContentPage>
+</TabbedPage>
