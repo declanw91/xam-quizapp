@@ -5,19 +5,27 @@ using System.Threading.Tasks;
 using System.Linq;
 using SkiaSharp;
 using quizapp.Models;
+using System;
+using quizapp.Controllers;
 
 namespace quizapp.ViewModels
 {
     public class PlayerScoresViewModel : BaseViewModel
     {
         private IPlayerStatsDbController _playerStatsDbController;
+        private ICategoryStatsDbController _categoryStatsDbController;
+        private ICategoryController _categoryController;
         private List<PlayerStats> _playerStats;
+        private List<CategoryStats> _categoryStats;
+        private List<QuizCategory> _quizCategoryList;
         private int _totalQuizsPlayed;
         private int _totalCorrectAnswers;
         private int _totalIncorrectAnswers;
         public PlayerScoresViewModel()
         {
             _playerStatsDbController = StartUp.ServiceProvider.GetService<IPlayerStatsDbController>();
+            _categoryStatsDbController = StartUp.ServiceProvider.GetService<ICategoryStatsDbController>();
+            _categoryController = StartUp.ServiceProvider.GetService<ICategoryController>();
         }
 
         public int TotalQuizsPlayed
@@ -53,6 +61,8 @@ namespace quizapp.ViewModels
         public async Task SetupPlayerScoresData()
         {
             await GetAllPlayerStats();
+            await GetAllCategoryStats();
+            await GetAllCategories();
             PopulateTotals();
         }
 
@@ -62,6 +72,15 @@ namespace quizapp.ViewModels
             if(stats != null)
             {
                 _playerStats = stats;
+            }
+        }
+
+        private async Task GetAllCategoryStats()
+        {
+            var stats = await _categoryStatsDbController.GetAllCategoryStats();
+            if (stats != null)
+            {
+                _categoryStats = stats;
             }
         }
 
@@ -86,6 +105,24 @@ namespace quizapp.ViewModels
             return chartEntries;
         }
 
+        public List<Microcharts.Entry> GetCategoryPlayedStatEntries()
+        {
+            var chartEntries = new List<Microcharts.Entry>();
+            var random = new Random();
+            
+            if (_categoryStats != null)
+            {
+                foreach(var item in _categoryStats)
+                {
+                    var color = String.Format("#{0:X6}", random.Next(0x1000000));
+                    var cat = LookupCategory(item.CategoryName);
+                    var entry = new Microcharts.Entry((float)item.TimesPlayed) { Label = cat.Name, ValueLabel = item.TimesPlayed.ToString(), Color = SKColor.Parse(color)};
+                    chartEntries.Add(entry);
+                }
+            }
+            return chartEntries;
+        }
+
         private void PopulateTotals()
         {
             var quizsPlayed = _playerStats.FirstOrDefault(s => s.Key == "QuizsPlayed");
@@ -103,6 +140,20 @@ namespace quizapp.ViewModels
             {
                 TotalIncorrectAnswers = int.Parse(incorrectAnswers.Value);
             }
+        }
+
+        private async Task GetAllCategories()
+        {
+            var categories = await _categoryController.GetQuizCategories();
+            if (categories != null)
+            {
+                _quizCategoryList = categories;
+            }
+        }
+
+        private QuizCategory LookupCategory(string id)
+        {
+            return _quizCategoryList.FirstOrDefault(c => c.Id.ToLowerInvariant() == id.ToLowerInvariant());
         }
     }
 }

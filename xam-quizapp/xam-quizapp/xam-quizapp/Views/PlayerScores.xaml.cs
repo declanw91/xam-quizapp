@@ -22,6 +22,7 @@ namespace quizapp.Views
             base.OnAppearing();
             await _viewModel.SetupPlayerScoresData();
             CreatePlayerAnswerChart();
+            CreateCategoryTotalPlaysChart();
         }
 
         private void CreatePlayerAnswerChart()
@@ -29,6 +30,13 @@ namespace quizapp.Views
             var entries = _viewModel.GetPlayerAnswerStatEntries();
             var chart = new DonutChart() { Entries = entries.AsEnumerable() };
             correctIncorrectAnswerChart.Chart = chart;
+        }
+
+        private void CreateCategoryTotalPlaysChart()
+        {
+            var entries = _viewModel.GetCategoryPlayedStatEntries();
+            var chart = new DonutChart() { Entries = entries.AsEnumerable() };
+            categoryPlayTotalsChart.Chart = chart;
         }
     }
 }
