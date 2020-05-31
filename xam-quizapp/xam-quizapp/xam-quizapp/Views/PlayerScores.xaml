@@ -16,9 +16,19 @@
             <StackLayout Grid.Row="0" HorizontalOptions="CenterAndExpand">
                 <Label Text="Player Stats" Style="{DynamicResource titleLabelStyle}"/>
             </StackLayout>
-            <StackLayout Grid.Row="1" Orientation="Horizontal">
-                <Label Text="Quizs Played:" Style="{DynamicResource defaultLabelStyle}"/>
-                <Label Text="{Binding TotalQuizsPlayed}" Style="{DynamicResource defaultLabelStyle}"/>
+            <StackLayout Grid.Row="1" >
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Quizs Played:" Style="{DynamicResource defaultLabelStyle}"/>
+                    <Label Text="{Binding TotalQuizsPlayed}" Style="{DynamicResource defaultLabelStyle}"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Correct Answers:" Style="{DynamicResource defaultLabelStyle}"/>
+                    <Label Text="{Binding TotalCorrectAnswers}" Style="{DynamicResource defaultLabelStyle}"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Incorrect Answers:" Style="{DynamicResource defaultLabelStyle}"/>
+                    <Label Text="{Binding TotalIncorrectAnswers}" Style="{DynamicResource defaultLabelStyle}"/>
+                </StackLayout>
             </StackLayout>
             <StackLayout Grid.Row="2">
                 <Label Text="Your answer stats:" Style="{DynamicResource defaultLabelStyle}"/>

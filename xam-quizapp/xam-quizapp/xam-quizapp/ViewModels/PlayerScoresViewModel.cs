@@ -13,6 +13,8 @@ namespace quizapp.ViewModels
         private IPlayerStatsDbController _playerStatsDbController;
         private List<PlayerStats> _playerStats;
         private int _totalQuizsPlayed;
+        private int _totalCorrectAnswers;
+        private int _totalIncorrectAnswers;
         public PlayerScoresViewModel()
         {
             _playerStatsDbController = StartUp.ServiceProvider.GetService<IPlayerStatsDbController>();
@@ -28,10 +30,30 @@ namespace quizapp.ViewModels
             }
         }
 
+        public int TotalCorrectAnswers
+        {
+            get => _totalCorrectAnswers;
+            set
+            {
+                _totalCorrectAnswers = value;
+                OnPropertyChanged("TotalCorrectAnswers");
+            }
+        }
+
+        public int TotalIncorrectAnswers
+        {
+            get => _totalIncorrectAnswers;
+            set
+            {
+                _totalIncorrectAnswers = value;
+                OnPropertyChanged("TotalIncorrectAnswers");
+            }
+        }
+
         public async Task SetupPlayerScoresData()
         {
             await GetAllPlayerStats();
-            PopulateTotalQuizsPlayed();
+            PopulateTotals();
         }
 
         private async Task GetAllPlayerStats()
@@ -64,12 +86,22 @@ namespace quizapp.ViewModels
             return chartEntries;
         }
 
-        private void PopulateTotalQuizsPlayed()
+        private void PopulateTotals()
         {
             var quizsPlayed = _playerStats.FirstOrDefault(s => s.Key == "QuizsPlayed");
             if(quizsPlayed != null)
             {
                 TotalQuizsPlayed = int.Parse(quizsPlayed.Value);
+            }
+            var correctAnswers = _playerStats.FirstOrDefault(s => s.Key == "TotalCorrectAnswers");
+            if (correctAnswers != null)
+            {
+                TotalCorrectAnswers = int.Parse(correctAnswers.Value);
+            }
+            var incorrectAnswers = _playerStats.FirstOrDefault(s => s.Key == "TotalIncorrectAnswers");
+            if (incorrectAnswers != null)
+            {
+                TotalIncorrectAnswers = int.Parse(incorrectAnswers.Value);
             }
         }
     }
