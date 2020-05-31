@@ -1,4 +1,5 @@
 ﻿using quizapp.Models;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace quizapp.DbControllers
@@ -8,5 +9,6 @@ namespace quizapp.DbControllers
         Task<CategoryStats> GetCategoryStat(string key);
         Task UpdateCategoryStat(CategoryStats stat);
         Task InsertCategoryStat(CategoryStats stat);
+        Task<List<CategoryStats>> GetAllCategoryStats();
     }
 }

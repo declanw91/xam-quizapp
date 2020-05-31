@@ -1,9 +1,6 @@
-﻿using quizapp.ViewModels;
-using System;
-using System.Collections.Generic;
+﻿using Microcharts;
+using quizapp.ViewModels;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -18,6 +15,20 @@ namespace quizapp.Views
         {
             InitializeComponent();
             BindingContext = new PlayerScoresViewModel();
+        }
+
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+            await _viewModel.SetupPlayerScoresData();
+            CreatePlayerAnswerChart();
+        }
+
+        private void CreatePlayerAnswerChart()
+        {
+            var entries = _viewModel.GetPlayerAnswerStatEntries();
+            var chart = new DonutChart() { Entries = entries.AsEnumerable() };
+            correctIncorrectAnswerChart.Chart = chart;
         }
     }
 }

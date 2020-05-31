@@ -2,6 +2,7 @@
 using quizapp.Models;
 using SQLite;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace quizapp.DbControllers
@@ -13,6 +14,13 @@ namespace quizapp.DbControllers
         {
             _database = new SQLiteAsyncConnection(DbConstants.CategoryStatDatabasePath);
         }
+
+        public async Task<List<CategoryStats>> GetAllCategoryStats()
+        {
+            var stats = await _database.Table<CategoryStats>().ToListAsync();
+            return stats;
+        }
+
         public async Task<CategoryStats> GetCategoryStat(string key)
         {
             var stat = await _database.Table<CategoryStats>().FirstOrDefaultAsync(i => i.CategoryName == key);

@@ -2618,6 +2618,7 @@ namespace quizapp.Droid
 			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahText = global::quizapp.Droid.Resource.Styleable.ProgressWheel_ahText;
 			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahTextColor = global::quizapp.Droid.Resource.Styleable.ProgressWheel_ahTextColor;
 			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahTextSize = global::quizapp.Droid.Resource.Styleable.ProgressWheel_ahTextSize;
+			global::Microcharts.Droid.Resource.String.library_name = global::quizapp.Droid.Resource.String.library_name;
 			global::Xamarin.Essentials.Resource.Attribute.alpha = global::quizapp.Droid.Resource.Attribute.alpha;
 			global::Xamarin.Essentials.Resource.Attribute.coordinatorLayoutStyle = global::quizapp.Droid.Resource.Attribute.coordinatorLayoutStyle;
 			global::Xamarin.Essentials.Resource.Attribute.font = global::quizapp.Droid.Resource.Attribute.font;

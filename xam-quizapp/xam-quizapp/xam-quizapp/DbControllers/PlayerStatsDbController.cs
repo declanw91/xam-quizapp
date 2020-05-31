@@ -1,6 +1,7 @@
 ﻿using quizapp.Constants;
 using quizapp.Models;
 using SQLite;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace quizapp.DbControllers
@@ -27,6 +28,12 @@ namespace quizapp.DbControllers
         public async Task InsertPlayerStat(PlayerStats stat)
         {
             await _database.InsertAsync(stat);
+        }
+
+        public async Task<List<PlayerStats>> GetAllPlayerStats()
+        {
+            var stats = await _database.Table<PlayerStats>().ToListAsync();
+            return stats;
         }
     }
 }

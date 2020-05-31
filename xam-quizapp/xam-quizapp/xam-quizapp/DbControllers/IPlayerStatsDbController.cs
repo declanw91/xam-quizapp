@@ -1,4 +1,5 @@
 ﻿using quizapp.Models;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace quizapp.DbControllers
@@ -8,5 +9,6 @@ namespace quizapp.DbControllers
         Task<PlayerStats> GetPlayerStat(string key);
         Task UpdatePlayerStat(PlayerStats stat);
         Task InsertPlayerStat(PlayerStats stat);
+        Task<List<PlayerStats>> GetAllPlayerStats();
     }
 }
