@@ -7,6 +7,7 @@ using SkiaSharp;
 using quizapp.Models;
 using System;
 using quizapp.Controllers;
+using Microcharts;
 
 namespace quizapp.ViewModels
 {
@@ -18,9 +19,12 @@ namespace quizapp.ViewModels
         private List<PlayerStats> _playerStats;
         private List<CategoryStats> _categoryStats;
         private List<QuizCategory> _quizCategoryList;
+        private List<CatChartLabel> _categoryChartLabels;
         private int _totalQuizsPlayed;
         private int _totalCorrectAnswers;
         private int _totalIncorrectAnswers;
+        private Chart _categoryStatChart;
+        private Chart _playerAnswerChart;
         public PlayerScoresViewModel()
         {
             _playerStatsDbController = StartUp.ServiceProvider.GetService<IPlayerStatsDbController>();
@@ -58,6 +62,36 @@ namespace quizapp.ViewModels
             }
         }
 
+        public Chart CategoryStatChart
+        {
+            get => _categoryStatChart;
+            set
+            {
+                _categoryStatChart = value;
+                OnPropertyChanged("CategoryStatChart");
+            }
+        }
+
+        public Chart PlayerAnswerChart
+        {
+            get => _playerAnswerChart;
+            set
+            {
+                _playerAnswerChart = value;
+                OnPropertyChanged("PlayerAnswerChart");
+            }
+        }
+
+        public List<CatChartLabel> CategoryChartLabels
+        {
+            get => _categoryChartLabels;
+            set
+            {
+                _categoryChartLabels = value;
+                OnPropertyChanged("CategoryChartLabels");
+            }
+        }
+
         public async Task SetupPlayerScoresData()
         {
             await GetAllPlayerStats();
@@ -92,7 +126,7 @@ namespace quizapp.ViewModels
                 var correctAnswers = _playerStats.FirstOrDefault(s => s.Key == "TotalCorrectAnswers");
                 if(correctAnswers != null)
                 {
-                    var correctAnswerEntry = new Microcharts.Entry(float.Parse(correctAnswers.Value)) { Color = SKColor.Parse("#00FF00"), Label="Correct", ValueLabel = correctAnswers.Value };
+                    var correctAnswerEntry = new Microcharts.Entry(float.Parse(correctAnswers.Value)) { Color = SKColor.Parse("#009933"), Label="Correct", ValueLabel = correctAnswers.Value };
                     chartEntries.Add(correctAnswerEntry);
                 }
                 var incorrectAnswers = _playerStats.FirstOrDefault(s => s.Key == "TotalIncorrectAnswers");
@@ -109,16 +143,19 @@ namespace quizapp.ViewModels
         {
             var chartEntries = new List<Microcharts.Entry>();
             var random = new Random();
-            
+            var chartLabels = new List<CatChartLabel>();
             if (_categoryStats != null)
             {
                 foreach(var item in _categoryStats)
                 {
                     var color = String.Format("#{0:X6}", random.Next(0x1000000));
                     var cat = LookupCategory(item.CategoryName);
-                    var entry = new Microcharts.Entry((float)item.TimesPlayed) { Label = cat.Name, ValueLabel = item.TimesPlayed.ToString(), Color = SKColor.Parse(color)};
+                    var entry = new Microcharts.Entry((float)item.TimesPlayed) { Color = SKColor.Parse(color)};
+                    var catLabel = new CatChartLabel { Colour = color, Name = cat.Name, Value = item.TimesPlayed.ToString() };
                     chartEntries.Add(entry);
+                    chartLabels.Add(catLabel);
                 }
+                CategoryChartLabels = chartLabels;
             }
             return chartEntries;
         }
@@ -154,6 +191,20 @@ namespace quizapp.ViewModels
         private QuizCategory LookupCategory(string id)
         {
             return _quizCategoryList.FirstOrDefault(c => c.Id.ToLowerInvariant() == id.ToLowerInvariant());
+        }
+
+        public void SetupCategoryStatChart()
+        {
+            var entries = GetCategoryPlayedStatEntries();
+            var chart = new DonutChart() { Entries = entries.AsEnumerable(), LabelTextSize = 12 };
+            CategoryStatChart = chart;
+        }
+
+        public void SetupPlayerAnswerChart()
+        {
+            var entries = GetPlayerAnswerStatEntries();
+            var chart = new DonutChart() { Entries = entries.AsEnumerable(), LabelTextSize = 12 };
+            PlayerAnswerChart = chart;
         }
     }
 }

@@ -15,6 +15,7 @@ namespace quizapp.ViewModels
         private string _scoreMessage;
         private string _quizsPlayed;
         private string _categoryPlayed;
+        private string _quizModePlayed;
         private Command _closeCommand;
         private IPlayerStatsDbController _playerStatDbController;
         private ICategoryStatsDbController _categoryStatDbController;
@@ -85,6 +86,16 @@ namespace quizapp.ViewModels
             }
         }
 
+        public string QuizModePlayed
+        {
+            get => _quizModePlayed;
+            set
+            {
+                _quizModePlayed = value;
+                OnPropertyChanged("QuizModePlayed");
+            }
+        }
+
         public Command CloseQuizOver => _closeCommand ?? (_closeCommand = new Command(CloseQuizOverScreen));
 
         private void CalculateScorePercentage()
@@ -117,6 +128,7 @@ namespace quizapp.ViewModels
             UpdateTotalCorrectAnswers();
             UpdateTotalIncorrectAnswers();
             UpdateCategoryStat();
+            UpdateQuizModePlayed();
         }
 
         private async void UpdateQuizsPlayed()
@@ -136,6 +148,35 @@ namespace quizapp.ViewModels
                 QuizsPlayed = "1";
             }
             
+        }
+
+        private async void UpdateQuizModePlayed()
+        {
+            var key = "";
+            if(QuizModePlayed.ToLowerInvariant() == "multiple choice")
+            {
+                key = "MultiChoicePlayed";
+            }
+            else if (QuizModePlayed.ToLowerInvariant() == "true or false")
+            {
+                key = "TrueFalsePlayed";
+            }
+            if(!String.IsNullOrWhiteSpace(key))
+            {
+                var stat = await _playerStatDbController.GetPlayerStat(key);
+                if (stat != null)
+                {
+                    var quizsPlayed = int.Parse(stat.Value);
+                    quizsPlayed++;
+                    stat.Value = quizsPlayed.ToString();
+                    await _playerStatDbController.UpdatePlayerStat(stat);
+                    QuizsPlayed = stat.Value;
+                }
+                else
+                {
+                    InsertNewPlayerStat(key, "1");
+                }
+            }
         }
 
         private async void UpdateTotalCorrectAnswers()

@@ -189,6 +189,7 @@ namespace quizapp.ViewModels
             destVm.TotalQuestions = TotalQuestions;
             destVm.UserScore = _userScore;
             destVm.CategoryPlayed = Preferences.Get("QuizCategory", "");
+            destVm.QuizModePlayed = Preferences.Get("QuestionType", "");
             _navigation.PushAsync(quizOverScreen);
         }
 
