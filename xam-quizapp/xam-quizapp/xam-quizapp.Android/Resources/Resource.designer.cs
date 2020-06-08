@@ -11039,10 +11039,13 @@ namespace quizapp.Droid
 			public const int trophy = 2131165317;
 			
 			// aapt resource value: 0x7F070086
-			public const int vicon = 2131165318;
+			public const int trophysm = 2131165318;
 			
 			// aapt resource value: 0x7F070087
-			public const int xamarin_logo = 2131165319;
+			public const int vicon = 2131165319;
+			
+			// aapt resource value: 0x7F070088
+			public const int xamarin_logo = 2131165320;
 			
 			static Drawable()
 			{

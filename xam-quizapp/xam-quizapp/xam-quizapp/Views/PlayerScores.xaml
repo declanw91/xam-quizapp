@@ -1,12 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+            xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:microcharts="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms" 
              mc:Ignorable="d"
-             x:Class="quizapp.Views.PlayerScores">
-    <ContentPage Title="Player Stats">
+             x:Class="quizapp.Views.PlayerScores" android:TabbedPage.ToolbarPlacement="Bottom">
+    <ContentPage Title="Player Stats" IconImageSource="trophysm.png">
         <Grid Style="{DynamicResource pageGridStyle}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
@@ -36,7 +37,7 @@
             </StackLayout>
         </Grid>
     </ContentPage>
-    <ContentPage Title="Category Stats">
+    <ContentPage Title="Category Stats" IconImageSource="trophysm.png">
         <Grid Style="{DynamicResource pageGridStyle}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
