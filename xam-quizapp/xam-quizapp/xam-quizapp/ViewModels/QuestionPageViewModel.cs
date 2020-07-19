@@ -25,6 +25,7 @@ namespace quizapp.ViewModels
         private List<QuizAnswer> _currentAnswerList;
         private bool _userCanSubmit;
         private Command _nextQuestion;
+        private Command _backCommand;
         private float _quizProgress;
         public QuestionPageViewModel(INavigation nav)
         {
@@ -106,6 +107,8 @@ namespace quizapp.ViewModels
         }
 
         public Command NextQuestion => _nextQuestion ?? (_nextQuestion = new Command(LoadNextQuestion, CanLoadNextQuestion));
+
+        public Command BackCommand => _backCommand ?? (_backCommand = new Command(CustomBackCommand));
 
         private bool CanLoadNextQuestion()
         {
@@ -241,6 +244,19 @@ namespace quizapp.ViewModels
         private void CalculateQuizProgress()
         {
             QuizProgress = (float)CurrentQuestionNumber / TotalQuestions;
+        }
+
+        private async void CustomBackCommand()
+        {
+            if(TotalQuestions > 0)
+            {
+                var result = await UserDialogs.Instance.ConfirmAsync("Going back will lose quiz progress. Are you sure you want to go back?", "Warning", "Ok");
+                if(!result)
+                {
+                    return;
+                }
+            }
+            await _navigation.PopAsync();
         }
     }
 }

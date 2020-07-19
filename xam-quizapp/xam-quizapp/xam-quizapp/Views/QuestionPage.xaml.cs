@@ -12,6 +12,7 @@ namespace quizapp.Views
         {
             InitializeComponent();
             BindingContext = new QuestionPageViewModel(Navigation);
+            NavigationPage.SetHasNavigationBar(this, false);
         }
 
         protected override void OnAppearing()
