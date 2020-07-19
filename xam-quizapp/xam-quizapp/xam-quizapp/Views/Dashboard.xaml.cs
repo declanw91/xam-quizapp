@@ -43,5 +43,11 @@ namespace quizapp.Views
         {
             _viewModel.GoToHelp();
         }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            _viewModel.CheckNetwork();
+        }
     }
 }

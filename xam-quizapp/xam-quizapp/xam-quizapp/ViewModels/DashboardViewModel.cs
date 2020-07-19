@@ -1,4 +1,6 @@
-﻿using quizapp.Views;
+﻿using Acr.UserDialogs;
+using quizapp.Views;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace quizapp.ViewModels
@@ -49,6 +51,16 @@ namespace quizapp.ViewModels
         {
             var helpPage = new Help();
             await _navigation.PushAsync(helpPage);
+        }
+
+        public async void CheckNetwork()
+        {
+            var current = Connectivity.NetworkAccess;
+
+            if (current == NetworkAccess.None)
+            {
+                await UserDialogs.Instance.AlertAsync("You will need a internet connection to play the quiz. Please connect to a network","Warning", "Ok");
+            }
         }
     }
 }
