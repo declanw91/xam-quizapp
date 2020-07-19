@@ -38,5 +38,10 @@ namespace quizapp.Views
         {
             _viewModel.GoToPlayerScores();
         }
+
+        private void TapGestureRecognizer_Help(object sender, System.EventArgs e)
+        {
+            _viewModel.GoToHelp();
+        }
     }
 }

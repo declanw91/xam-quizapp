@@ -109,6 +109,7 @@
     <Content Include="appicon.png" />
     <Content Include="back.png" />
     <Content Include="category.png" />
+    <Content Include="circleda.png" />
     <Content Include="circledq.png" />
     <Content Include="help.png" />
     <Content Include="picture.png" />

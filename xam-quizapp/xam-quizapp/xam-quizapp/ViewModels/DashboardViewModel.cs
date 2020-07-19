@@ -44,5 +44,11 @@ namespace quizapp.ViewModels
             var playerScores = new PlayerScores();
             await _navigation.PushAsync(playerScores);
         }
+
+        public async void GoToHelp()
+        {
+            var helpPage = new Help();
+            await _navigation.PushAsync(helpPage);
+        }
     }
 }

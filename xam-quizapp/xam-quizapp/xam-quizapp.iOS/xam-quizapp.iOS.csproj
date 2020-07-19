@@ -222,4 +222,7 @@
   <ItemGroup>
     <BundleResource Include="Resources\help.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\circleda.png" />
+  </ItemGroup>
 </Project>

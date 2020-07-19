@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="quizapp.Views.Help" Style="{DynamicResource mainPageBackgroundStyle}">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <StackLayout Grid.Row="0" Grid.Column="0" Orientation="Horizontal">
+                <Label Text="FAQ" Style="{DynamicResource titleLabelStyle}" HorizontalOptions="CenterAndExpand"/>
+            </StackLayout>
+            <ListView Grid.Row="1" Grid.Column="0" ItemsSource="{Binding FAQItems}" HasUnevenRows="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Vertical">
+                                <StackLayout Orientation="Horizontal">
+                                    <Image Source="circledq.png" />
+                                    <Label Text="{Binding Question}" Style="{DynamicResource defaultLabelStyle}"/>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal">
+                                    <Image Source="circleda.png" />
+                                    <Label Text="{Binding Answer}" Style="{DynamicResource defaultLabelStyle}"/>
+                                </StackLayout>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

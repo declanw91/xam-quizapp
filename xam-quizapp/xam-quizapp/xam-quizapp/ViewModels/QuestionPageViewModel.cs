@@ -107,7 +107,6 @@ namespace quizapp.ViewModels
         }
 
         public Command NextQuestion => _nextQuestion ?? (_nextQuestion = new Command(LoadNextQuestion, CanLoadNextQuestion));
-
         public Command BackCommand => _backCommand ?? (_backCommand = new Command(CustomBackCommand));
 
         private bool CanLoadNextQuestion()
