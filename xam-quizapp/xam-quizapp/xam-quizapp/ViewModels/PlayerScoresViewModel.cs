@@ -118,30 +118,30 @@ namespace quizapp.ViewModels
             }
         }
 
-        public List<Microcharts.Entry> GetPlayerAnswerStatEntries()
+        public List<Microcharts.ChartEntry> GetPlayerAnswerStatEntries()
         {
-            var chartEntries = new List<Microcharts.Entry>();
+            var chartEntries = new List<Microcharts.ChartEntry>();
             if(_playerStats != null)
             {
                 var correctAnswers = _playerStats.FirstOrDefault(s => s.Key == "TotalCorrectAnswers");
                 if(correctAnswers != null)
                 {
-                    var correctAnswerEntry = new Microcharts.Entry(float.Parse(correctAnswers.Value)) { Color = SKColor.Parse("#009933"), Label="Correct", ValueLabel = correctAnswers.Value };
+                    var correctAnswerEntry = new Microcharts.ChartEntry(float.Parse(correctAnswers.Value)) { Color = SKColor.Parse("#009933"), Label="Correct", ValueLabel = correctAnswers.Value };
                     chartEntries.Add(correctAnswerEntry);
                 }
                 var incorrectAnswers = _playerStats.FirstOrDefault(s => s.Key == "TotalIncorrectAnswers");
                 if (incorrectAnswers != null)
                 {
-                    var incorrectAnswerEntry = new Microcharts.Entry(float.Parse(incorrectAnswers.Value)) { Color = SKColor.Parse("#FF0000"), Label = "Incorrect", ValueLabel = incorrectAnswers.Value };
+                    var incorrectAnswerEntry = new Microcharts.ChartEntry(float.Parse(incorrectAnswers.Value)) { Color = SKColor.Parse("#FF0000"), Label = "Incorrect", ValueLabel = incorrectAnswers.Value };
                     chartEntries.Add(incorrectAnswerEntry);
                 }
             }
             return chartEntries;
         }
 
-        public List<Microcharts.Entry> GetCategoryPlayedStatEntries()
+        public List<Microcharts.ChartEntry> GetCategoryPlayedStatEntries()
         {
-            var chartEntries = new List<Microcharts.Entry>();
+            var chartEntries = new List<Microcharts.ChartEntry>();
             var random = new Random();
             var chartLabels = new List<CatChartLabel>();
             if (_categoryStats != null)
@@ -150,7 +150,7 @@ namespace quizapp.ViewModels
                 {
                     var color = String.Format("#{0:X6}", random.Next(0x1000000));
                     var cat = LookupCategory(item.CategoryName);
-                    var entry = new Microcharts.Entry((float)item.TimesPlayed) { Color = SKColor.Parse(color)};
+                    var entry = new Microcharts.ChartEntry((float)item.TimesPlayed) { Color = SKColor.Parse(color)};
                     var catLabel = new CatChartLabel { Colour = color, Name = cat.Name, Value = item.TimesPlayed.ToString() };
                     chartEntries.Add(entry);
                     chartLabels.Add(catLabel);
