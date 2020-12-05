@@ -12,7 +12,7 @@ namespace quizapp
         {
             InitializeComponent();
             StartUp.Init();
-            MainPage = new MainPage();
+            MainPage = new NavigationPage(new Dashboard());
         }
 
         protected override void OnStart()
