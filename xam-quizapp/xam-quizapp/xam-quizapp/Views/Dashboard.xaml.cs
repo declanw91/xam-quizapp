@@ -5,7 +5,7 @@ using Xamarin.Forms.Xaml;
 namespace quizapp.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Dashboard : ContentPage
+    public partial class Dashboard
     {
         private DashboardViewModel _viewModel => BindingContext as DashboardViewModel;
         public Dashboard()
