@@ -1,7 +1,12 @@
 ﻿using Acr.UserDialogs;
+using Microsoft.Extensions.DependencyInjection;
+using quizapp.Controllers;
+using quizapp.DbControllers;
 using quizapp.Models;
 using quizapp.Views;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
@@ -12,12 +17,28 @@ namespace quizapp.ViewModels
         private INavigation _navigation;
         private List<FaqItem> _faqItems;
         private string _appVersion;
+        private int _totalQuizsPlayed;
+        private int _totalCorrectAnswers;
+        private int _totalIncorrectAnswers;
+        private IPlayerStatsDbController _playerStatsDbController;
+        private ICategoryStatsDbController _categoryStatsDbController;
+        private ICategoryController _categoryController;
+        private List<PlayerStats> _playerStats;
         public DashboardViewModel(INavigation nav)
         {
             _navigation = nav;
             _faqItems = new List<FaqItem>();
+            _playerStatsDbController = StartUp.ServiceProvider.GetService<IPlayerStatsDbController>();
+            _categoryStatsDbController = StartUp.ServiceProvider.GetService<ICategoryStatsDbController>();
+            _categoryController = StartUp.ServiceProvider.GetService<ICategoryController>();
+        }
+
+        public async void SetupPage()
+        {
+            await GetAllPlayerStats();
             ConfigureFaq();
             GetAppVersion();
+            PopulateTotals();
         }
 
         public async void GoToStartAQuiz()
@@ -105,6 +126,64 @@ namespace quizapp.ViewModels
         private void GetAppVersion()
         {
             AppVersion = AppInfo.VersionString;
+        }
+
+        private void PopulateTotals()
+        {
+            var quizsPlayed = _playerStats.FirstOrDefault(s => s.Key == "QuizsPlayed");
+            if (quizsPlayed != null)
+            {
+                TotalQuizsPlayed = int.Parse(quizsPlayed.Value);
+            }
+            var correctAnswers = _playerStats.FirstOrDefault(s => s.Key == "TotalCorrectAnswers");
+            if (correctAnswers != null)
+            {
+                TotalCorrectAnswers = int.Parse(correctAnswers.Value);
+            }
+            var incorrectAnswers = _playerStats.FirstOrDefault(s => s.Key == "TotalIncorrectAnswers");
+            if (incorrectAnswers != null)
+            {
+                TotalIncorrectAnswers = int.Parse(incorrectAnswers.Value);
+            }
+        }
+
+        public int TotalQuizsPlayed
+        {
+            get => _totalQuizsPlayed;
+            set
+            {
+                _totalQuizsPlayed = value;
+                OnPropertyChanged("TotalQuizsPlayed");
+            }
+        }
+
+        public int TotalCorrectAnswers
+        {
+            get => _totalCorrectAnswers;
+            set
+            {
+                _totalCorrectAnswers = value;
+                OnPropertyChanged("TotalCorrectAnswers");
+            }
+        }
+
+        public int TotalIncorrectAnswers
+        {
+            get => _totalIncorrectAnswers;
+            set
+            {
+                _totalIncorrectAnswers = value;
+                OnPropertyChanged("TotalIncorrectAnswers");
+            }
+        }
+
+        private async Task GetAllPlayerStats()
+        {
+            var stats = await _playerStatsDbController.GetAllPlayerStats();
+            if (stats != null)
+            {
+                _playerStats = stats;
+            }
         }
     }
 }

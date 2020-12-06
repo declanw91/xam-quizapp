@@ -48,6 +48,7 @@ namespace quizapp.Views
         {
             base.OnAppearing();
             _viewModel.CheckNetwork();
+            _viewModel.SetupPage();
         }
     }
 }
