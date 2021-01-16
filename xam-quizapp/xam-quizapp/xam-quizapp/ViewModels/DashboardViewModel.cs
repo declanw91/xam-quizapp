@@ -24,6 +24,7 @@ namespace quizapp.ViewModels
         private ICategoryStatsDbController _categoryStatsDbController;
         private ICategoryController _categoryController;
         private List<PlayerStats> _playerStats;
+        private List<NewsItem> _newsItems;
         public DashboardViewModel(INavigation nav)
         {
             _navigation = nav;
@@ -39,6 +40,7 @@ namespace quizapp.ViewModels
             ConfigureFaq();
             GetAppVersion();
             PopulateTotals();
+            SetupNewsItems();
         }
 
         public async void GoToStartAQuiz()
@@ -177,6 +179,16 @@ namespace quizapp.ViewModels
             }
         }
 
+        public List<NewsItem> NewsItems
+        {
+            get => _newsItems;
+            set
+            {
+                _newsItems = value;
+                OnPropertyChanged("NewsItems");
+            }
+        }
+
         private async Task GetAllPlayerStats()
         {
             var stats = await _playerStatsDbController.GetAllPlayerStats();
@@ -184,6 +196,15 @@ namespace quizapp.ViewModels
             {
                 _playerStats = stats;
             }
+        }
+
+        private void SetupNewsItems()
+        {
+            var tempList = new List<NewsItem>() {
+                new NewsItem { Title = "New UI updates", Description = "The new update comes with a new UI to bring it a little more up to date. If you're having trouble finding a page please check our help section."},
+                new NewsItem { Title = "New features coming soon", Description = "In the future there will be the option to pick the length of your quiz and new player stats for you to review"}
+            };
+            NewsItems = tempList;
         }
     }
 }
