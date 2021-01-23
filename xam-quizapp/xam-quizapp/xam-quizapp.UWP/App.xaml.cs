@@ -54,7 +54,7 @@ namespace quizapp.UWP
                 rootFrame.NavigationFailed += OnNavigationFailed;
 
                 List<System.Reflection.Assembly> assembliesToInclude = new List<System.Reflection.Assembly>();
-                assembliesToInclude.Add(typeof(Xamarin.Forms.PancakeView.UWP.PancakeViewRenderer).GetTypeInfo().Assembly);
+                //assembliesToInclude.Add(typeof(Xamarin.Forms.PancakeView).GetTypeInfo().Assembly);
                 Xamarin.Forms.Forms.Init(e, assembliesToInclude);
 
                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)

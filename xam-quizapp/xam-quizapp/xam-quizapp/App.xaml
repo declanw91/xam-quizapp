@@ -91,13 +91,7 @@
             <!-- Pancake Styles -->
             <Style TargetType="pancake:PancakeView" x:Key="questionPancakeStyle">
                 <Setter Property="CornerRadius" Value="20,20,20,20"/>
-                <Setter Property="BorderColor" Value="{StaticResource DarkBorder}"/>
-                <Setter Property="HasShadow" Value="True"/>
-                <Setter Property="BackgroundGradientStartColor" Value="#6699ff"/>
-                <Setter Property="BackgroundGradientEndColor" Value="#e6eeff"/>
-                <Setter Property="BackgroundGradientAngle" Value="120"/>
                 <Setter Property="Margin" Value="10"/>
-                <Setter Property="BorderThickness" Value="2"/>
             </Style>
             <!-- Stacklayout Styles-->
             <Style TargetType="StackLayout" x:Key="dashboardOptionStyle">

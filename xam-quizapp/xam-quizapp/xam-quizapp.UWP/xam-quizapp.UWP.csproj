@@ -167,7 +167,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Acr.UserDialogs">
-      <Version>7.1.0.454</Version>
+      <Version>7.1.0.475</Version>
     </PackageReference>
     <PackageReference Include="Microcharts">
       <Version>0.9.5.9</Version>
@@ -190,11 +190,11 @@
     <PackageReference Include="sqlite-net-pcl">
       <Version>1.7.335</Version>
     </PackageReference>
-    <PackageReference Include="Xamarin.Forms" Version="4.8.0.1534" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.1905" />
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="6.2.11" />
     <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
     <PackageReference Include="Xamarin.Forms.PancakeView">
-      <Version>2.1.0.714</Version>
+      <Version>2.3.0.759</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>

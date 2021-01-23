@@ -29,6 +29,12 @@
                 <ProgressBar Progress="{Binding QuizProgress}" Margin="10,5,10,0" ProgressColor="Green"/>
             </StackLayout>
             <pancake:PancakeView Style="{DynamicResource questionPancakeStyle}" Grid.Row="1">
+                <pancake:PancakeView.Border>
+                    <pancake:Border Color="{StaticResource DarkBorder}" Thickness="2" />
+                </pancake:PancakeView.Border>
+                <pancake:PancakeView.Shadow>
+                    <pancake:DropShadow Color="#000000" Offset="-10,-10" />
+                </pancake:PancakeView.Shadow>
                 <StackLayout Orientation="Horizontal" Padding="10">
                     <Image Source="circledq.png" Style="{DynamicResource titleImageStyle}"/>
                     <Label Text="{Binding CurrentQuestion.Question}" Style="{DynamicResource questionLabelStyle}"/>
