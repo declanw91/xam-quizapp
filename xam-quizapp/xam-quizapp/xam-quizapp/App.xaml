@@ -10,7 +10,7 @@
     <Application.Resources>
         <ResourceDictionary>
             <!--Global Styles-->
-            <Color x:Key="NavigationPrimary">#3366ff</Color>
+            <Color x:Key="NavigationPrimary">#3d3d5c</Color>
             <Color x:Key="DarkBorder">#000000</Color>
             <Color x:Key="MainTextColour">#262626</Color>
             <!-- Navigation page Styles -->
