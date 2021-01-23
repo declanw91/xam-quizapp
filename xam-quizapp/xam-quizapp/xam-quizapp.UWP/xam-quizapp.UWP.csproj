@@ -107,6 +107,7 @@
   <ItemGroup>
     <Content Include="about.png" />
     <Content Include="appicon.png" />
+    <Content Include="appiconWhite.png" />
     <Content Include="back.png" />
     <Content Include="category.png" />
     <Content Include="circleda.png" />
@@ -193,9 +194,6 @@
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.1905" />
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="6.2.11" />
     <PackageReference Include="Xamarin.Essentials" Version="1.6.0" />
-    <PackageReference Include="Xamarin.Forms.PancakeView">
-      <Version>2.3.0.759</Version>
-    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\xam-quizapp\xam-quizapp.csproj">

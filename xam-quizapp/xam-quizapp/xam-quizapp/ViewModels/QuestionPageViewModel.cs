@@ -129,10 +129,12 @@ namespace quizapp.ViewModels
             if (_questionList.Count == 0)
             {
                 await UserDialogs.Instance.AlertAsync("Sorry but we are unable to load questions for the selected options.\nPlease try again or try different options.", "Warning", "Ok");
+                await _navigation.PopAsync();
             } 
             else if (_questionList == null)
             {
                 await UserDialogs.Instance.AlertAsync("Sorry but we are unable to load questions for your quiz.\nPlease check your device's internet connection and try again.", "Warning", "Ok");
+                await _navigation.PopAsync();
             }
         }
 
