@@ -94,11 +94,6 @@
             <Style TargetType="Image" x:Key="titleImageStyle">
                 <Setter Property="HeightRequest" Value="50"/>
             </Style>
-            <!-- Pancake Styles -->
-            <Style TargetType="pancake:PancakeView" x:Key="questionPancakeStyle">
-                <Setter Property="CornerRadius" Value="20,20,20,20"/>
-                <Setter Property="Margin" Value="10"/>
-            </Style>
             <!-- Stacklayout Styles-->
             <Style TargetType="StackLayout" x:Key="dashboardOptionStyle">
                 <Setter Property="Margin" Value="20,10,20,0"/>

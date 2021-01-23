@@ -5,7 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="quizapp.Views.QuestionPage" xmlns:helpers="clr-namespace:quizapp.Helpers"
-             xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"  Style="{DynamicResource mainPageBackgroundStyle}" ControlTemplate="{StaticResource quizToolbar}">
+             Style="{DynamicResource mainPageBackgroundStyle}" ControlTemplate="{StaticResource quizToolbar}">
     <ContentPage.Resources>
         <ResourceDictionary>
             <helpers:AnswerStyleConverter x:Key="cnvAns"/>
@@ -28,18 +28,12 @@
                 </StackLayout>
                 <ProgressBar Progress="{Binding QuizProgress}" Margin="10,5,10,0" ProgressColor="Green"/>
             </StackLayout>
-            <pancake:PancakeView Style="{DynamicResource questionPancakeStyle}" Grid.Row="1">
-                <pancake:PancakeView.Border>
-                    <pancake:Border Color="{StaticResource DarkBorder}" Thickness="2" />
-                </pancake:PancakeView.Border>
-                <pancake:PancakeView.Shadow>
-                    <pancake:DropShadow Color="#000000" Offset="-10,-10" />
-                </pancake:PancakeView.Shadow>
+            <Frame Style="{DynamicResource newsFrameStyle}" Grid.Row="1">
                 <StackLayout Orientation="Horizontal" Padding="10">
                     <Image Source="circledq.png" Style="{DynamicResource titleImageStyle}"/>
                     <Label Text="{Binding CurrentQuestion.Question}" Style="{DynamicResource questionLabelStyle}"/>
                 </StackLayout>
-            </pancake:PancakeView>
+            </Frame>
             <StackLayout Grid.Row="2">
                 <ListView x:Name="lvAnswers" ItemsSource="{Binding CurrentQuestionAnswers}" SelectedItem="{Binding UserAnswer}" Margin="10,0,10,0" SeparatorVisibility="None" HasUnevenRows="True" ItemSelected="lvAnswers_ItemSelected" >
                     <ListView.ItemTemplate>
