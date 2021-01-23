@@ -1,9 +1,12 @@
 ﻿using Acr.UserDialogs;
+using Microcharts;
 using Microsoft.Extensions.DependencyInjection;
 using quizapp.Controllers;
 using quizapp.DbControllers;
 using quizapp.Models;
 using quizapp.Views;
+using SkiaSharp;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -25,6 +28,11 @@ namespace quizapp.ViewModels
         private ICategoryController _categoryController;
         private List<PlayerStats> _playerStats;
         private List<NewsItem> _newsItems;
+        private Chart _playerAnswerChart;
+        private Chart _categoryStatChart;
+        private List<QuizCategory> _quizCategoryList;
+        private List<CategoryStats> _categoryStats;
+        private List<CatChartLabel> _categoryChartLabels;
         public DashboardViewModel(INavigation nav)
         {
             _navigation = nav;
@@ -41,6 +49,10 @@ namespace quizapp.ViewModels
             GetAppVersion();
             PopulateTotals();
             SetupNewsItems();
+            SetupPlayerAnswerChart();
+            await GetAllCategoryStats();
+            await GetAllCategories();
+            SetupCategoryStatChart();
         }
 
         public async void GoToStartAQuiz()
@@ -99,6 +111,16 @@ namespace quizapp.ViewModels
             {
                 _faqItems = value;
                 OnPropertyChanged("FAQItems");
+            }
+        }
+
+        public Chart CategoryStatChart
+        {
+            get => _categoryStatChart;
+            set
+            {
+                _categoryStatChart = value;
+                OnPropertyChanged("CategoryStatChart");
             }
         }
 
@@ -189,6 +211,84 @@ namespace quizapp.ViewModels
             }
         }
 
+        public Chart PlayerAnswerChart
+        {
+            get => _playerAnswerChart;
+            set
+            {
+                _playerAnswerChart = value;
+                OnPropertyChanged("PlayerAnswerChart");
+            }
+        }
+
+        public List<CatChartLabel> CategoryChartLabels
+        {
+            get => _categoryChartLabels;
+            set
+            {
+                _categoryChartLabels = value;
+                OnPropertyChanged("CategoryChartLabels");
+            }
+        }
+
+        private void SetupPlayerAnswerChart()
+        {
+            var entries = GetPlayerAnswerStatEntries();
+            var chart = new DonutChart() { Entries = entries.AsEnumerable(), LabelTextSize = 12 };
+            PlayerAnswerChart = chart;
+        }
+
+        private void SetupCategoryStatChart()
+        {
+            var entries = GetCategoryPlayedStatEntries();
+            var chart = new DonutChart() { Entries = entries.AsEnumerable(), LabelTextSize = 12 };
+            CategoryStatChart = chart;
+        }
+
+        private QuizCategory LookupCategory(string id)
+        {
+            return _quizCategoryList.FirstOrDefault(c => c.Id.ToLowerInvariant() == id.ToLowerInvariant());
+        }
+
+        private async Task GetAllCategories()
+        {
+            var categories = await _categoryController.GetQuizCategories();
+            if (categories != null)
+            {
+                _quizCategoryList = categories;
+            }
+        }
+
+        private List<Microcharts.ChartEntry> GetCategoryPlayedStatEntries()
+        {
+            var chartEntries = new List<Microcharts.ChartEntry>();
+            var random = new Random();
+            var chartLabels = new List<CatChartLabel>();
+            if (_categoryStats != null)
+            {
+                foreach (var item in _categoryStats)
+                {
+                    var color = String.Format("#{0:X6}", random.Next(0x1000000));
+                    var cat = LookupCategory(item.CategoryName);
+                    var entry = new Microcharts.ChartEntry((float)item.TimesPlayed) { Color = SKColor.Parse(color) };
+                    var catLabel = new CatChartLabel { Colour = color, Name = cat.Name, Value = item.TimesPlayed.ToString() };
+                    chartEntries.Add(entry);
+                    chartLabels.Add(catLabel);
+                }
+                CategoryChartLabels = chartLabels;
+            }
+            return chartEntries;
+        }
+
+        private async Task GetAllCategoryStats()
+        {
+            var stats = await _categoryStatsDbController.GetAllCategoryStats();
+            if (stats != null)
+            {
+                _categoryStats = stats;
+            }
+        }
+
         private async Task GetAllPlayerStats()
         {
             var stats = await _playerStatsDbController.GetAllPlayerStats();
@@ -205,6 +305,27 @@ namespace quizapp.ViewModels
                 new NewsItem { Title = "New features coming soon", Description = "In the future there will be the option to pick the length of your quiz and new player stats for you to review"}
             };
             NewsItems = tempList;
+        }
+
+        private List<Microcharts.ChartEntry> GetPlayerAnswerStatEntries()
+        {
+            var chartEntries = new List<Microcharts.ChartEntry>();
+            if (_playerStats != null)
+            {
+                var correctAnswers = _playerStats.FirstOrDefault(s => s.Key == "TotalCorrectAnswers");
+                if (correctAnswers != null)
+                {
+                    var correctAnswerEntry = new Microcharts.ChartEntry(float.Parse(correctAnswers.Value)) { Color = SKColor.Parse("#009933"), Label = "Correct", ValueLabel = correctAnswers.Value };
+                    chartEntries.Add(correctAnswerEntry);
+                }
+                var incorrectAnswers = _playerStats.FirstOrDefault(s => s.Key == "TotalIncorrectAnswers");
+                if (incorrectAnswers != null)
+                {
+                    var incorrectAnswerEntry = new Microcharts.ChartEntry(float.Parse(incorrectAnswers.Value)) { Color = SKColor.Parse("#FF0000"), Label = "Incorrect", ValueLabel = incorrectAnswers.Value };
+                    chartEntries.Add(incorrectAnswerEntry);
+                }
+            }
+            return chartEntries;
         }
     }
 }
