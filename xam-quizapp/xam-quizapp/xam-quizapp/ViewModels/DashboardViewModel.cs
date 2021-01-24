@@ -325,7 +325,8 @@ namespace quizapp.ViewModels
         {
             var tempList = new List<NewsItem>() {
                 new NewsItem { Title = "New UI updates", Description = "The new update comes with a new UI to bring it a little more up to date. If you're having trouble finding a page please check our help section."},
-                new NewsItem { Title = "New features coming soon", Description = "In the future there will be the option to pick the length of your quiz and new player stats for you to review"}
+                new NewsItem { Title = "New features coming soon", Description = "In the future there will be the option to pick the length of your quiz and new player stats for you to review"},
+                new NewsItem { Title = "Top category", Description = "New feature, from the dashboard you can now jump into the top category of the day, try your luck and see if you can beat the top score"}
             };
             NewsItems = tempList;
         }

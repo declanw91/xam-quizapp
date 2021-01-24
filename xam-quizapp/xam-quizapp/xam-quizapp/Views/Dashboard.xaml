@@ -39,7 +39,7 @@
                 <IndicatorView x:Name="newsIndicatorView" IndicatorColor="#000000" SelectedIndicatorColor="#ffffff" HorizontalOptions="Center" />
             </StackLayout>
             <StackLayout Grid.Row="2">
-                <Frame Style="{DynamicResource newsFrameStyle}">
+                <Frame Style="{DynamicResource newsFrameStyle}" Margin="10">
                     <StackLayout Orientation="Vertical">
                         <StackLayout Orientation="Horizontal">
                             <Label Text="Todays top category: " Style="{DynamicResource titleLabelStyle}"/>
