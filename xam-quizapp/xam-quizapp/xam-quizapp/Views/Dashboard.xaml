@@ -39,7 +39,30 @@
                 <IndicatorView x:Name="newsIndicatorView" IndicatorColor="#000000" SelectedIndicatorColor="#ffffff" HorizontalOptions="Center" />
             </StackLayout>
             <StackLayout Grid.Row="2">
-                
+                <Frame Style="{DynamicResource newsFrameStyle}">
+                    <StackLayout Orientation="Vertical">
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Todays top category: " Style="{DynamicResource titleLabelStyle}"/>
+                            <Label Text="{Binding TopCategory}" Style="{DynamicResource dashboardLabelStyle}"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Vertical">
+                            <Label Text="Tap here to play todays top category" Style="{DynamicResource dashboardLabelStyle}"/>
+                        </StackLayout>
+                        <StackLayout.GestureRecognizers>
+                            <OnPlatform x:TypeArguments="TapGestureRecognizer">
+                                <On Platform="iOS">
+                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_PlayTopCategory" />
+                                </On>
+                                <On Platform="UWP">
+                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_PlayTopCategory" />
+                                </On>
+                                <On Platform="Android">
+                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_PlayTopCategory" />
+                                </On>
+                            </OnPlatform>
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                </Frame>
             </StackLayout>
         </Grid>
     </ContentPage>

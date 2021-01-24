@@ -194,12 +194,17 @@ namespace quizapp.ViewModels
 
         private async Task CheckQuizMode()
         {
+            var selectedCategory = SelectedCategory;
             if(QuizMode == "RC" || QuizMode == null)
             {
                 await PopulateQuizCategories();
                 if(QuizCategories.Count > 0 && QuizMode == "RC")
                 {
                     SelectRandomCategory();
+                }
+                if(!String.IsNullOrWhiteSpace(selectedCategory))
+                {
+                    SelectedCategory = selectedCategory;
                 }
             }
             else if (QuizMode == "RQ")

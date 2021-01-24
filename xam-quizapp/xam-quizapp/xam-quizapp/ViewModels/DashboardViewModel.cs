@@ -33,6 +33,7 @@ namespace quizapp.ViewModels
         private List<QuizCategory> _quizCategoryList;
         private List<CategoryStats> _categoryStats;
         private List<CatChartLabel> _categoryChartLabels;
+        private string _topCategory;
         public DashboardViewModel(INavigation nav)
         {
             _navigation = nav;
@@ -42,68 +43,6 @@ namespace quizapp.ViewModels
             _categoryController = StartUp.ServiceProvider.GetService<ICategoryController>();
         }
 
-        public async void SetupPage()
-        {
-            await GetAllPlayerStats();
-            ConfigureFaq();
-            GetAppVersion();
-            PopulateTotals();
-            SetupNewsItems();
-            SetupPlayerAnswerChart();
-            await GetAllCategoryStats();
-            await GetAllCategories();
-            SetupCategoryStatChart();
-        }
-
-        public async void GoToStartAQuiz()
-        {
-            var settings = new QuizOptions();
-            await _navigation.PushAsync(settings);
-        }
-
-        public async void GoToRandomCategoryQuiz()
-        {
-            var settings = new QuizOptions();
-            var vm = settings.BindingContext as QuizOptionsViewModel;
-            vm.QuizMode = "RC";
-            await _navigation.PushAsync(settings);
-        }
-
-        public async void GoToRandomQuestionQuiz()
-        {
-            var settings = new QuizOptions();
-            var vm = settings.BindingContext as QuizOptionsViewModel;
-            vm.QuizMode = "RQ";
-            await _navigation.PushAsync(settings);
-        }
-
-        public async void GoToAbout()
-        {
-            var about = new About();
-            await _navigation.PushAsync(about);
-        }
-
-        public async void GoToPlayerScores()
-        {
-            var playerScores = new PlayerScores();
-            await _navigation.PushAsync(playerScores);
-        }
-
-        public async void GoToHelp()
-        {
-            var helpPage = new Help();
-            await _navigation.PushAsync(helpPage);
-        }
-
-        public async void CheckNetwork()
-        {
-            var current = Connectivity.NetworkAccess;
-
-            if (current == NetworkAccess.None)
-            {
-                await UserDialogs.Instance.AlertAsync("You will need a internet connection to play the quiz. Please connect to a network","Warning", "Ok");
-            }
-        }
         public List<FaqItem> FAQItems
         {
             get => _faqItems;
@@ -124,19 +63,6 @@ namespace quizapp.ViewModels
             }
         }
 
-        private void ConfigureFaq()
-        {
-            PopulateFaqItems();
-        }
-
-        private void PopulateFaqItems()
-        {
-            FAQItems.Clear();
-            FAQItems.Add(new FaqItem { Id = 1, Question = "How you a submit an answer?", Answer = "Just tap the answer you wish to submit, once sure tap the submit button" });
-            FAQItems.Add(new FaqItem { Id = 2, Question = "How does the scoring work?", Answer = "You score a point for each correct answer you submit" });
-            FAQItems.Add(new FaqItem { Id = 3, Question = "How do I move to the next question?", Answer = "Just tap the next button, you must have submitted an answer first" });
-        }
-
         public string AppVersion
         {
             get => _appVersion;
@@ -144,30 +70,6 @@ namespace quizapp.ViewModels
             {
                 _appVersion = value;
                 OnPropertyChanged("AppVersion");
-            }
-        }
-
-        private void GetAppVersion()
-        {
-            AppVersion = AppInfo.VersionString;
-        }
-
-        private void PopulateTotals()
-        {
-            var quizsPlayed = _playerStats.FirstOrDefault(s => s.Key == "QuizsPlayed");
-            if (quizsPlayed != null)
-            {
-                TotalQuizsPlayed = int.Parse(quizsPlayed.Value);
-            }
-            var correctAnswers = _playerStats.FirstOrDefault(s => s.Key == "TotalCorrectAnswers");
-            if (correctAnswers != null)
-            {
-                TotalCorrectAnswers = int.Parse(correctAnswers.Value);
-            }
-            var incorrectAnswers = _playerStats.FirstOrDefault(s => s.Key == "TotalIncorrectAnswers");
-            if (incorrectAnswers != null)
-            {
-                TotalIncorrectAnswers = int.Parse(incorrectAnswers.Value);
             }
         }
 
@@ -231,17 +133,138 @@ namespace quizapp.ViewModels
             }
         }
 
+        public string TopCategory
+        {
+            get => _topCategory;
+            set
+            {
+                _topCategory = value;
+                OnPropertyChanged("TopCategory");
+            }
+        }
+
+        public async void SetupPage()
+        {
+            await GetAllPlayerStats();
+            ConfigureFaq();
+            GetAppVersion();
+            PopulateTotals();
+            SetupNewsItems();
+            SetupPlayerAnswerChart();
+            await GetAllCategoryStats();
+            await GetAllCategories();
+            SetupCategoryStatChart();
+            PopulateTopCategory();
+        }
+
+        public async void GoToStartAQuiz()
+        {
+            var settings = new QuizOptions();
+            await _navigation.PushAsync(settings);
+        }
+
+        public async void GoToRandomCategoryQuiz()
+        {
+            var settings = new QuizOptions();
+            var vm = settings.BindingContext as QuizOptionsViewModel;
+            vm.QuizMode = "RC";
+            await _navigation.PushAsync(settings);
+        }
+
+        public async void GoToRandomQuestionQuiz()
+        {
+            var settings = new QuizOptions();
+            var vm = settings.BindingContext as QuizOptionsViewModel;
+            vm.QuizMode = "RQ";
+            await _navigation.PushAsync(settings);
+        }
+
+        public async void GoToAbout()
+        {
+            var about = new About();
+            await _navigation.PushAsync(about);
+        }
+
+        public async void GoToPlayerScores()
+        {
+            var playerScores = new PlayerScores();
+            await _navigation.PushAsync(playerScores);
+        }
+
+        public async void GoToHelp()
+        {
+            var helpPage = new Help();
+            await _navigation.PushAsync(helpPage);
+        }
+
+        public async void CheckNetwork()
+        {
+            var current = Connectivity.NetworkAccess;
+
+            if (current == NetworkAccess.None)
+            {
+                await UserDialogs.Instance.AlertAsync("You will need a internet connection to play the quiz. Please connect to a network","Warning", "Ok");
+            }
+        }
+
+        public async void PlayTopCategory()
+        {
+            var settings = new QuizOptions();
+            var vm = settings.BindingContext as QuizOptionsViewModel;
+            vm.SelectedCategory = TopCategory;
+            await _navigation.PushAsync(settings);
+        }
+
+
+
+        private void ConfigureFaq()
+        {
+            PopulateFaqItems();
+        }
+
+        private void PopulateFaqItems()
+        {
+            FAQItems.Clear();
+            FAQItems.Add(new FaqItem { Id = 1, Question = "How you a submit an answer?", Answer = "Just tap the answer you wish to submit, once sure tap the submit button" });
+            FAQItems.Add(new FaqItem { Id = 2, Question = "How does the scoring work?", Answer = "You score a point for each correct answer you submit" });
+            FAQItems.Add(new FaqItem { Id = 3, Question = "How do I move to the next question?", Answer = "Just tap the next button, you must have submitted an answer first" });
+        }
+
+        private void GetAppVersion()
+        {
+            AppVersion = AppInfo.VersionString;
+        }
+
+        private void PopulateTotals()
+        {
+            var quizsPlayed = _playerStats.FirstOrDefault(s => s.Key == "QuizsPlayed");
+            if (quizsPlayed != null)
+            {
+                TotalQuizsPlayed = int.Parse(quizsPlayed.Value);
+            }
+            var correctAnswers = _playerStats.FirstOrDefault(s => s.Key == "TotalCorrectAnswers");
+            if (correctAnswers != null)
+            {
+                TotalCorrectAnswers = int.Parse(correctAnswers.Value);
+            }
+            var incorrectAnswers = _playerStats.FirstOrDefault(s => s.Key == "TotalIncorrectAnswers");
+            if (incorrectAnswers != null)
+            {
+                TotalIncorrectAnswers = int.Parse(incorrectAnswers.Value);
+            }
+        }
+
         private void SetupPlayerAnswerChart()
         {
             var entries = GetPlayerAnswerStatEntries();
-            var chart = new DonutChart() { Entries = entries.AsEnumerable(), LabelTextSize = 12 };
+            var chart = new DonutChart() { Entries = entries.AsEnumerable(), LabelTextSize = 12, BackgroundColor = SKColors.Transparent };
             PlayerAnswerChart = chart;
         }
 
         private void SetupCategoryStatChart()
         {
             var entries = GetCategoryPlayedStatEntries();
-            var chart = new DonutChart() { Entries = entries.AsEnumerable(), LabelTextSize = 12 };
+            var chart = new DonutChart() { Entries = entries.AsEnumerable(), LabelTextSize = 12, BackgroundColor = SKColors.Transparent };
             CategoryStatChart = chart;
         }
 
@@ -326,6 +349,13 @@ namespace quizapp.ViewModels
                 }
             }
             return chartEntries;
+        }
+
+        private void PopulateTopCategory()
+        {
+            var random = new Random();
+            var index = random.Next(_quizCategoryList.Count);
+            TopCategory = _quizCategoryList.ElementAt(index).Name;
         }
     }
 }

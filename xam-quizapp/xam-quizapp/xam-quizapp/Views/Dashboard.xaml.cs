@@ -44,6 +44,11 @@ namespace quizapp.Views
             _viewModel.GoToHelp();
         }
 
+        private void TapGestureRecognizer_PlayTopCategory(object sender, System.EventArgs e)
+        {
+            _viewModel.PlayTopCategory();
+        }
+
         protected override void OnAppearing()
         {
             base.OnAppearing();
