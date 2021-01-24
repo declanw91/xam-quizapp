@@ -49,6 +49,11 @@ namespace quizapp.Views
             _viewModel.PlayTopCategory();
         }
 
+        private void TapGestureRecognizer_PlayFavouriteCategory(object sender, System.EventArgs e)
+        {
+            _viewModel.PlayFavouriteCategory();
+        }
+
         protected override void OnAppearing()
         {
             base.OnAppearing();

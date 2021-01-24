@@ -36,5 +36,11 @@ namespace quizapp.DbControllers
         {
             await _database.UpdateAsync(stat);
         }
+
+        public async Task<CategoryStats> GetMostPlayedCategory()
+        {
+            var stat = await _database.Table<CategoryStats>().OrderByDescending(t => t.TimesPlayed).FirstOrDefaultAsync();
+            return stat;
+        }
     }
 }

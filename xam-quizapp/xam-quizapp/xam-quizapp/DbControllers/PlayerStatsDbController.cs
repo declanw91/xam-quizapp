@@ -34,6 +34,6 @@ namespace quizapp.DbControllers
         {
             var stats = await _database.Table<PlayerStats>().ToListAsync();
             return stats;
-        }
+        }       
     }
 }

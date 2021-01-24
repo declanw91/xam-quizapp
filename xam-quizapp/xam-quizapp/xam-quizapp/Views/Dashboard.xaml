@@ -18,6 +18,7 @@
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="150"/>
                 <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
             <StackLayout Orientation="Horizontal" Grid.Row="0" Margin="10,10,10,0">
                 <Image Source="appicon.png" HorizontalOptions="Start"/>
@@ -58,6 +59,32 @@
                                 </On>
                                 <On Platform="Android">
                                     <TapGestureRecognizer Tapped="TapGestureRecognizer_PlayTopCategory" />
+                                </On>
+                            </OnPlatform>
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+            <StackLayout Grid.Row="3">
+                <Frame Style="{DynamicResource newsFrameStyle}" Margin="10">
+                    <StackLayout Orientation="Vertical">
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Your favourite category: " Style="{DynamicResource titleLabelStyle}"/>
+                            <Label Text="{Binding PlayerMostPlayed}" Style="{DynamicResource dashboardLabelStyle}"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Vertical">
+                            <Label Text="Tap here to play your favourite category" Style="{DynamicResource dashboardLabelStyle}"/>
+                        </StackLayout>
+                        <StackLayout.GestureRecognizers>
+                            <OnPlatform x:TypeArguments="TapGestureRecognizer">
+                                <On Platform="iOS">
+                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_PlayFavouriteCategory" />
+                                </On>
+                                <On Platform="UWP">
+                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_PlayFavouriteCategory" />
+                                </On>
+                                <On Platform="Android">
+                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_PlayFavouriteCategory" />
                                 </On>
                             </OnPlatform>
                         </StackLayout.GestureRecognizers>

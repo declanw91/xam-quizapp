@@ -34,6 +34,7 @@ namespace quizapp.ViewModels
         private List<CategoryStats> _categoryStats;
         private List<CatChartLabel> _categoryChartLabels;
         private string _topCategory;
+        private string _mostPlayedCategory;
         public DashboardViewModel(INavigation nav)
         {
             _navigation = nav;
@@ -143,6 +144,16 @@ namespace quizapp.ViewModels
             }
         }
 
+        public string PlayerMostPlayed
+        {
+            get => _mostPlayedCategory;
+            set
+            {
+                _mostPlayedCategory = value;
+                OnPropertyChanged("PlayerMostPlayed");
+            }
+        }
+
         public async void SetupPage()
         {
             await GetAllPlayerStats();
@@ -155,6 +166,7 @@ namespace quizapp.ViewModels
             await GetAllCategories();
             SetupCategoryStatChart();
             PopulateTopCategory();
+            PopulateMostPlayedCategory();
         }
 
         public async void GoToStartAQuiz()
@@ -215,7 +227,13 @@ namespace quizapp.ViewModels
             await _navigation.PushAsync(settings);
         }
 
-
+        public async void PlayFavouriteCategory()
+        {
+            var settings = new QuizOptions();
+            var vm = settings.BindingContext as QuizOptionsViewModel;
+            vm.SelectedCategory = PlayerMostPlayed;
+            await _navigation.PushAsync(settings);
+        }
 
         private void ConfigureFaq()
         {
@@ -357,6 +375,16 @@ namespace quizapp.ViewModels
             var random = new Random();
             var index = random.Next(_quizCategoryList.Count);
             TopCategory = _quizCategoryList.ElementAt(index).Name;
+        }
+
+        private async void PopulateMostPlayedCategory()
+        {
+            var cat = await _categoryStatsDbController.GetMostPlayedCategory(); 
+            if(cat != null)
+            {
+                var catName = LookupCategory(cat.CategoryName);
+                PlayerMostPlayed = catName.Name;
+            }
         }
     }
 }

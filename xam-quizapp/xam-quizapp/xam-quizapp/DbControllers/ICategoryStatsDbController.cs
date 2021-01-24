@@ -10,5 +10,6 @@ namespace quizapp.DbControllers
         Task UpdateCategoryStat(CategoryStats stat);
         Task InsertCategoryStat(CategoryStats stat);
         Task<List<CategoryStats>> GetAllCategoryStats();
+        Task<CategoryStats> GetMostPlayedCategory();
     }
 }
