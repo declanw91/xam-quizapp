@@ -12,7 +12,10 @@
              mc:Ignorable="d"
              xmlns:microcharts="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
              x:Class="quizapp.Views.Dashboard" Style="{DynamicResource mainPageBackgroundStyle}">
-    <ContentPage Title="Home" IconImageSource="trophysm.png" Style="{DynamicResource mainPageBackgroundStyle}">
+    <ContentPage Title="Home" Style="{DynamicResource mainPageBackgroundStyle}">
+        <ContentPage.IconImageSource>
+            <FontImageSource Glyph="{StaticResource IconHome}" FontFamily="FA-S"/>
+        </ContentPage.IconImageSource>
         <Grid RowSpacing="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
@@ -93,7 +96,10 @@
             </StackLayout>
         </Grid>
     </ContentPage>
-    <ContentPage Title="Quiz" IconImageSource="quiz.png" Style="{DynamicResource mainPageBackgroundStyle}">
+    <ContentPage Title="Quiz" Style="{DynamicResource mainPageBackgroundStyle}">
+        <ContentPage.IconImageSource>
+            <FontImageSource Glyph="{StaticResource IconQuestion}" FontFamily="FA-S"/>
+        </ContentPage.IconImageSource>
         <Grid RowSpacing="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
@@ -165,7 +171,10 @@
             </Frame>
         </Grid>
     </ContentPage>
-    <ContentPage Title="Stats" IconImageSource="trophysm.png" Style="{DynamicResource mainPageBackgroundStyle}">
+    <ContentPage Title="Stats" Style="{DynamicResource mainPageBackgroundStyle}">
+        <ContentPage.IconImageSource>
+            <FontImageSource Glyph="{StaticResource IconTrophy}" FontFamily="FA-S"/>
+        </ContentPage.IconImageSource>
         <ScrollView>
             <Grid Style="{DynamicResource pageGridStyle}">
                 <Grid.RowDefinitions>
@@ -216,7 +225,10 @@
             </Grid>
         </ScrollView>
     </ContentPage>
-    <ContentPage Title="Help" IconImageSource="help.png" Style="{DynamicResource mainPageBackgroundStyle}">
+    <ContentPage Title="Help" Style="{DynamicResource mainPageBackgroundStyle}">
+        <ContentPage.IconImageSource>
+            <FontImageSource Glyph="{StaticResource IconHelp}" FontFamily="FA-S"/>
+        </ContentPage.IconImageSource>
         <Grid Margin="5">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
@@ -248,7 +260,10 @@
             </ListView>
         </Grid>
     </ContentPage>
-    <ContentPage Title="About" IconImageSource="about.png" Style="{DynamicResource mainPageBackgroundStyle}">
+    <ContentPage Title="About" Style="{DynamicResource mainPageBackgroundStyle}">
+        <ContentPage.IconImageSource>
+            <FontImageSource Glyph="{StaticResource IconInfo}" FontFamily="FA-S"/>
+        </ContentPage.IconImageSource>
         <Grid RowSpacing="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>

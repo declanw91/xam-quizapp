@@ -211,9 +211,6 @@
     <BundleResource Include="Resources\quizbackgroundv2.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\trophysm.png" />
-  </ItemGroup>
-  <ItemGroup>
     <BundleResource Include="Resources\back.png" />
   </ItemGroup>
   <ItemGroup>

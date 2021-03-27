@@ -372,9 +372,13 @@ namespace quizapp.ViewModels
 
         private void PopulateTopCategory()
         {
-            var random = new Random();
+            /*var random = new Random();
             var index = random.Next(_quizCategoryList.Count);
-            TopCategory = _quizCategoryList.ElementAt(index).Name;
+            var topCat = _quizCategoryList.ElementAt(index);
+            if (topCat != null) 
+            {
+                TopCategory = _quizCategoryList.ElementAt(index).Name;
+            }*/
         }
 
         private async void PopulateMostPlayedCategory()
