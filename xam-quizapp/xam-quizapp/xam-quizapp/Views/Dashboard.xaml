@@ -46,8 +46,8 @@
                 <Frame Style="{DynamicResource newsFrameStyle}" Margin="10">
                     <StackLayout Orientation="Vertical">
                         <StackLayout Orientation="Horizontal">
-                            <Label Text="{StaticResource IconKing}" FontFamily="FA-S" Style="{DynamicResource titleLabelStyle}"/>
-                            <Label Text="Todays top category: " Style="{DynamicResource titleLabelStyle}"/>
+                            <Label Text="{StaticResource IconKing}" FontFamily="FA-S" Style="{DynamicResource dashboardLabelStyle}"/>
+                            <Label Text="Todays top category: " Style="{DynamicResource dashboardLabelStyle}"/>
                             <Label Text="{Binding TopCategory}" Style="{DynamicResource dashboardLabelStyle}"/>
                         </StackLayout>
                         <StackLayout Orientation="Vertical">
@@ -73,8 +73,8 @@
                 <Frame Style="{DynamicResource newsFrameStyle}" Margin="10">
                     <StackLayout Orientation="Vertical">
                         <StackLayout Orientation="Horizontal">
-                            <Label Text="{StaticResource IconFavourite}" FontFamily="FA-S" Style="{DynamicResource titleLabelStyle}"/>
-                            <Label Text=" Your favourite category: " Style="{DynamicResource titleLabelStyle}"/>
+                            <Label Text="{StaticResource IconFavourite}" FontFamily="FA-S" Style="{DynamicResource dashboardLabelStyle}"/>
+                            <Label Text="Your favourite category: " Style="{DynamicResource dashboardLabelStyle}"/>
                             <Label Text="{Binding PlayerMostPlayed}" Style="{DynamicResource dashboardLabelStyle}"/>
                         </StackLayout>
                         <StackLayout Orientation="Vertical">
