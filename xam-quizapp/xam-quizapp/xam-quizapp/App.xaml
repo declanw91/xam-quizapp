@@ -12,8 +12,10 @@
             <x:String x:Key="IconHome">&#xf015;</x:String>
             <x:String x:Key="IconHelp">&#xf059;</x:String>
             <x:String x:Key="IconInfo">&#xf05a;</x:String>
-            <x:String x:Key="IconQuestion">&#xf059;</x:String>
+            <x:String x:Key="IconQuestion">&#xf03a;</x:String>
             <x:String x:Key="IconTrophy">&#xf091;</x:String>
+            <x:String x:Key="IconFavourite">&#xf005;</x:String>
+            <x:String x:Key="IconKing">&#xf43f;</x:String>
             <Color x:Key="NavigationPrimary">#3d3d5c</Color>
             <Color x:Key="DarkBorder">#000000</Color>
             <Color x:Key="MainTextColour">#262626</Color>
