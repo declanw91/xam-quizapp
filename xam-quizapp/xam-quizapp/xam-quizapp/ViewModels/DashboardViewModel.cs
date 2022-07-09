@@ -372,7 +372,7 @@ namespace quizapp.ViewModels
 
         private void PopulateTopCategory()
         {
-            if(_quizCategoryList != null)
+            if(_quizCategoryList != null && _quizCategoryList.Count > 0)
             {
                 var random = new Random();
                 var index = random.Next(_quizCategoryList.Count);
