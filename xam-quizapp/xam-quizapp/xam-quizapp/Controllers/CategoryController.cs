@@ -35,7 +35,9 @@ namespace quizapp.Controllers
             JObject response = null;
             try
             {
-                using (var client = _requestClient.CreateClient())
+                HttpClientHandler clientHandler = new HttpClientHandler();
+                clientHandler.ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => { return true; };
+                using (var client = new HttpClient(clientHandler))
                 {
                     var json = await client.GetStringAsync(_categoryUrl);
                     response = JObject.Parse(json);

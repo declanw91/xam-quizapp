@@ -48,7 +48,9 @@ namespace quizapp.Controllers
             var questionUrl = BuildRequestUrl(category, difficulty, questionType);
             try
             {
-                using (var client = _requestClient.CreateClient())
+                HttpClientHandler clientHandler = new HttpClientHandler();
+                clientHandler.ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => { return true; };
+                using (var client = new HttpClient(clientHandler))
                 {
                     var json = await client.GetStringAsync(questionUrl);
                     response = JObject.Parse(json);
